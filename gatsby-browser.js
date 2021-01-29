@@ -1,7 +1,6 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/browser-apis/
- */
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {  } from '@fortawesome/free-solid-svg-icons'
+import {  } from '@fortawesome/pro-solid-svg-icons'
+import {  } from '@fortawesome/free-brands-svg-icons'
 
-// You can delete this file if you're not using it
+library.add()
