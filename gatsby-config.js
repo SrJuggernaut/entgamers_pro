@@ -24,7 +24,7 @@ module.exports = {
         background_color: `#010206`,
         theme_color: `#39B94A`,
         display: `minimal-ui`,
-        icon: `src/images/EntGamersNoOutline.png`, // This path is relative to the root of the site.
+        icon: `/src/images/EntGamersNoOutline.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-emotion`,
