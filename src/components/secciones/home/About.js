@@ -3,8 +3,10 @@ import styled from "@emotion/styled"
 import BImg from "gatsby-background-image"
 import { graphql, useStaticQuery } from "gatsby"
 
+import bP from '../../../helpers/breakPoints'
+
 const AboutWrapper = styled(BImg)`
-  min-height: 85vh;
+  min-height: 95vh;
   display: flex;
   align-items: center;
   background-attachment: fixed;
@@ -16,9 +18,12 @@ const Glass = styled.div`
   -webkit-backdrop-filter: blur(5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 1rem;
+  padding: var(--spacer);
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
+  @media(min-width: ${bP.sm}){
+    grid-template-columns: repeat(2, 1fr);
+  }
   div{
     text-align: center;
   }

@@ -16,6 +16,10 @@ function EstilosGlobales(props) {
           --color-danger: #ff7851;
           --color-dark: #010206;
           --color-light: #fff;
+          --spacer: 1rem;
+        }
+        *{
+          box-sizing: border-box;
         }
         html{
           scroll-behavior: smooth;

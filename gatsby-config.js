@@ -23,7 +23,8 @@ module.exports = {
         start_url: `/`,
         background_color: `#010206`,
         theme_color: `#39B94A`,
-        display: `minimal-ui`
+        display: `minimal-ui`,
+        icon: `src/images/EntGamersNoOutLine.png`
       },
     },
     `gatsby-plugin-emotion`,
