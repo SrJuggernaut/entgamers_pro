@@ -44,9 +44,25 @@ const Slide = styled.div`
   text-align: center;
   max-width: 75%;
   color: var(--color-secondary);
-  h2{
+  h2 {
     font-size: 3rem;
     color: var(--color-accent);
+  }
+`
+const ControlBtn = styled(FontAwesomeIcon)`
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  &#prevEl {
+    margin-left: 10px;
+    left: 0;
+  }
+  &#nextEl {
+    margin-right: 10px;
+    right: 0;
+  }
+  &:hover {
+    cursor: pointer;
   }
 `
 function Donde(props) {
@@ -91,7 +107,8 @@ function Donde(props) {
       },
       {
         ease: "none",
-        duration: 2048,
+        duration: 150,
+        repeat: -1,
         cssRule: {
           backgroundPositionX: `${windowWidth}px`,
         },
@@ -102,14 +119,15 @@ function Donde(props) {
       CSSRulePlugin.getRule("#night02::after"),
       {
         cssRule: {
-          backgroundPositionX: `${windowWidth}px`,
+          backgroundPositionX: `-${windowWidth}px`,
         },
       },
       {
         ease: "none",
-        duration: 2048,
+        duration: 600,
+        repeat: -1,
         cssRule: {
-          backgroundPositionX: `-${windowWidth}px`,
+          backgroundPositionX: `${windowWidth}px`,
         },
       }
     )
@@ -123,27 +141,41 @@ function Donde(props) {
   })
   return (
     <>
-      <Global styles={css`
-        #night01::after {
-          background-position-x: center;
-        }
-        #night02::after {
-          background-position-x: 0px;
-        }
-        #night03::after {
-          background-position-x: 0px;
-        }
-      `}
-      
+      <Global
+        styles={css`
+          #night01::after {
+            background-position-x: center;
+          }
+          #night02::after {
+            background-position-x: 0px;
+          }
+          #night03::after {
+            background-position-x: 0px;
+          }
+        `}
       />
       <DondeBgImg fluid={night01} id="night01">
         <DondeBgImg fluid={night02} id="night02">
           <DondeWrapper fluid={night03} id="night03">
             <div className="container">
-              <Swiper navigation spaceBetween={50} loop={true}>
+              <Swiper
+                navigation={{ nextEl: "#nextEl", prevEl: "#prevEl" }}
+                spaceBetween={50}
+                loop={true}
+              >
+                <ControlBtn
+                  icon={["fas", "chevron-left"]}
+                  id="prevEl"
+                  size="3x"
+                />
+                <ControlBtn
+                  icon={["fas", "chevron-right"]}
+                  id="nextEl"
+                  size="3x"
+                />
                 <SwiperSlide>
                   <SlideContainer>
-                    <Slide >
+                    <Slide>
                       <FontAwesomeIcon
                         icon={["fab", "discord"]}
                         size="6x"

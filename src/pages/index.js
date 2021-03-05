@@ -1,10 +1,12 @@
 import React from "react"
 
-import SEO from "../components/helpers/seo"
-import Hero from "../components/secciones/home/Hero"
-import EstilosGlobales from "../components/helpers/EstilosGlobales"
 import About from "../components/secciones/home/About"
+import EstilosGlobales from "../components/helpers/EstilosGlobales"
 import Donde from "../components/secciones/home/Donde"
+import Hero from "../components/secciones/home/Hero"
+import SEO from "../components/helpers/seo"
+import Razon from "../components/secciones/home/Razon"
+import Clanes from "../components/secciones/home/Clanes"
 
 const IndexPage = () => (
   <>
@@ -12,6 +14,8 @@ const IndexPage = () => (
     <SEO title="Home" />
     <Hero />
     <About />
+    <Clanes />
+    <Razon />
     <Donde />
   </>
 )

@@ -12,16 +12,16 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/pro-solid-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
-    "gatsby": "^2.32.3",
+    "gatsby": "^2.32.9",
     "gatsby-background-image": "^1.4.1",
     "gatsby-image": "^2.11.0",
     "gatsby-plugin-emotion": "^5.4.0",
-    "gatsby-plugin-manifest": "^2.12.0",
-    "gatsby-plugin-offline": "^3.10.0",
+    "gatsby-plugin-manifest": "^2.12.1",
+    "gatsby-plugin-offline": "^3.10.2",
     "gatsby-plugin-react-helmet": "^3.10.0",
-    "gatsby-plugin-sharp": "^2.14.1",
+    "gatsby-plugin-sharp": "^2.14.3",
     "gatsby-plugin-webfonts": "^1.1.4",
-    "gatsby-source-filesystem": "^2.11.0",
+    "gatsby-source-filesystem": "^2.11.1",
     "gatsby-source-graphql": "^2.14.0",
     "gatsby-transformer-sharp": "^2.12.0",
     "gsap": "^3.6.0",
@@ -29,7 +29,7 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-helmet": "^6.1.0",
-    "swiper": "^6.4.11"
+    "swiper": "^6.5.0"
   },
   "devDependencies": {
     "prettier": "2.2.1"
