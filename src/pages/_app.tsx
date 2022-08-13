@@ -1,8 +1,14 @@
+import { CssBaseline, ThemeProvider } from '@mui/material'
 import type { AppProps } from 'next/app'
+
+import theme from '@styles/muiTheme'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <Component {...pageProps} />
+    <ThemeProvider theme={theme}>
+      <CssBaseline/>
+      <Component {...pageProps} />
+    </ThemeProvider>
   )
 }
 
