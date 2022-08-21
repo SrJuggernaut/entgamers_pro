@@ -20,6 +20,9 @@ const theme = createTheme({
     },
     MuiCssBaseline: {
       styleOverrides: `
+      html {
+        scroll-behavior: smooth;
+      }
       /* open-sans-300 - latin */
       @font-face {
         font-family: 'Open Sans';
@@ -66,6 +69,59 @@ const theme = createTheme({
             url('/fonts/permanent-marker-v16-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
       }
       `
+    },
+    MuiPaper: {
+      variants: [
+        {
+          props: { variant: 'glass' },
+          style: {
+            backdropFilter: 'blur(8px)',
+            background: 'rgba(239, 250, 240, 0.05)',
+            border: '1px solid rgba(239, 250, 240, 0.15)',
+            borderRadius: '3px',
+            boxShadow: '3px 3px 1px 0px rgba(28,30,33,0.69)'
+          }
+        },
+        {
+          props: { variant: 'gbaDialog' },
+          style: {
+            background: '#F8F8F8',
+            border: '2px solid #76604E',
+            borderRadius: '6px',
+            boxShadow: '2px 2px 0px #57899A, inset 0px 0px 0px 4px #D6E1F9',
+            color: '#010206'
+          }
+        }
+      ]
+    },
+    MuiCard: {
+      variants: [
+        {
+          props: { variant: 'glass' },
+          style: {
+            backdropFilter: 'blur(8px)',
+            background: 'rgba(239, 250, 240, 0.05)',
+            border: '1px solid rgba(239, 250, 240, 0.15)',
+            borderRadius: '3px',
+            boxShadow: '3px 3px 1px 0px rgba(28,30,33,0.69)'
+          }
+        },
+        {
+          props: { variant: 'gbaDialog' },
+          style: {
+            background: '#F8F8F8',
+            border: '2px solid #76604E',
+            borderRadius: '6px',
+            boxShadow: '2px 2px 0px #57899A, inset 0px 0px 0px 4px #D6E1F9',
+            color: '#010206'
+          }
+        }
+      ]
+    },
+    MuiContainer: {
+      defaultProps: {
+        fixed: true
+      }
     }
   },
   palette: {
@@ -167,7 +223,11 @@ const theme = createTheme({
     caption: {
       fontSize: '.85rem'
     }
-  }
+  },
+  shape: {
+    borderRadius: 4
+  },
+  spacing: 16
 })
 
 export default theme
