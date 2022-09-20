@@ -122,6 +122,17 @@ const theme = createTheme({
       defaultProps: {
         fixed: true
       }
+    },
+    MuiLink: {
+      defaultProps: {
+        underline: 'none'
+      },
+      styleOverrides: {
+        root: {
+          cursor: 'pointer',
+          fontWeight: 500
+        }
+      }
     }
   },
   palette: {
