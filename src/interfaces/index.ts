@@ -1,2 +1,7 @@
 export * from './common'
 export * from './components'
+export * from './components/layouts'
+export * from './models/profile'
+export * from './pages'
+export * from './pages/clanes'
+export * from './pages/equipo'
