@@ -1,12 +1,10 @@
 import { Container } from '@mui/material'
-import { FC, ReactNode } from 'react'
+import { FC } from 'react'
 
 import Header from '@components/layouts/Header'
 import Footer from '@components/layouts/Footer'
 
-export interface ContainedProps {
-  children: ReactNode
-}
+import { ContainedProps } from '@interfaces'
 
 const Contained: FC<ContainedProps> = ({ children }) => {
   return (

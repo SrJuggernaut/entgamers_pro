@@ -1,20 +1,29 @@
-import { AppBar, Box, Container, IconButton, NoSsr, ListItemButton } from '@mui/material'
-import NextLink from 'next/link'
-import dynamic from 'next/dynamic'
-
-import EntGamers from '@assets/logos/EntGamers'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Suspense, useEffect, useState } from 'react'
+import { AppBar, Box, Container, IconButton, NoSsr, ListItemButton, Divider } from '@mui/material'
+import NextLink from 'next/link'
+import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
-const Drawer = dynamic(() => import('@mui/material/Drawer'), { suspense: true, ssr: false })
-const List = dynamic(() => import('@mui/material/List'), { suspense: true, ssr: false })
-const ListItem = dynamic(() => import('@mui/material/ListItem'), { suspense: true, ssr: false })
-const ListItemText = dynamic(() => import('@mui/material/ListItemText'), { suspense: true, ssr: false })
+import EntGamers from '@assets/logos/EntGamers'
+
+import { Link } from '@interfaces'
+
+const Drawer = dynamic(() => import('@mui/material/Drawer'), { ssr: false })
+const List = dynamic(() => import('@mui/material/List'), { ssr: false })
+const ListItemText = dynamic(() => import('@mui/material/ListItemText'), { ssr: false })
+
+const MenuItems: Link[] = [
+  { label: 'Home', url: '/' },
+  { label: 'Clanes', url: '/clanes' }
+]
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
+
+  const router = useRouter()
 
   const handleScroll = () => {
     if (window.scrollY > 15) {
@@ -87,33 +96,42 @@ const Header = () => {
         </Container>
       </AppBar>
       <NoSsr>
-        <Suspense>
-          <Drawer
-            open={openMenu}
-            onClose={() => setOpenMenu(false)}
-            anchor="right"
+        <Drawer
+          open={openMenu}
+          onClose={() => setOpenMenu(false)}
+          anchor="right"
+        >
+          <Box
+            sx={(theme) => ({
+              width: '100vw',
+              height: '100%',
+              [theme.breakpoints.up('xs')]: {
+                maxWidth: '300px'
+              }
+            })}
           >
-            <Box
-              sx={(theme) => ({
-                width: '100vw',
-                height: '100%',
-                [theme.breakpoints.up('md')]: {
-                  maxWidth: '300px'
-                }
-              })}
+            <div
+              css={{
+                minHeight: '60px'
+              }}
+            />
+            <Divider />
+            <List
+              sx={{ paddingTop: '0' }}
             >
-              <List>
-                <ListItem disablePadding>
-                  <NextLink href="/" passHref>
-                    <ListItemButton component="a">
-                      <ListItemText primary="Home" />
-                    </ListItemButton>
-                  </NextLink>
-                </ListItem>
-              </List>
-            </Box>
-          </Drawer>
-        </Suspense>
+              {MenuItems.map(({ label, url }) => (
+                <NextLink key={`menu-item-${label}`} href={url} passHref>
+                  <ListItemButton
+                    component="a"
+                    selected={router.pathname === url}
+                  >
+                    <ListItemText primary={label} />
+                  </ListItemButton>
+                </NextLink>
+              ))}
+            </List>
+          </Box>
+        </Drawer>
       </NoSsr>
     </>
   )
