@@ -19,7 +19,7 @@ module.exports = {
       repo: 'https://github.com/SrJuggernaut/entgamers_pro',
       path: process.env.DEPLOY_PATH,
       'pre-deploy': 'npm install && npm run build',
-      'post-deploy': 'pm2 startOrRestart ecosystem.config.js',
+      'post-deploy': 'sudo pm2 startOrRestart ecosystem.config.js',
       env: {
         ...process.env
       }
@@ -32,7 +32,7 @@ module.exports = {
       repo: 'https://github.com/SrJuggernaut/entgamers_pro',
       path: process.env.DEPLOY_PATH,
       'pre-deploy': 'npm install && npm run build',
-      'post-deploy': 'pm2 startOrRestart ecosystem.config.js',
+      'post-deploy': 'sudo pm2 startOrRestart ecosystem.config.js',
       env: {
         ...process.env
       }
