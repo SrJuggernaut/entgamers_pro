@@ -14,7 +14,7 @@ module.exports = {
   deploy: {
     production: {
       user: process.env.SSH_USERNAME,
-      host: process.env.SSH_HOST,
+      host: process.env.DEPLOY_HOST,
       ref: 'origin/main',
       repo: 'https://github.com/SrJuggernaut/entgamers_pro',
       path: process.env.DEPLOY_PATH,
@@ -27,7 +27,7 @@ module.exports = {
     },
     preview: {
       user: process.env.SSH_USERNAME,
-      host: process.env.SSH_HOST,
+      host: process.env.DEPLOY_HOST,
       ref: 'origin/preview',
       repo: 'https://github.com/SrJuggernaut/entgamers_pro',
       path: process.env.DEPLOY_PATH,
