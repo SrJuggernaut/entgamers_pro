@@ -1,12 +1,13 @@
 module.exports = {
   apps: [
     {
-      name: process.env.APP_NAME,
+      name: process.env.APP_NAME || 'entgamers-website',
       script: 'npm',
       args: 'start',
       env: {
         NODE_ENV: 'production',
-        PORT: process.env.PORT || 3000
+        PORT: process.env.PORT || 3000,
+        DISCORD_JOIN_WEBHOOK_URL: process.env.DISCORD_JOIN_WEBHOOK_URL
       }
     }
   ],
@@ -21,7 +22,9 @@ module.exports = {
       'pre-deploy': 'npm install && npm run build',
       'post-deploy': 'sudo pm2 startOrRestart ecosystem.config.js',
       env: {
-        ...process.env
+        APP_NAME: process.env.APP_NAME,
+        PORT: process.env.PORT,
+        DISCORD_JOIN_WEBHOOK_URL: process.env.DISCORD_JOIN_WEBHOOK_URL
       }
 
     },
@@ -34,7 +37,9 @@ module.exports = {
       'pre-deploy': 'npm install && npm run build',
       'post-deploy': 'sudo pm2 startOrRestart ecosystem.config.js',
       env: {
-        ...process.env
+        APP_NAME: process.env.APP_NAME,
+        PORT: process.env.PORT,
+        DISCORD_JOIN_WEBHOOK_URL: process.env.DISCORD_JOIN_WEBHOOK_URL
       }
     }
   }
