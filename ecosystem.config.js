@@ -19,7 +19,7 @@ module.exports = {
       ref: 'origin/main',
       repo: 'https://github.com/SrJuggernaut/entgamers_pro',
       path: process.env.DEPLOY_PATH,
-      'pre-deploy': 'npm install && npm run build',
+      'pre-deploy': 'yarn install && yarn run build',
       'post-deploy': 'pm2 startOrRestart ecosystem.config.js',
       env: {
         APP_NAME: process.env.APP_NAME,
@@ -34,7 +34,7 @@ module.exports = {
       ref: 'origin/preview',
       repo: 'https://github.com/SrJuggernaut/entgamers_pro',
       path: process.env.DEPLOY_PATH,
-      'pre-deploy': 'npm install && npm run build',
+      'pre-deploy': 'yarn install && yarn run build',
       'post-deploy': 'pm2 startOrRestart ecosystem.config.js',
       env: {
         APP_NAME: process.env.APP_NAME,
