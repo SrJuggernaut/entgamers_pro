@@ -1,4 +1,21 @@
-import { createTheme } from '@mui/material'
+import { createTheme, Interpolation, Theme } from '@mui/material'
+
+const glassStyle: Interpolation<{ theme: Theme }> = {
+  background: 'rgba( 28, 30, 33, 0.45 )',
+  boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+  backdropFilter: 'blur( 8px )',
+  borderRadius: '8px',
+  border: '1px solid rgba( 31, 38, 135, 0.18 )',
+  textShadow: '1px 1px 5px rgba(31, 38, 135, 0.60)'
+}
+
+const gbaStyle: Interpolation<{ theme: Theme }> = {
+  background: '#F8F8F8',
+  border: '2px solid #76604E',
+  borderRadius: '6px',
+  boxShadow: '2px 2px 0px #57899A, inset 0px 0px 0px 4px #D6E1F9',
+  color: '#010206'
+}
 
 const theme = createTheme({
   components: {
@@ -68,29 +85,20 @@ const theme = createTheme({
             url('/fonts/permanent-marker-v16-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
             url('/fonts/permanent-marker-v16-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
       }
+      :root {
+        --swiper-theme-color: #39B94A !important;
+      }
       `
     },
     MuiPaper: {
       variants: [
         {
           props: { variant: 'glass' },
-          style: {
-            backdropFilter: 'blur(8px)',
-            background: 'rgba(239, 250, 240, 0.05)',
-            border: '1px solid rgba(239, 250, 240, 0.15)',
-            borderRadius: '3px',
-            boxShadow: '3px 3px 1px 0px rgba(28,30,33,0.69)'
-          }
+          style: glassStyle
         },
         {
           props: { variant: 'gbaDialog' },
-          style: {
-            background: '#F8F8F8',
-            border: '2px solid #76604E',
-            borderRadius: '6px',
-            boxShadow: '2px 2px 0px #57899A, inset 0px 0px 0px 4px #D6E1F9',
-            color: '#010206'
-          }
+          style: gbaStyle
         }
       ]
     },
@@ -98,23 +106,11 @@ const theme = createTheme({
       variants: [
         {
           props: { variant: 'glass' },
-          style: {
-            backdropFilter: 'blur(8px)',
-            background: 'rgba(239, 250, 240, 0.05)',
-            border: '1px solid rgba(239, 250, 240, 0.15)',
-            borderRadius: '3px',
-            boxShadow: '3px 3px 1px 0px rgba(28,30,33,0.69)'
-          }
+          style: glassStyle
         },
         {
           props: { variant: 'gbaDialog' },
-          style: {
-            background: '#F8F8F8',
-            border: '2px solid #76604E',
-            borderRadius: '6px',
-            boxShadow: '2px 2px 0px #57899A, inset 0px 0px 0px 4px #D6E1F9',
-            color: '#010206'
-          }
+          style: gbaStyle
         }
       ]
     },
@@ -147,7 +143,8 @@ const theme = createTheme({
       disabled: '#313538'
     },
     primary: {
-      main: '#39B94A'
+      main: '#39B94A',
+      contrastText: '#1c1e21'
     },
     secondary: {
       main: '#39b98a'
