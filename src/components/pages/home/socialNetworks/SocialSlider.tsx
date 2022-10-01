@@ -34,7 +34,7 @@ const Slide:FC<SlideProps> = ({ description, socialNetwork, links }) => {
           twitch: <FontAwesomeIcon style={{ filter: 'drop-shadow(2px 2px 2px rgb(0 0 0 / 0.4)' }}icon={faTwitch} size="5x" fixedWidth />
         }[socialNetwork]}
       </Typography>
-      <Typography sx={(theme) => ({ textShadow: `2px 2px 2px ${theme.palette.background.default}` })} variant="body1" align="center" >
+      <Typography variant="body1" align="center" >
         {description}
       </Typography>
       <div
