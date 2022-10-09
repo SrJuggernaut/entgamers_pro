@@ -1,58 +1,67 @@
-# SrJuggernaut Next Template
+<div style="text-align:center">
 
-This is a template for a new SrJuggernaut Next project.
+# EntGamers Website
 
-## Modifications
+[![Typescript](https://img.shields.io/badge/typescript-3178C6?style=flat&logo=TypeScript&logoColor=white)][typescript]&nbsp;
+[![JavaScript Style Guide](https://img.shields.io/badge/standardJS-f3df49?style=flat&logo=JavaScript&logoColor=000)][standardjs]&nbsp;
+[![JavaScript Style Guide](https://img.shields.io/badge/commitlint-000000?style=flat&logo=commitlint&logoColor=white)][commitlint]&nbsp;
+[![JavaScript Style Guide](https://img.shields.io/badge/eslint-4B32C3?style=flat&logo=ESLint&logoColor=white)][eslint]&nbsp;
 
-- TypeScript
-- eslint
-  - Standard
-- Commitlint
+</div>
 
-## Use this template
+This is the source code for the EntGamers website.
 
-### Yarn
-```bash
-yarn create next-app my-app -e https://github.com/SrJuggernaut/next-template/tree/clean
-cd my-app
-yarn husky install
-```
-### NPM
-```bash
-npx create-next-app@latest my-app -e https://github.com/SrJuggernaut/next-template/tree/clean
-cd my-app
-npx husky install
-```
+<h2>Table of contents</h2>
 
-## Getting Started
+- [EntGamers Website](#entgamers-website)
+  - [Development](#development)
+    - [Prerequisites](#prerequisites)
+    - [Setup](#setup)
+  - [Contributing](#contributing)
+  - [Code of Conduct](#code-of-conduct)
+  - [Deployment](#deployment)
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Development
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This project uses [Next.js][nextjs] and [TypeScript][typescript]. It is recommended to use [Visual Studio Code][vsc] as your editor. The project is configured to use [ESLint][eslint] for code formatting and linting, in standardJS style. It is also configured to use [commitlint][commitlint] for commit message formatting.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Prerequisites
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- [Node.js][nodejs]
+- [Yarn][yarn]
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Setup
 
-## Learn More
+1. Clone the repository
+2. Copy `.env.example` to `.env.local` and fill in the values
+3. Run `yarn install` to install dependencies
+   - This will also run `husky install` to install git hooks:
+     - `pre-commit` will run `yarn lint`
+     - commit messages will be linted using [commitlint][commitlint]
+4. Run `yarn develop` to start the development server
+5. Open `http://localhost:3000` in your browser
 
-To learn more about Next.js, take a look at the following resources:
+## Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Please read [contributing](CONTRIBUTING.md) for details on our contribution process.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Code of Conduct
 
-## Deploy on Vercel
+Please read [code of conduct](CODE_OF_CONDUCT.md) for details on our code of conduct.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The website is deployed using pm2. with github actions. The configuration is in `.github/workflows/`.
+
+
+[nodejs]: https://nodejs.org/en/
+[typescript]: https://www.typescriptlang.org/
+[standardjs]: https://standardjs.com
+[commitlint]: https://commitlint.js.org/
+[eslint]: https://eslint.org/
+[nextjs]: https://nextjs.org/
+[vsc]: https://code.visualstudio.com/
+[yarn]: https://yarnpkg.com/en/
+[pm2]: https://pm2.keymetrics.io/
+[nginx]: https://nginx.org/en/
