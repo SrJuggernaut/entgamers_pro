@@ -52,7 +52,7 @@ Please read [code of conduct](CODE_OF_CONDUCT.md) for details on our code of con
 
 ## Deployment
 
-The website is deployed using pm2.
+The website is deployed using pm2. with github actions. The configuration is in `.github/workflows/`.
 
 
 [nodejs]: https://nodejs.org/en/
