@@ -16,7 +16,7 @@ module.exports = {
     production: {
       user: process.env.SSH_USERNAME,
       host: process.env.DEPLOY_HOST,
-      ref: 'origin/main',
+      ref: 'origin/production',
       repo: 'https://github.com/SrJuggernaut/entgamers_pro',
       path: process.env.DEPLOY_PATH,
       'pre-deploy': 'yarn install && yarn run build',
