@@ -1,4 +1,4 @@
-name: CI deploy preview
+name: CI setup preview
 on:
   workflow_dispatch:
 
