@@ -34,17 +34,16 @@ const Page404 = () => {
         >
           El árbol que buscas no está aquí
         </Typography>
-        <NextLink href="/">
-          <Button
-            sx={{
-              marginBlock: 1
-            }}
-            component="a"
-            variant="contained"
-          >
+        <Button
+          sx={{
+            marginBlock: 1
+          }}
+          href="/"
+          component={NextLink}
+          variant="contained"
+        >
             Volver al inicio
-          </Button>
-        </NextLink>
+        </Button>
       </Box>
     </Contained>
   )

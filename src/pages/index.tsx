@@ -1,12 +1,12 @@
 import type { NextPage } from 'next'
 
+import Seo from '@components/Seo'
+import Footer from '@components/layouts/Footer'
+import Header from '@components/layouts/Header'
 import Clanes from '@components/pages/home/Clanes'
 import Hero from '@components/pages/home/Hero'
 import SocialNetworks from '@components/pages/home/SocialNetworks'
 import Team from '@components/pages/home/Team'
-import Header from '@components/layouts/Header'
-import Footer from '@components/layouts/Footer'
-import Seo from '@components/Seo'
 
 const Home: NextPage = () => {
   return (

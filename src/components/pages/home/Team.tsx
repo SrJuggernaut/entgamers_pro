@@ -1,4 +1,4 @@
-import { Container, Button, Typography } from '@mui/material'
+import { Button, Container, Typography } from '@mui/material'
 import NextLink from 'next/link'
 import { FC } from 'react'
 
@@ -57,24 +57,22 @@ const Team: FC<TeamProps> = ({ title, teamMembers, joinTeamButtonText, viewTeamB
             marginBlock: '16px'
           }}
         >
-          <NextLink href="/equipo" passHref>
-            <Button
-              variant="contained"
-              color="info"
-              component="a"
-            >
-              {viewTeamButtonText}
-            </Button>
-          </NextLink>
-          <NextLink href="/equipo/unirse" passHref>
-            <Button
-              variant="contained"
-              color="success"
-              component="a"
-            >
-              {joinTeamButtonText}
-            </Button>
-          </NextLink>
+          <Button
+            href="/equipo"
+            variant="contained"
+            color="info"
+            component={NextLink}
+          >
+            {viewTeamButtonText}
+          </Button>
+          <Button
+            href="/equipo/unirse"
+            variant="contained"
+            color="success"
+            component={NextLink}
+          >
+            {joinTeamButtonText}
+          </Button>
         </div>
       </Container>
     </div>

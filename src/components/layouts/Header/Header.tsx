@@ -1,8 +1,8 @@
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { AppBar, Box, Container, IconButton, NoSsr, ListItemButton, Divider } from '@mui/material'
-import NextLink from 'next/link'
+import { AppBar, Box, Container, Divider, IconButton, ListItemButton, NoSsr } from '@mui/material'
 import dynamic from 'next/dynamic'
+import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
@@ -65,12 +65,10 @@ const Header = () => {
         >
           <div>
             <NextLink href="/">
-              <a>
-                <EntGamers
-                  width="40"
-                  height="40"
-                />
-              </a>
+              <EntGamers
+                width="40"
+                height="40"
+              />
             </NextLink>
           </div>
           <div
@@ -120,14 +118,14 @@ const Header = () => {
               sx={{ paddingTop: '0' }}
             >
               {MenuItems.map(({ label, url }) => (
-                <NextLink key={`menu-item-${label}`} href={url} passHref>
-                  <ListItemButton
-                    component="a"
-                    selected={router.pathname === url}
-                  >
-                    <ListItemText primary={label} />
-                  </ListItemButton>
-                </NextLink>
+                <ListItemButton
+                  key={`menu-item-${label}`}
+                  href={url}
+                  component={NextLink}
+                  selected={router.pathname === url}
+                >
+                  <ListItemText primary={label} />
+                </ListItemButton>
               ))}
             </List>
           </Box>

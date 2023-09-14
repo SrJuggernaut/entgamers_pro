@@ -3,9 +3,9 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import NextLink from 'next/link'
 import { FC } from 'react'
 
-import ProfileCard, { ProfileCardProps } from '@components/profiles/ProfileCard'
-import Contained from '@components/layouts/Contained'
 import Seo from '@components/Seo'
+import Contained from '@components/layouts/Contained'
+import ProfileCard, { ProfileCardProps } from '@components/profiles/ProfileCard'
 import { EquipoPageProps } from '@interfaces'
 
 export const getStaticProps: GetStaticProps<EquipoPageProps> = async () => {
@@ -103,15 +103,14 @@ const Equipo: FC<InferGetStaticPropsType<typeof getStaticProps>> = (
           marginBlock: 2
         }}
       >
-        <NextLink href="/equipo/unirse" passHref>
-          <Button
-            variant="contained"
-            color="primary"
-            component="a"
-          >
+        <Button
+          href="/equipo/unirse"
+          variant="contained"
+          color="primary"
+          component={NextLink}
+        >
             Quiero ser administrador
-          </Button>
-        </NextLink>
+        </Button>
       </Box>
       <Typography variant="h2" align="center" gutterBottom >
         {moderatorsTitle}
@@ -157,15 +156,14 @@ const Equipo: FC<InferGetStaticPropsType<typeof getStaticProps>> = (
           marginBlock: 2
         }}
       >
-        <NextLink href="/equipo/unirse" passHref>
-          <Button
-            variant="contained"
-            color="primary"
-            component="a"
-          >
+        <Button
+          href="/equipo/unirse"
+          variant="contained"
+          color="primary"
+          component={NextLink}
+        >
             Quiero ser moderador
-          </Button>
-        </NextLink>
+        </Button>
       </Box>
       <Typography variant="h2" align="center" gutterBottom >
         {collaboratorsTitle}
@@ -211,15 +209,14 @@ const Equipo: FC<InferGetStaticPropsType<typeof getStaticProps>> = (
           marginBlock: 2
         }}
       >
-        <NextLink href="/equipo/unirse" passHref>
-          <Button
-            variant="contained"
-            color="primary"
-            component="a"
-          >
+        <Button
+          href="/equipo/unirse"
+          variant="contained"
+          color="primary"
+          component={NextLink}
+        >
             Quiero ser colaborador
-          </Button>
-        </NextLink>
+        </Button>
       </Box>
 
     </Contained>

@@ -1,10 +1,10 @@
 import { Container, Paper, Typography } from '@mui/material'
-import NextLink from 'next/link'
 import MuiLink from '@mui/material/Link'
+import NextLink from 'next/link'
 
-import { FooterColumn } from '@interfaces'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FooterColumn } from '@interfaces'
 
 const Footer = () => {
   const columns: FooterColumn[] = [
@@ -50,11 +50,12 @@ const Footer = () => {
                 {column.links.map((link, index) => (
                   <li key={index}>
                     <FontAwesomeIcon icon={faAngleRight} listItem />
-                    <NextLink href={link.url} passHref>
-                      <MuiLink>
-                        {link.label}
-                      </MuiLink>
-                    </NextLink>
+                    <MuiLink
+                      component={NextLink}
+                      href={link.url}
+                    >
+                      {link.label}
+                    </MuiLink>
                   </li>
                 ))}
               </ul>

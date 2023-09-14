@@ -4,12 +4,12 @@ import { Avatar, Card, CardContent, IconButton, Tooltip, Typography } from '@mui
 import NextImage from 'next/image'
 import { FC } from 'react'
 
-import { SocialLink } from '@interfaces'
-import { faGlobe } from '@fortawesome/free-solid-svg-icons'
 import BadgeBook from '@assets/images/gaming/BadgeBook.png'
 import BadgeShield from '@assets/images/gaming/BadgeShield.png'
 import BadgeSword from '@assets/images/gaming/BadgeSword.png'
 import ButtonA from '@assets/images/gaming/ButtonA.png'
+import { faGlobe } from '@fortawesome/free-solid-svg-icons'
+import { SocialLink } from '@interfaces'
 
 export interface ProfileCardProps {
   userName: string
@@ -47,6 +47,7 @@ const ProfileCard: FC<ProfileCardProps> = ({ avatar, biography, socialNetworks, 
           >
             <NextImage
               src={role === 'moderator' ? BadgeShield : role === 'collaborator' ? BadgeBook : BadgeSword}
+              alt={role}
               width={30}
               height={30}
             />
@@ -62,6 +63,7 @@ const ProfileCard: FC<ProfileCardProps> = ({ avatar, biography, socialNetworks, 
       >
         <NextImage
           src={ButtonA}
+          alt="Button A"
           width={30}
           height={30}
         />
@@ -90,6 +92,7 @@ const ProfileCard: FC<ProfileCardProps> = ({ avatar, biography, socialNetworks, 
           >
             <NextImage
               src={avatar}
+              alt={userName}
               width={150}
               height={150}
             />
