@@ -8,22 +8,13 @@ jobs:
     environment: production
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v2
+      - uses: oven-sh/setup-bun@v1
+      - uses: kielabokkie/ssh-key-and-known-hosts-action@v1
         with:
-          node-version: "16"
-      - name: Setup Host SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-          chmod 600 ~/.ssh/known_hosts
-        shell: bash
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-host: ${{ secrets.DEPLOY_HOST }}
       - name: Install pm2
-        run: npm install pm2 --location=global
+        run: bun install pm2 -g
         shell: bash
       - name: Deploy using pm2
         run: pm2 deploy ecosystem.config.js production setup
@@ -31,7 +22,6 @@ jobs:
           # Deploy environment variables 
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
-          SSH_HOST: ${{ secrets.SSH_HOST }}
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
           # App environment variables
           APP_NAME: ${{ secrets.APP_NAME }}

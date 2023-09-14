@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: process.env.APP_NAME || 'entgamers-website',
-      script: 'npm',
+      script: 'bun',
       args: 'start',
       env: {
         NODE_ENV: 'production',
@@ -19,7 +19,6 @@ module.exports = {
       ref: 'origin/production',
       repo: 'https://github.com/SrJuggernaut/entgamers_pro',
       path: process.env.DEPLOY_PATH,
-      'pre-deploy': 'yarn install && yarn run build',
       'post-deploy': 'pm2 startOrRestart ecosystem.config.js',
       env: {
         APP_NAME: process.env.APP_NAME,
@@ -34,7 +33,6 @@ module.exports = {
       ref: 'origin/preview',
       repo: 'https://github.com/SrJuggernaut/entgamers_pro',
       path: process.env.DEPLOY_PATH,
-      'pre-deploy': 'yarn install && yarn run build',
       'post-deploy': 'pm2 startOrRestart ecosystem.config.js',
       env: {
         APP_NAME: process.env.APP_NAME,
