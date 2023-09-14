@@ -19,7 +19,7 @@ module.exports = {
       ref: 'origin/production',
       repo: 'https://github.com/SrJuggernaut/entgamers_pro',
       path: process.env.DEPLOY_PATH,
-      'post-deploy': 'pm2 startOrRestart ecosystem.config.js',
+      'post-deploy': 'pm2 startOrRestart --interpreter bun ecosystem.config.js',
       env: {
         APP_NAME: process.env.APP_NAME,
         PORT: process.env.PORT,
@@ -33,7 +33,7 @@ module.exports = {
       ref: 'origin/preview',
       repo: 'https://github.com/SrJuggernaut/entgamers_pro',
       path: process.env.DEPLOY_PATH,
-      'post-deploy': 'pm2 startOrRestart ecosystem.config.js',
+      'post-deploy': 'pm2 startOrRestart --interpreter bun ecosystem.config.js',
       env: {
         APP_NAME: process.env.APP_NAME,
         PORT: process.env.PORT,
