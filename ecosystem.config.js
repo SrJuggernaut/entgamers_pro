@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: process.env.APP_NAME || 'entgamers-website',
-      script: 'bun',
+      script: '~/.bun/bin/bun',
       args: 'start',
       interpreter: '~/.bun/bin/bun',
       env: {
