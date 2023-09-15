@@ -1,4 +1,4 @@
-import { SocialSliderProps } from '@components/pages/home/socialNetworks/SocialSlider'
+// import { SocialSliderProps } from '@components/pages/home/socialNetworks/SocialSlider'
 import { Container, Paper } from '@mui/material'
 import gsap, { Linear } from 'gsap'
 import ScrollToPlugin from 'gsap/dist/ScrollToPlugin'
@@ -7,11 +7,7 @@ import { FC, useEffect, useRef } from 'react'
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
-export interface SocialNetworksProps {
-  socialNetworks: SocialSliderProps['slides']
-}
-
-const SocialNetworks: FC<SocialNetworksProps> = () => {
+const SocialNetworks: FC = () => {
   const layer01 = useRef<HTMLDivElement| null>(null)
   const layer02 = useRef<HTMLDivElement| null>(null)
   const layer03 = useRef<HTMLDivElement| null>(null)
@@ -86,9 +82,6 @@ const SocialNetworks: FC<SocialNetworksProps> = () => {
               component={Container}
               variant='glass'
             >
-              {/* <SocialSlider
-                slides={socialNetworks}
-              /> */}
             </Paper>
           </div>
         </div>

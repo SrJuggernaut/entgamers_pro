@@ -1,11 +1,8 @@
-import { GetStaticProps, GetStaticPropsResult, InferGetStaticPropsType } from 'next'
 import { Paper, Tab, Tabs, Theme, Typography, useMediaQuery } from '@mui/material'
-import { FC, useEffect, useState } from 'react'
-import { Swiper as SwiperClass, Virtual } from 'swiper'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { GetStaticProps, GetStaticPropsResult, InferGetStaticPropsType } from 'next'
+import { FC, useState } from 'react'
 
 import Contained from '@components/layouts/Contained'
-import PositionJoinTeam from '@components/pages/equipo/unirse/PositionJoinTeam'
 import Seo from '@components/Seo'
 import { EquipoUnirsePageProps } from '@interfaces'
 
@@ -98,15 +95,8 @@ export const getStaticProps: GetStaticProps<EquipoUnirsePageProps> = async (): P
 
 const Unirse: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ title, seo, description, teamPositions }) => {
   const [currentTab, setCurrentTab] = useState(0)
-  const [currenSwiper, setCurrenSwiper] = useState<SwiperClass | undefined>(undefined)
 
   const isMediumOrBigger = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
-
-  useEffect(() => {
-    if (currenSwiper) {
-      currenSwiper.slideToLoop(currentTab)
-    }
-  }, [currentTab])
 
   return (
     <Contained>
@@ -136,20 +126,7 @@ const Unirse: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ title, seo
           ))}
         </Tabs>
       </Paper>
-      <Swiper
-        spaceBetween={50}
-        modules={[Virtual]}
-        allowTouchMove={false}
-        onSwiper={(swiper) => { setCurrenSwiper(swiper) }}
-        onSlideChange={(swiper) => { setCurrentTab(swiper.activeIndex) }}
-        virtual
-      >
-        {teamPositions.map((position, index) => (
-          <SwiperSlide key={index} >
-            <PositionJoinTeam {...position} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+
     </Contained>
   )
 }

@@ -5,7 +5,6 @@ import Footer from '@components/layouts/Footer'
 import Header from '@components/layouts/Header'
 import Clanes from '@components/pages/home/Clanes'
 import Hero from '@components/pages/home/Hero'
-import SocialNetworks from '@components/pages/home/SocialNetworks'
 import Team from '@components/pages/home/Team'
 
 const Home: NextPage = () => {
@@ -24,40 +23,6 @@ const Home: NextPage = () => {
       <Clanes
         title='Clanes'
         description='Los clanes son espacios donde compartir nuestros gustos con otros usuarios, dándonos la oportunidad de organizar proyectos y eventos en los cuales formar parte.'
-      />
-      <SocialNetworks
-        socialNetworks={[
-          {
-            socialNetwork: 'facebook',
-            description: 'Puedes seguirnos en Facebook para ver memes sobre videojuegos, información sobre los Clanes,  la comunidad, eventos, etc. o formar parte del grupo para interactuar mas de cerca con otros integrantes de la comunidad',
-            links: [
-              {
-                label: 'Pagina de Facebook',
-                url: 'https://www.facebook.com/EntGamers/',
-                variant: 'contained',
-                color: 'primary'
-              },
-              {
-                label: 'Grupo de Facebook',
-                url: 'https://www.facebook.com/groups/EntGamers/',
-                variant: 'contained',
-                color: 'primary'
-              }
-            ]
-          },
-          {
-            socialNetwork: 'twitter',
-            description: 'Puedes seguirnos en Twitter para enterarte de las noticias mas recientes sobre la comunidad, eventos y demás información.',
-            links: [
-              {
-                label: 'Twitter',
-                url: 'https://twitter.com/EntGamers',
-                variant: 'contained',
-                color: 'primary'
-              }
-            ]
-          }
-        ]}
       />
       <Team
         title='Equipo'
