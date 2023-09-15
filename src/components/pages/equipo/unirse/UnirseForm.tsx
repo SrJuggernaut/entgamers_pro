@@ -1,11 +1,11 @@
-import { useFormik } from 'formik'
 import { Box, Button, TextField, Typography } from '@mui/material'
-import { FC, useState } from 'react'
+import { useFormik } from 'formik'
+import { useState, type FC } from 'react'
 import { object, string } from 'yup'
 
-import { UnirseFormData, UnirseFormProps } from '@interfaces'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { type UnirseFormData, type UnirseFormProps } from '@interfaces'
 
 const unirseFormSchema = object({
   name: string().required('El nombre es requerido'),
@@ -21,7 +21,7 @@ const UnirseForm: FC<UnirseFormProps> = ({ role }) => {
     initialValues: {
       name: '',
       email: '',
-      role: role || '',
+      role: role ?? '',
       discordUserName: '',
       experience: ''
     },
@@ -73,8 +73,8 @@ const UnirseForm: FC<UnirseFormProps> = ({ role }) => {
           placeholder="Escribe tu nombre"
           value={formik.values.name}
           onChange={formik.handleChange}
-          error={formik.touched.name && !!formik.errors.name}
-          helperText={formik.touched.name && formik.errors.name}
+          error={formik.touched.name !== undefined && formik.errors.name !== undefined }
+          helperText={formik.touched.name !== undefined && formik.errors.name}
           fullWidth
           margin="normal"
         />
@@ -84,8 +84,8 @@ const UnirseForm: FC<UnirseFormProps> = ({ role }) => {
           placeholder="Usaremos este correo para contactarte"
           value={formik.values.email}
           onChange={formik.handleChange}
-          error={formik.touched.email && !!formik.errors.email}
-          helperText={formik.touched.email && formik.errors.email}
+          error={formik.touched.email !== undefined && formik.errors.email !== undefined }
+          helperText={formik.touched.email !== undefined && formik.errors.email}
           fullWidth
           margin="normal"
         />
@@ -95,8 +95,8 @@ const UnirseForm: FC<UnirseFormProps> = ({ role }) => {
           placeholder="userName#0000"
           value={formik.values.discordUserName}
           onChange={formik.handleChange}
-          error={formik.touched.discordUserName && !!formik.errors.discordUserName}
-          helperText={formik.touched.discordUserName && formik.errors.discordUserName}
+          error={formik.touched.discordUserName !== undefined && formik.errors.discordUserName !== undefined }
+          helperText={formik.touched.discordUserName !== undefined && formik.errors.discordUserName}
           fullWidth
           margin="normal"
         />
@@ -106,8 +106,8 @@ const UnirseForm: FC<UnirseFormProps> = ({ role }) => {
           placeholder="¿Tienes experiencia en el área? ¿Qué conocimientos tienes?"
           value={formik.values.experience}
           onChange={formik.handleChange}
-          error={formik.touched.experience && !!formik.errors.experience}
-          helperText={formik.touched.experience && formik.errors.experience}
+          error={formik.touched.experience !== undefined && formik.errors.experience !== undefined }
+          helperText={formik.touched.experience !== undefined && formik.errors.experience}
           fullWidth
           margin="normal"
           multiline
@@ -124,7 +124,7 @@ const UnirseForm: FC<UnirseFormProps> = ({ role }) => {
             type="submit"
             endIcon={formik.isSubmitting ? <FontAwesomeIcon icon={faSpinner} spin /> : undefined}
           >
-          Enviar
+            Enviar
           </Button>
         </Box>
       </Box>

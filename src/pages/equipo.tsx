@@ -1,12 +1,12 @@
 import { Box, Button, Typography } from '@mui/material'
-import { GetStaticProps, InferGetStaticPropsType } from 'next'
+import { type GetStaticProps, type InferGetStaticPropsType } from 'next'
 import NextLink from 'next/link'
-import { FC } from 'react'
+import { type FC } from 'react'
 
 import Seo from '@components/Seo'
 import Contained from '@components/layouts/Contained'
-import ProfileCard, { ProfileCardProps } from '@components/profiles/ProfileCard'
-import { EquipoPageProps } from '@interfaces'
+import ProfileCard, { type ProfileCardProps } from '@components/profiles/ProfileCard'
+import { type EquipoPageProps } from '@interfaces'
 
 export const getStaticProps: GetStaticProps<EquipoPageProps> = async () => {
   return {
@@ -109,7 +109,7 @@ const Equipo: FC<InferGetStaticPropsType<typeof getStaticProps>> = (
           color="primary"
           component={NextLink}
         >
-            Quiero ser administrador
+          Quiero ser administrador
         </Button>
       </Box>
       <Typography variant="h2" align="center" gutterBottom >
@@ -162,7 +162,7 @@ const Equipo: FC<InferGetStaticPropsType<typeof getStaticProps>> = (
           color="primary"
           component={NextLink}
         >
-            Quiero ser moderador
+          Quiero ser moderador
         </Button>
       </Box>
       <Typography variant="h2" align="center" gutterBottom >
@@ -215,7 +215,7 @@ const Equipo: FC<InferGetStaticPropsType<typeof getStaticProps>> = (
           color="primary"
           component={NextLink}
         >
-            Quiero ser colaborador
+          Quiero ser colaborador
         </Button>
       </Box>
 

@@ -1,4 +1,4 @@
-import { EquipoUnirsePageProps } from '@interfaces'
+import { type EquipoUnirsePageProps } from '@interfaces'
 
 export interface PositionJoinTeamProps {
   title: EquipoUnirsePageProps['teamPositions'][number]['title']

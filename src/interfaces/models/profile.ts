@@ -1,4 +1,4 @@
-import { SocialLink } from '@interfaces'
+import { type SocialLink } from '@interfaces'
 
 export interface Profile {
   id: string

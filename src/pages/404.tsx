@@ -1,9 +1,9 @@
+import Contained from '@components/layouts/Contained'
 import { Box, Button, Typography } from '@mui/material'
 import NextLink from 'next/link'
+import { type FC } from 'react'
 
-import Contained from '@components/layouts/Contained'
-
-const Page404 = () => {
+const Page404: FC = () => {
   return (
     <Contained>
       <Box
@@ -42,7 +42,7 @@ const Page404 = () => {
           component={NextLink}
           variant="contained"
         >
-            Volver al inicio
+          Volver al inicio
         </Button>
       </Box>
     </Contained>

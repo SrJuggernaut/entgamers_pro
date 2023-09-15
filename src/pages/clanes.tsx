@@ -2,10 +2,10 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Box, Typography } from '@mui/material'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
-import { FC } from 'react'
+import { type FC } from 'react'
 
 import Contained from '@components/layouts/Contained'
-import { ClanesPageProps } from '@interfaces'
+import { type ClanesPageProps } from '@interfaces'
 import Seo from '@components/Seo'
 
 export const getStaticProps: GetStaticProps<ClanesPageProps> = async () => {

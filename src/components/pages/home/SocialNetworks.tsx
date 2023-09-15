@@ -3,15 +3,15 @@ import { Container, Paper } from '@mui/material'
 import gsap, { Linear } from 'gsap'
 import ScrollToPlugin from 'gsap/dist/ScrollToPlugin'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
-import { FC, useEffect, useRef } from 'react'
+import { type FC, useEffect, useRef } from 'react'
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
 const SocialNetworks: FC = () => {
-  const layer01 = useRef<HTMLDivElement| null>(null)
-  const layer02 = useRef<HTMLDivElement| null>(null)
-  const layer03 = useRef<HTMLDivElement| null>(null)
-  const layer04 = useRef<HTMLDivElement| null>(null)
+  const layer01 = useRef<HTMLDivElement | null>(null)
+  const layer02 = useRef<HTMLDivElement | null>(null)
+  const layer03 = useRef<HTMLDivElement | null>(null)
+  const layer04 = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     const scrollTrigger = {

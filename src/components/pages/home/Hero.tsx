@@ -5,7 +5,7 @@ import gsap, { Elastic, Linear } from 'gsap'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import ScrollToPlugin from 'gsap/dist/ScrollToPlugin'
 import Image from 'next/image'
-import { FC, useEffect, useRef } from 'react'
+import { type FC, useEffect, useRef } from 'react'
 
 import EntGamers from '@assets/images/EntGamers.png'
 
@@ -17,13 +17,13 @@ export interface HeroProps {
 }
 
 const Hero: FC<HeroProps> = ({ subtitle, title }) => {
-  const layer01 = useRef<HTMLDivElement| null>(null)
-  const layer02 = useRef<HTMLDivElement| null>(null)
-  const layer03 = useRef<HTMLDivElement| null>(null)
-  const layer04 = useRef<HTMLDivElement| null>(null)
-  const layer05 = useRef<HTMLDivElement| null>(null)
-  const layer06 = useRef<HTMLDivElement| null>(null)
-  const verMasButton = useRef<HTMLButtonElement| null>(null)
+  const layer01 = useRef<HTMLDivElement | null>(null)
+  const layer02 = useRef<HTMLDivElement | null>(null)
+  const layer03 = useRef<HTMLDivElement | null>(null)
+  const layer04 = useRef<HTMLDivElement | null>(null)
+  const layer05 = useRef<HTMLDivElement | null>(null)
+  const layer06 = useRef<HTMLDivElement | null>(null)
+  const verMasButton = useRef<HTMLButtonElement | null>(null)
   useEffect(() => {
     const scrollTrigger = {
       trigger: layer01.current,

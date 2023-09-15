@@ -1,8 +1,8 @@
-import { Typography } from '@mui/material'
-
 import Contained from '@components/layouts/Contained'
+import { Typography } from '@mui/material'
+import { type FC } from 'react'
 
-const About = () => {
+const About: FC = () => {
   return (
     <Contained>
       <Typography variant='h1' align="center" gutterBottom>Sobre EntGamers</Typography>

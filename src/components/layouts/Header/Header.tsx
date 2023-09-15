@@ -1,31 +1,29 @@
+import EntGamers from '@assets/logos/EntGamers'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { type Link } from '@interfaces'
 import { AppBar, Box, Container, Divider, IconButton, ListItemButton, NoSsr } from '@mui/material'
 import dynamic from 'next/dynamic'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type FC } from 'react'
 
-import EntGamers from '@assets/logos/EntGamers'
-
-import { Link } from '@interfaces'
-
-const Drawer = dynamic(() => import('@mui/material/Drawer'), { ssr: false })
-const List = dynamic(() => import('@mui/material/List'), { ssr: false })
-const ListItemText = dynamic(() => import('@mui/material/ListItemText'), { ssr: false })
+const Drawer = dynamic(async () => await import('@mui/material/Drawer'), { ssr: false })
+const List = dynamic(async () => await import('@mui/material/List'), { ssr: false })
+const ListItemText = dynamic(async () => await import('@mui/material/ListItemText'), { ssr: false })
 
 const MenuItems: Link[] = [
   { label: 'Home', url: '/' },
   { label: 'Clanes', url: '/clanes' }
 ]
 
-const Header = () => {
+const Header: FC = () => {
   const [scrolled, setScrolled] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
 
   const router = useRouter()
 
-  const handleScroll = () => {
+  const handleScroll = (): void => {
     if (window.scrollY > 15) {
       setScrolled(true)
     } else {
@@ -86,7 +84,7 @@ const Header = () => {
                 alignItems: 'center',
                 aspectRatio: '1'
               }}
-              onClick={() => setOpenMenu(true)}
+              onClick={() => { setOpenMenu(true) }}
             >
               <FontAwesomeIcon icon={faBars} size="xs" />
             </IconButton>
@@ -96,7 +94,7 @@ const Header = () => {
       <NoSsr>
         <Drawer
           open={openMenu}
-          onClose={() => setOpenMenu(false)}
+          onClose={() => { setOpenMenu(false) }}
           anchor="right"
         >
           <Box

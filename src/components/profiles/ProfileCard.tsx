@@ -2,21 +2,21 @@ import { faFacebook, faInstagram, faTiktok, faTwitch, faTwitter, faYoutube } fro
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Avatar, Card, CardContent, IconButton, Tooltip, Typography } from '@mui/material'
 import NextImage from 'next/image'
-import { FC } from 'react'
+import { type FC } from 'react'
 
 import BadgeBook from '@assets/images/gaming/BadgeBook.png'
 import BadgeShield from '@assets/images/gaming/BadgeShield.png'
 import BadgeSword from '@assets/images/gaming/BadgeSword.png'
 import ButtonA from '@assets/images/gaming/ButtonA.png'
 import { faGlobe } from '@fortawesome/free-solid-svg-icons'
-import { SocialLink } from '@interfaces'
+import { type SocialLink } from '@interfaces'
 
 export interface ProfileCardProps {
   userName: string
   biography: string
   avatar: string
   socialNetworks: SocialLink[]
-  role: 'user'| 'moderator'| 'collaborator' | 'admin'
+  role: 'user' | 'moderator' | 'collaborator' | 'admin'
 }
 
 const ProfileCard: FC<ProfileCardProps> = ({ avatar, biography, socialNetworks, userName, role }) => {
@@ -136,20 +136,20 @@ const ProfileCard: FC<ProfileCardProps> = ({ avatar, biography, socialNetworks, 
               >
                 {((socialNetwork) => {
                   switch (socialNetwork) {
-                  case 'facebook':
-                    return <FontAwesomeIcon icon={faFacebook} size="xs" />
-                  case 'twitter':
-                    return <FontAwesomeIcon icon={faTwitter} size="xs" />
-                  case 'instagram':
-                    return <FontAwesomeIcon icon={faInstagram} size="xs" />
-                  case 'twitch':
-                    return <FontAwesomeIcon icon={faTwitch} size="xs" />
-                  case 'youtube':
-                    return <FontAwesomeIcon icon={faYoutube} size="xs" />
-                  case 'tiktok':
-                    return <FontAwesomeIcon icon={faTiktok} size="xs" />
-                  default:
-                    return <FontAwesomeIcon icon={faGlobe} size="xs" />
+                    case 'facebook':
+                      return <FontAwesomeIcon icon={faFacebook} size="xs" />
+                    case 'twitter':
+                      return <FontAwesomeIcon icon={faTwitter} size="xs" />
+                    case 'instagram':
+                      return <FontAwesomeIcon icon={faInstagram} size="xs" />
+                    case 'twitch':
+                      return <FontAwesomeIcon icon={faTwitch} size="xs" />
+                    case 'youtube':
+                      return <FontAwesomeIcon icon={faYoutube} size="xs" />
+                    case 'tiktok':
+                      return <FontAwesomeIcon icon={faTiktok} size="xs" />
+                    default:
+                      return <FontAwesomeIcon icon={faGlobe} size="xs" />
                   }
                 })(socialNetwork)}
               </IconButton>

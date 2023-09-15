@@ -1,4 +1,4 @@
-import { createTheme, Interpolation, Theme } from '@mui/material'
+import { createTheme, type Interpolation, type Theme } from '@mui/material'
 
 const glassStyle: Interpolation<{ theme: Theme }> = {
   background: 'rgba( 28, 30, 33, 0.45 )',

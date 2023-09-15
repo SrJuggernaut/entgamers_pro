@@ -1,15 +1,14 @@
-import { config } from '@fortawesome/fontawesome-svg-core'
-import { CssBaseline, ThemeProvider } from '@mui/material'
-import type { AppProps } from 'next/app'
-
 import Seo from '@components/Seo'
-import theme from '@styles/muiTheme'
-
+import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import { CssBaseline, ThemeProvider } from '@mui/material'
+import theme from '@styles/muiTheme'
+import type { AppProps } from 'next/app'
+import { type FC } from 'react'
 
 config.autoAddCss = false
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline/>

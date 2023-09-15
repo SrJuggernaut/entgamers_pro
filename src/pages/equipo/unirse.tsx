@@ -1,10 +1,10 @@
-import { Paper, Tab, Tabs, Theme, Typography, useMediaQuery } from '@mui/material'
-import { GetStaticProps, GetStaticPropsResult, InferGetStaticPropsType } from 'next'
-import { FC, useState } from 'react'
+import { Paper, Tab, Tabs, type Theme, Typography, useMediaQuery } from '@mui/material'
+import { type GetStaticProps, type GetStaticPropsResult, type InferGetStaticPropsType } from 'next'
+import { type FC, useState } from 'react'
 
 import Contained from '@components/layouts/Contained'
 import Seo from '@components/Seo'
-import { EquipoUnirsePageProps } from '@interfaces'
+import { type EquipoUnirsePageProps } from '@interfaces'
 
 import 'swiper/css'
 import 'swiper/css/virtual'
@@ -115,7 +115,7 @@ const Unirse: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ title, seo
       >
         <Tabs
           value={currentTab}
-          onChange={(_, value) => setCurrentTab(value)}
+          onChange={(_, value) => { setCurrentTab(value) }}
           variant={isMediumOrBigger ? 'fullWidth' : 'scrollable'}
           scrollButtons
           allowScrollButtonsMobile

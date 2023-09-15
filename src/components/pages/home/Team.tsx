@@ -1,8 +1,8 @@
 import { Button, Container, Typography } from '@mui/material'
 import NextLink from 'next/link'
-import { FC } from 'react'
+import { type FC } from 'react'
 
-import ProfileCard, { ProfileCardProps } from '@components/profiles/ProfileCard'
+import ProfileCard, { type ProfileCardProps } from '@components/profiles/ProfileCard'
 
 export interface TeamProps {
   title: string

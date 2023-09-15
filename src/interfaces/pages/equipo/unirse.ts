@@ -1,4 +1,4 @@
-import { SeoProps as Seo } from '@components/Seo' // Temporary taken from components to later implement it in the interfaces folder
+import { type SeoProps as Seo } from '@components/Seo' // Temporary taken from components to later implement it in the interfaces folder
 
 export interface TeamPositionRequirements {
   title: string

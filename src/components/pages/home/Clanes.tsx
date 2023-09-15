@@ -1,7 +1,7 @@
 import { Box, Button, Container, Paper, Typography } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FC } from 'react'
+import { type FC } from 'react'
 
 import ClanesImage from '@assets/images/Clanes.png'
 

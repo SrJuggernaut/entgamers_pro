@@ -1,12 +1,12 @@
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { type FooterColumn } from '@interfaces'
 import { Container, Paper, Typography } from '@mui/material'
 import MuiLink from '@mui/material/Link'
 import NextLink from 'next/link'
+import { type FC } from 'react'
 
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FooterColumn } from '@interfaces'
-
-const Footer = () => {
+const Footer: FC = () => {
   const columns: FooterColumn[] = [
     {
       title: 'Acerca de',

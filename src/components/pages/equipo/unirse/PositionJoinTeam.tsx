@@ -2,16 +2,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight'
 import { Box, NoSsr, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { FC } from 'react'
+import { type FC } from 'react'
 
-import { PositionJoinTeamProps } from '@interfaces'
+import { type PositionJoinTeamProps } from '@interfaces'
 
-const UnirseForm = dynamic(() => import('@components/pages/equipo/unirse/UnirseForm'), {
+const UnirseForm = dynamic(async () => await import('@components/pages/equipo/unirse/UnirseForm'), {
   ssr: false,
   suspense: false
 })
 
-const PositionJoinTeam:FC<PositionJoinTeamProps> = (
+const PositionJoinTeam: FC<PositionJoinTeamProps> = (
   { benefits, description, requirements, title }
 ) => {
   return (

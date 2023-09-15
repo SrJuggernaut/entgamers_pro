@@ -1,6 +1,6 @@
-import { FC, SVGProps } from 'react'
+import { type FC, type SVGProps } from 'react'
 
-const SvgComponent:FC<SVGProps<SVGSVGElement>> = (props) => (
+const SvgComponent: FC<SVGProps<SVGSVGElement>> = (props) => (
   <svg
     {...props}
     xmlns="http://www.w3.org/2000/svg"

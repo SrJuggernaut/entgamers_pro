@@ -1,11 +1,10 @@
-import type { NextPage } from 'next'
-
 import Seo from '@components/Seo'
 import Footer from '@components/layouts/Footer'
 import Header from '@components/layouts/Header'
 import Clanes from '@components/pages/home/Clanes'
 import Hero from '@components/pages/home/Hero'
 import Team from '@components/pages/home/Team'
+import type { NextPage } from 'next'
 
 const Home: NextPage = () => {
   return (
