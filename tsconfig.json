@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": [
       "dom",
       "dom.iterable",
@@ -17,42 +17,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "jsxImportSource": "@emotion/react",
     "incremental": true,
     "baseUrl": "src",
     "paths": {
-      "@adapters/*": [
-        "adapters/*"
-      ],
-      "@assets/*": [
-        "assets/*"
-      ],
-      "@components/*": [
-        "components/*"
-      ],
-      "@contexts/*": [
-        "contexts/*"
-      ],
-      "@hooks/*": [
-        "hooks/*"
-      ],
-      "@interfaces": [
-        "interfaces/"
-      ],
-      "@pages/*": [
-        "pages/*"
-      ],
-      "@public/*": [
-        "../public/*"
-      ],
-      "@services/*": [
-        "services/*"
-      ],
-      "@styles/*": [
-        "styles/*"
-      ],
-      "@utilities/*": [
-        "utilities/*"
+      "@/*": [
+        "*"
       ]
     },
     "typeRoots": [
