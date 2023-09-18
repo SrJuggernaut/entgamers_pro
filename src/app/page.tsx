@@ -1,11 +1,16 @@
+import Clanes from '@/app/Clanes'
+import Hero from '@/app/Hero'
+import Social from '@/app/Social'
+import Team from '@/app/Team'
 import { type FC } from 'react'
 
 const HomePage: FC = () => {
   return (
     <>
-      <h1>
-        Home Page
-      </h1>
+      <Hero />
+      <Clanes />
+      <Social />
+      <Team />
     </>
   )
 }
