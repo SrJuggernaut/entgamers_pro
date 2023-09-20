@@ -1,9 +1,11 @@
+import trees from '@/assets/icons/trees'
 import BackDrop from '@/components/ui/BackDrop'
 import { css } from '@/styled-system/css'
 import { iconButton } from '@/styled-system/recipes'
 import { type IconDefinition } from '@fortawesome/fontawesome-common-types'
-import { faBars, faHome, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faHome, faTimes, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import NextLink from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useCallback, useState, type FC } from 'react'
 
@@ -15,8 +17,8 @@ interface MenuLink {
 
 const menuLinks: MenuLink[] = [
   { label: 'Home', href: '/', icon: faHome },
-  { label: 'About', href: '/about', icon: faHome },
-  { label: 'Contact', href: '/contact', icon: faHome }
+  { label: 'Clanes', href: '/clanes', icon: trees },
+  { label: 'Equipo', href: '/equipo', icon: faUsers }
 ]
 
 const Menu: FC = () => {
@@ -81,8 +83,9 @@ const Menu: FC = () => {
               {menuLinks.map((menuLink, index) => (
                 <li
                   key={`menu-link-${index}`}
+                  onClick={() => { setIsMenuOpen(false) }}
                 >
-                  <a
+                  <NextLink
                     className={css({
                       display: 'flex',
                       alignItems: 'center',
@@ -108,7 +111,7 @@ const Menu: FC = () => {
                     data-active={pathName === menuLink.href}
                   >
                     <FontAwesomeIcon icon={menuLink.icon} fixedWidth />&nbsp;{menuLink.label}
-                  </a>
+                  </NextLink>
                 </li>
               ))}
             </ul>

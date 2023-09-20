@@ -1,25 +1,14 @@
 import { css, cx } from '@/styled-system/css'
 import { Container } from '@/styled-system/jsx'
 import { center } from '@/styled-system/patterns'
-import { card, iconButton } from '@/styled-system/recipes'
-import { type IconDefinition } from '@fortawesome/fontawesome-svg-core'
+import { button, card, iconButton } from '@/styled-system/recipes'
+import { type TeamMember } from '@/types/User'
 import { faFacebook, faInstagram, faTwitch, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons'
 import { faGlobe } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import NextImage from 'next/image'
+import NextLink from 'next/link'
 import { type FC } from 'react'
-
-interface TeamMember {
-  image: string
-  name: string
-  role: 'moderator' | 'administrator' | 'collaborator'
-  description: string
-  socialNetworks: Array<{
-    label: string
-    url: string
-    icon: IconDefinition
-  }>
-}
 
 const team: TeamMember[] = [
   {
@@ -41,66 +30,93 @@ const team: TeamMember[] = [
 const Team: FC = () => {
   return (
     <section
-      className={center({
+      className={css({
         minHeight: '75vh',
         backgroundImage: 'url(/images/backgrounds/MysteriousForest.jpg)'
       })}
     >
-      <Container
-        className={css({
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: 'medium',
-          flexWrap: 'wrap'
-        })}
+      <div
+        className={center()}
       >
-        {team.map((member, index) => (
-          <div
-            key={`team-member-${index}`}
-            className={cx(card({ variant: 'retro' }).body, css({
-              maxWidth: '300px',
-              textAlign: 'center'
-            }))}
-          >
+
+        <Container
+          className={css({
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 'medium',
+            flexWrap: 'wrap'
+          })}
+        >
+          {team.map((member, index) => (
             <div
-              className={cx(card({ variant: 'retro' }).media, center())}
+              key={`team-member-${index}`}
+              className={cx(card({ variant: 'retro' }).body, css({
+                maxWidth: '300px',
+                textAlign: 'center'
+              }))}
             >
-              <NextImage
-                src={member.image}
-                alt={member.name}
-                width={120}
-                height={120}
-              />
-            </div>
-            <div
-              className={card({ variant: 'retro' }).content}
-            >
-              <h3>{member.name}</h3>
-              <p>{member.description}</p>
               <div
-                className={css({
-                  display: 'flex',
-                  justifyContent: 'center',
-                  gap: 'small',
-                  flexWrap: 'wrap'
-                })}
+                className={cx(card({ variant: 'retro' }).media, center())}
               >
-                {member.socialNetworks.map((socialNetwork, index) => (
-                  <a
-                    key={`team-member-${index}-social-network`}
-                    className={iconButton()}
-                    href={socialNetwork.url}
-                  >
-                    <FontAwesomeIcon icon={socialNetwork.icon} fixedWidth />
-                  </a>
-                ))}
+                <NextImage
+                  src={member.image}
+                  alt={member.name}
+                  width={120}
+                  height={120}
+                />
+              </div>
+              <div
+                className={card({ variant: 'retro' }).content}
+              >
+                <h3>{member.name}</h3>
+                <p>{member.description}</p>
+                <div
+                  className={css({
+                    display: 'flex',
+                    justifyContent: 'center',
+                    gap: 'small',
+                    flexWrap: 'wrap'
+                  })}
+                >
+                  {member.socialNetworks.map((socialNetwork, index) => (
+                    <a
+                      key={`team-member-${index}-social-network`}
+                      className={iconButton()}
+                      href={socialNetwork.url}
+                    >
+                      <FontAwesomeIcon icon={socialNetwork.icon} fixedWidth />
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </Container>
+          ))}
+        </Container>
+      </div>
+      <div
+        className={css({
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-evenly',
+          gap: 'medium',
+          marginBlock: 'medium'
+        })}
+      >
+        <NextLink
+          className={button({ color: 'info' })}
+          href="/equipo"
+        >
+          Ver el equipo completo
+        </NextLink>
+        <NextLink
+          className={button({ color: 'primary' })}
+          href="/equipo/join"
+        >
+          Únete al equipo
+        </NextLink>
+      </div>
     </section>
   )
 }
