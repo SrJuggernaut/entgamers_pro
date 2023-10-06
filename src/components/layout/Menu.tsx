@@ -1,5 +1,6 @@
 import trees from '@/assets/icons/trees'
 import BackDrop from '@/components/ui/BackDrop'
+import IconButton from '@/components/ui/IconButton'
 import { css } from '@/styled-system/css'
 import { iconButton } from '@/styled-system/recipes'
 import { type IconDefinition } from '@fortawesome/fontawesome-common-types'
@@ -29,14 +30,11 @@ const Menu: FC = () => {
   }, [])
   return (
     <>
-      <button
-        className={iconButton({
-          color: 'primary'
-        })}
+      <IconButton
         onClick={() => { setIsMenuOpen(!isMenuOpen) }}
       >
         <FontAwesomeIcon icon={faBars} />
-      </button>
+      </IconButton>
       <BackDrop
         onClickAway={handleClickAway}
         isOpen={isMenuOpen}

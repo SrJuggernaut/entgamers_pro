@@ -30,16 +30,14 @@ const team: TeamMember[] = [
 const Team: FC = () => {
   return (
     <section
-      className={css({
+      className={center({
         minHeight: '75vh',
         backgroundImage: 'url(/images/backgrounds/MysteriousForest.jpg)'
       })}
     >
-      <div
-        className={center()}
-      >
 
-        <Container
+      <Container>
+        <div
           className={css({
             display: 'flex',
             flexDirection: 'column',
@@ -93,30 +91,32 @@ const Team: FC = () => {
               </div>
             </div>
           ))}
-        </Container>
-      </div>
-      <div
-        className={css({
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-evenly',
-          gap: 'medium',
-          marginBlock: 'medium'
-        })}
-      >
-        <NextLink
-          className={button({ color: 'info' })}
-          href="/equipo"
+
+        </div>
+        <div
+          className={css({
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-evenly',
+            gap: 'medium',
+            paddingBlock: 'large',
+            width: '100%'
+          })}
         >
-          Ver el equipo completo
-        </NextLink>
-        <NextLink
-          className={button({ color: 'primary' })}
-          href="/equipo/join"
-        >
-          Únete al equipo
-        </NextLink>
-      </div>
+          <NextLink
+            className={button({ color: 'info' })}
+            href="/equipo"
+          >
+            Ver el equipo completo
+          </NextLink>
+          <NextLink
+            className={button({ color: 'primary' })}
+            href="/equipo/unirse"
+          >
+            Únete al equipo
+          </NextLink>
+        </div>
+      </Container>
     </section>
   )
 }

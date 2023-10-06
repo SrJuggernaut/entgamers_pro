@@ -103,7 +103,7 @@ const EquipoPage: FC = () => {
         <div className={center()}>
           <NextLink
             className={button({ color: 'info' })}
-            href="/equipo/unirse"
+            href="/equipo/unirse?role=moderator"
           >
             ¡Quiero ser moderador!
           </NextLink>
@@ -119,7 +119,7 @@ const EquipoPage: FC = () => {
       <div className={center()}>
         <NextLink
           className={button({ color: 'info' })}
-          href="/equipo/unirse"
+          href="/equipo/unirse?role=collaborator"
         >
           ¡Quiero ser colaborador!
         </NextLink>

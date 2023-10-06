@@ -1,5 +1,7 @@
 import { type IconDefinition } from '@fortawesome/fontawesome-svg-core'
 
+export type UserPreferences = Record<string, string>
+
 export interface TeamMember {
   image: string
   name: string
