@@ -8,17 +8,17 @@
     "prestart": "yarn install && next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install"
+    "prepare": "panda codegen && husky install"
   },
   "dependencies": {
     "@fontsource/open-sans": "^5.0.12",
     "@fontsource/permanent-marker": "^5.0.8",
-    "@fortawesome/fontawesome-svg-core": "^6.4.2",
-    "@fortawesome/free-brands-svg-icons": "^6.4.2",
-    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-brands-svg-icons": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "appwrite": "^13.0.0",
-    "entgamers-panda-preset": "0.0.7",
+    "entgamers-panda-preset": "0.1.0",
     "formik": "^2.4.4",
     "framer-motion": "^10.16.4",
     "gsap": "^3.12.2",
@@ -32,11 +32,11 @@
     "yup": "^1.2.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.7.1",
-    "@commitlint/config-conventional": "^17.7.0",
-    "@pandacss/dev": "^0.15.0",
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "@pandacss/dev": "^0.23.0",
     "@types/isomorphic-fetch": "^0.0.36",
-    "@types/node": "20.6.0",
+    "@types/node": "^20.10.6",
     "@types/react": "18.2.21",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
