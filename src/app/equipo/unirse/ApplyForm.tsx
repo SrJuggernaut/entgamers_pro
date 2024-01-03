@@ -5,7 +5,6 @@ import Typography from '@/components/ui/Typography'
 import FormGroup from '@/components/ui/form/FormGroup'
 import Input from '@/components/ui/form/Input'
 import TextArea from '@/components/ui/form/TextArea'
-import { createTeamApply } from '@/services/frontend/teamApply'
 import { css } from '@/styled-system/css'
 import { type Alert as AlertType } from '@/types/feedback'
 import { type TeamApplyData } from '@/types/teamApply'
@@ -29,9 +28,9 @@ const ApplyForm: FC = () => {
       message: '',
       role: 'administrator'
     },
-    onSubmit: async (values) => {
+    onSubmit: async (_values) => {
       try {
-        await createTeamApply(values)
+        // await createTeamApply(values)
       } catch (error) {
         if (error instanceof AppwriteException) {
           setAlert({
