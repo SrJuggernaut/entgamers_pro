@@ -1,34 +1,12 @@
 import Typography from '@/components/ui/Typography'
-import { css, cx } from '@/styled-system/css'
+import { css } from '@/styled-system/css'
 import { Container } from '@/styled-system/jsx'
 import { center } from '@/styled-system/patterns'
-import { button, card, iconButton } from '@/styled-system/recipes'
-import { type TeamMember } from '@/types/User'
-import { faFacebook, faInstagram, faTwitch, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons'
-import { faGlobe } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import NextImage from 'next/image'
+import { button } from '@/styled-system/recipes'
 import NextLink from 'next/link'
 import { type FC } from 'react'
 
-const team: TeamMember[] = [
-  {
-    image: '/images/team/SrJuggernaut.png',
-    name: 'SrJuggernaut',
-    role: 'administrator',
-    description: 'Soy desarrollador web y me gusta jugar videojuegos.',
-    socialNetworks: [
-      { url: 'https://www.facebook.com/SrJuggernaut', label: 'SrJuggernaut Facebook', icon: faFacebook },
-      { url: 'https://twitter.com/SrJuggernaut', label: 'SrJuggernaut Twitter', icon: faTwitter },
-      { url: 'https://youtube.com/juggernautplays', label: 'SrJuggernaut YouTube', icon: faYoutube },
-      { url: 'https://twitch.tv/juggernautplays', label: 'SrJuggernaut Twitch', icon: faTwitch },
-      { url: 'https://www.instagram.com/sr_juggernaut', label: 'SrJuggernaut Instagram', icon: faInstagram },
-      { url: 'https://srjuggernaut.dev/', label: 'SrJuggernaut Website', icon: faGlobe }
-    ]
-  }
-]
-
-const EquipoPage: FC = () => {
+const EquipoPage: FC = async () => {
   return (
     <Container>
       <Typography variant="h1" align="center">Equipo</Typography>
@@ -49,7 +27,7 @@ const EquipoPage: FC = () => {
           flexWrap: 'wrap'
         })}
       >
-        {team.map((member, index) => (
+        {/* {team.map((member, index) => (
           <div
             key={`team-member-${index}`}
             className={cx(card({ variant: 'retro' }).body, css({
@@ -92,8 +70,17 @@ const EquipoPage: FC = () => {
               </div>
             </div>
           </div>
-        ))}
+        ))} */}
       </Container>
+
+      <div className={center()}>
+        <NextLink
+          className={button({ color: 'info' })}
+          href="/equipo/unirse?role=administrator"
+        >
+          ¡Quiero ser administrador!
+        </NextLink>
+      </div>
       <Typography variant="h2" align="center">Moderadores</Typography>
       <Typography variant="body1">
         Los moderadores son los encargados de mantener el orden en los grupos de la comunidad, así como de ayudar a los usuarios a resolver sus dudas.
