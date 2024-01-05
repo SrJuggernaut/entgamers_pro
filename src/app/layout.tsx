@@ -10,6 +10,8 @@ import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { type Metadata } from 'next'
 import { type FC, type ReactNode } from 'react'
+import FeedbackConsumer from './FeedbackConsumer'
+import StateProvider from './StateProvider'
 
 config.autoAddCss = false
 
@@ -26,16 +28,19 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en">
       <body>
-        <Header />
-        <main
-          className={css({
-            paddingBlock: 'medium',
-            minHeight: 'calc(100vh - 60px - 72px)'
-          })}
-        >
-          {children}
-        </main>
-        <Footer />
+        <StateProvider>
+          <Header />
+          <main
+            className={css({
+              paddingBlock: 'medium',
+              minHeight: 'calc(100vh - 60px - 72px)'
+            })}
+          >
+            {children}
+          </main>
+          <Footer />
+          <FeedbackConsumer />
+        </StateProvider>
       </body>
     </html>
   )
