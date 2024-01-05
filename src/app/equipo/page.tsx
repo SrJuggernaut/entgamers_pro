@@ -72,7 +72,6 @@ const EquipoPage: FC = async () => {
           </div>
         ))} */}
       </Container>
-
       <div className={center()}>
         <NextLink
           className={button({ color: 'info' })}
@@ -87,15 +86,15 @@ const EquipoPage: FC = async () => {
       </Typography>
       <Typography variant="body2" color="info">
         Ups, parece que ahora mismo no hay moderadores, pero en EntGamers siempre estamos buscando gente que quiera ayudar a la comunidad. si quieres ser moderador, puedes hacer click en el botón de abajo.
-        <div className={center()}>
-          <NextLink
-            className={button({ color: 'info' })}
-            href="/equipo/unirse?role=moderator"
-          >
-            ¡Quiero ser moderador!
-          </NextLink>
-        </div>
       </Typography>
+      <div className={center()}>
+        <NextLink
+          className={button({ color: 'info' })}
+          href="/equipo/unirse?role=moderator"
+        >
+          ¡Quiero ser moderador!
+        </NextLink>
+      </div>
       <Typography variant="h2" align="center">Colaboradores</Typography>
       <Typography variant="body1">
         Los colaboradores son los encargados de crear contenido para la comunidad, como artículos, tutoriales, vídeos, eventos etc.
