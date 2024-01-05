@@ -1,8 +1,12 @@
 'use client'
 import EntGamers from '@/assets/logos/EntGamers'
 import Menu from '@/components/layout/Menu'
+import Tooltip from '@/components/ui/Tooltip'
 import { css } from '@/styled-system/css'
 import { Container } from '@/styled-system/jsx'
+import { iconButton } from '@/styled-system/recipes'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import NextLink from 'next/link'
 import { useCallback, useEffect, useState, type FC } from 'react'
 
@@ -65,6 +69,19 @@ const Header: FC = () => {
             </NextLink>
           </div>
           <div>
+            <Tooltip
+              title="Próximamente"
+              position="bottom"
+            >
+              <NextLink
+                href="/login"
+                className={
+                  iconButton()
+                }
+              >
+                <FontAwesomeIcon icon={faUser} fixedWidth />
+              </NextLink>
+            </Tooltip>
             <Menu />
           </div>
         </Container>
