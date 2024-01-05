@@ -96,6 +96,7 @@ const Hero: FC = () => {
                       alt="EntGamers"
                       width={500}
                       height={500}
+                      priority
                     />
                   </div>
                 </Container>

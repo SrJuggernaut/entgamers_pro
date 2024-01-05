@@ -14,7 +14,6 @@ const Header: FC = () => {
   const [isScrolled, setIsScrolled] = useState(typeof window !== 'undefined' ? window.scrollY > 0 : false)
   const handleScroll = useCallback(() => {
     if (typeof window === 'undefined') return
-    console.log(window.scrollY)
     setIsScrolled(window.scrollY > 0)
   }, [])
   useEffect(() => {
