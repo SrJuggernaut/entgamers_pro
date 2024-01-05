@@ -193,3 +193,6 @@ dist
 
 # Panda Css
 src/styled-system
+
+# Vscode
+.vscode

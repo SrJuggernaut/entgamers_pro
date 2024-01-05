@@ -3,15 +3,20 @@ import { input, type InputVariantProps } from '@/styled-system/recipes/input'
 import { type MergeOmitting } from '@/types/utilities'
 import { type DetailedHTMLProps, type FC, type InputHTMLAttributes } from 'react'
 
-export type InputProps = MergeOmitting<DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, InputVariantProps>
+type ComposedInputProps = MergeOmitting<DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, InputVariantProps>
 
-const Input: FC<InputProps> = ({ className, ...props }) => {
-  const [inputCss, rest] = input.splitVariantProps(props)
+export interface InputProps extends ComposedInputProps {}
+
+const Input: FC<InputProps> = ({ children, className, ...rest }) => {
+  const [inputRecipeArgs, allOtherInputProps] = input.splitVariantProps(rest)
   return (
     <input
-      className={cx(input(inputCss), className)}
-      {...rest}
-    />
+      className={cx(input(inputRecipeArgs), className)}
+      {...allOtherInputProps}
+    >
+      {children}
+    </input>
   )
 }
+
 export default Input

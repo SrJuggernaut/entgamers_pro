@@ -1,9 +1,9 @@
 import { cx } from '@/styled-system/css'
 import { iconButton, type IconButtonVariantProps } from '@/styled-system/recipes/icon-button'
 import { type MergeOmitting } from '@/types/utilities'
-import React, { type FC } from 'react'
+import { type ButtonHTMLAttributes, type DetailedHTMLProps, type FC } from 'react'
 
-type ComposedIconButtonProps = MergeOmitting<React.HTMLAttributes<HTMLButtonElement>, IconButtonVariantProps>
+type ComposedIconButtonProps = MergeOmitting<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, IconButtonVariantProps>
 
 export interface IconButtonProps extends ComposedIconButtonProps {}
 

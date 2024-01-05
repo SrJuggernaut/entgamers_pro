@@ -1,9 +1,9 @@
 import { cx } from '@/styled-system/css'
-import { typography, type TypographyVariantProps } from '@/styled-system/recipes'
+import { typography, type TypographyVariantProps } from '@/styled-system/recipes/typography'
 import { type MergeOmitting } from '@/types/utilities'
-import React, { type ElementType, type FC } from 'react'
+import { type ElementType, type FC, type HTMLAttributes } from 'react'
 
-type ComposedTypographyProps = MergeOmitting<React.HTMLAttributes<HTMLElement>, TypographyVariantProps>
+type ComposedTypographyProps = MergeOmitting<HTMLAttributes<HTMLElement>, TypographyVariantProps>
 
 export interface TypographyProps extends ComposedTypographyProps {
   component?: ElementType
@@ -33,19 +33,14 @@ const variantToComponent = (variant: TypographyVariantProps['variant']): Element
   }
 }
 
-const isHeading = (text: string): boolean => {
-  return text.startsWith('h')
-}
-
 const Typography: FC<TypographyProps> = ({ children, className, component, ...rest }) => {
   const [typographyRecipeArgs, allOtherTypographyProps] = typography.splitVariantProps(rest)
   const Component = component ?? variantToComponent(typographyRecipeArgs.variant)
-  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-  typographyRecipeArgs.color = typographyRecipeArgs.color !== undefined
-    ? typographyRecipeArgs.color
-    : typeof typographyRecipeArgs.variant === 'string' && isHeading(typographyRecipeArgs.variant)
+  typographyRecipeArgs.color = typographyRecipeArgs.color ?? (
+    typeof typographyRecipeArgs.variant === 'string' && typographyRecipeArgs.variant.startsWith('h')
       ? 'primary'
-      : undefined
+      : 'inherit'
+  )
   return (
     <Component
       className={cx(typography(typographyRecipeArgs), className)}
