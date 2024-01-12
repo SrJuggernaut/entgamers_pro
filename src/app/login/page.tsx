@@ -42,7 +42,7 @@ const LoginPage: FC = () => {
           >
             <LoginForm />
             <Typography variant="caption" align="center" >
-              No tienes una cuenta? <NextLink href="/register">Regístrate</NextLink>
+              ¿No tienes una cuenta? <NextLink href="/register">Regístrate</NextLink>
             </Typography>
           </div>
         </div>

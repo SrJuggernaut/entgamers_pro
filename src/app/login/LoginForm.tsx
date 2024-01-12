@@ -4,8 +4,16 @@ import Typography from '@/components/ui/Typography'
 import FormGroup from '@/components/ui/form/FormGroup'
 import Input from '@/components/ui/form/Input'
 import PasswordInput from '@/components/ui/form/PasswordInput'
+import { useAppDispatch } from '@/hooks/useAppDispatch'
+import { useAppSelector } from '@/hooks/useAppSelector'
+import { addAlert } from '@/state/feedbackSlice'
+import { setSession, setStatus } from '@/state/sessionSlice'
+import { nanoid } from '@reduxjs/toolkit'
+import { AppwriteException } from 'appwrite'
+import { login } from 'entgamers-database/frontend/session'
 import { useFormik } from 'formik'
-import { type FC } from 'react'
+import { useRouter } from 'next/navigation'
+import { useEffect, type FC } from 'react'
 import { object, string } from 'yup'
 
 interface LoginData {
@@ -19,16 +27,49 @@ const loginSchema = object({
 })
 
 const LoginForm: FC = () => {
+  const dispatch = useAppDispatch()
+  const session = useAppSelector((state) => state.session)
+  const router = useRouter()
+
   const formik = useFormik<LoginData>({
     initialValues: {
       email: '',
       password: ''
     },
-    onSubmit: (values) => {
-      console.log(values)
+    onSubmit: async ({ email, password }) => {
+      dispatch(setStatus('loading'))
+      try {
+        const session = await login(email, password)
+        dispatch(setSession(session))
+      } catch (error) {
+        if (error instanceof AppwriteException) {
+          dispatch(addAlert({
+            id: nanoid(),
+            message: error.message,
+            title: 'Error mientras se iniciaba sesión',
+            severity: 'error'
+          }))
+        } else {
+          dispatch(addAlert({
+            id: nanoid(),
+            message: 'Error desconocido',
+            title: 'Error mientras se iniciaba sesión',
+            severity: 'error'
+          }))
+        }
+      } finally {
+        dispatch(setStatus('idle'))
+      }
     },
     validationSchema: loginSchema
   })
+
+  useEffect(() => {
+    if (session.status === 'idle' && session.session !== undefined) {
+      router.push('/')
+    }
+  }, [session])
+
   return (
     <form
       onSubmit={formik.handleSubmit}

@@ -11,6 +11,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import { type Metadata } from 'next'
 import { type FC, type ReactNode } from 'react'
 import FeedbackConsumer from './FeedbackConsumer'
+import SessionConsumer from './SessionConsumer'
 import StateProvider from './StateProvider'
 
 config.autoAddCss = false
@@ -40,6 +41,7 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
           </main>
           <Footer />
           <FeedbackConsumer />
+          <SessionConsumer />
         </StateProvider>
       </body>
     </html>

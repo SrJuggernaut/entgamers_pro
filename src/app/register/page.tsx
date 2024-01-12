@@ -43,7 +43,7 @@ const RegisterPage: FC = () => {
           >
             <RegisterForm />
             <Typography variant="caption" align="center" >
-              Ya tienes una cuenta? <NextLink href="/login">Inicia sesión</NextLink>
+              ¿Ya tienes una cuenta? <NextLink href="/login">Inicia sesión</NextLink>
             </Typography>
           </div>
         </div>

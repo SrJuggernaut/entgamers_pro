@@ -4,6 +4,11 @@ import Typography from '@/components/ui/Typography'
 import FormGroup from '@/components/ui/form/FormGroup'
 import Input from '@/components/ui/form/Input'
 import PasswordInput from '@/components/ui/form/PasswordInput'
+import { useAppDispatch } from '@/hooks/useAppDispatch'
+import { addAlert } from '@/state/feedbackSlice'
+import { nanoid } from '@reduxjs/toolkit'
+import { AppwriteException } from 'appwrite'
+import { register } from 'entgamers-database/frontend/session'
 import { useFormik } from 'formik'
 import { type FC } from 'react'
 import { object, ref, string } from 'yup'
@@ -26,17 +31,45 @@ const RegisterSchema = object({
 })
 
 const RegisterForm: FC = () => {
+  const dispatch = useAppDispatch()
+
   const formik = useFormik<RegisterData>({
     initialValues: {
       email: '',
       password: '',
       passwordConfirmation: ''
     },
-    onSubmit: (values) => {
-      console.log(values)
+    onSubmit: async ({ email, password }) => {
+      try {
+        await register(email, password)
+        dispatch(addAlert({
+          id: nanoid(),
+          title: 'Registro completado',
+          message: 'Ahora puedes iniciar sesión',
+          severity: 'success'
+        }))
+        formik.resetForm()
+      } catch (error) {
+        if (error instanceof AppwriteException) {
+          dispatch(addAlert({
+            id: nanoid(),
+            message: error.message,
+            title: 'Error mientras se registraba',
+            severity: 'error'
+          }))
+        } else {
+          dispatch(addAlert({
+            id: nanoid(),
+            message: 'Error desconocido',
+            title: 'Error mientras se registraba',
+            severity: 'error'
+          }))
+        }
+      }
     },
     validationSchema: RegisterSchema
   })
+
   return (
     <form
       onSubmit={formik.handleSubmit}
