@@ -18,7 +18,8 @@ config.autoAddCss = false
 
 export const metadata: Metadata = {
   title: 'Home | EntGamers',
-  description: 'Una comunidad de jugadores, para jugadores'
+  description: 'Una comunidad de jugadores, para jugadores',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://entgamers.pro')
 }
 
 interface RootLayoutProps {
