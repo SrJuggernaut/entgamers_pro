@@ -5,10 +5,15 @@
   "scripts": {
     "develop": "next dev",
     "build": "next build",
-    "prestart": "yarn install && next build",
+    "prestart": "bun install && next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "panda codegen && husky install"
+    "prepare": "panda codegen && husky install",
+    "prisma:generate": "prisma generate --schema=./node_modules/entgamers-database/prisma/schema.prisma",
+    "prisma:db:push": "prisma db push --schema=./node_modules/entgamers-database/prisma/schema.prisma",
+    "prisma:migrate:reset": "prisma migrate reset --schema=./node_modules/entgamers-database/prisma/schema.prisma",
+    "prisma:studio": "prisma studio --schema=./node_modules/entgamers-database/prisma/schema.prisma",
+    "postinstall": "bun prisma:generate"
   },
   "dependencies": {
     "@fontsource/open-sans": "^5.0.20",
@@ -19,8 +24,8 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@reduxjs/toolkit": "^2.0.1",
     "appwrite": "^13.0.1",
-    "entgamers-database": "^0.0.7",
-    "entgamers-panda-preset": "0.1.1",
+    "entgamers-database": "0.0.13",
+    "entgamers-panda-preset": "0.1.2",
     "formik": "^2.4.5",
     "framer-motion": "^10.17.6",
     "isomorphic-fetch": "^3.0.0",

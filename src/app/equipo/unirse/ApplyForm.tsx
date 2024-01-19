@@ -1,53 +1,70 @@
 'use client'
-import Alert from '@/components/ui/Alert'
 import Button from '@/components/ui/Button'
 import Typography from '@/components/ui/Typography'
 import FormGroup from '@/components/ui/form/FormGroup'
 import Input from '@/components/ui/form/Input'
 import TextArea from '@/components/ui/form/TextArea'
+import { useAppDispatch } from '@/hooks/useAppDispatch'
+import { addAlert } from '@/state/feedbackSlice'
 import { css } from '@/styled-system/css'
-import { type Alert as AlertType } from '@/types/feedback'
-import { type TeamApplyData } from '@/types/teamApply'
+import { teamApplicationDataSchema, type TeamApplicationData } from '@/utilities/teamApplication'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon, type FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
-import { AppwriteException } from 'appwrite'
+import { nanoid } from '@reduxjs/toolkit'
 import { useFormik } from 'formik'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useState, type FC } from 'react'
+import { useEffect, type FC } from 'react'
 
 const ApplyForm: FC = () => {
   const searchParams = useSearchParams()
-  const [alert, setAlert] = useState<AlertType | undefined>(undefined)
+  const dispatch = useAppDispatch()
 
-  const formik = useFormik<TeamApplyData>({
+  const formik = useFormik<TeamApplicationData>({
     initialValues: {
       name: '',
       email: '',
-      discordName: '',
+      discord: '',
       message: '',
-      role: 'administrator'
+      role: 'Moderator',
+      status: 'Pending'
     },
-    onSubmit: async (_values) => {
+    onSubmit: async (values) => {
       try {
-        // await createTeamApply(values)
+        await fetch('/api/teamAplications', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(values)
+        })
+        dispatch(addAlert({
+          id: nanoid(),
+          title: 'Formulario enviado',
+          message: 'Gracias por interesarte en unirte al equipo',
+          severity: 'success'
+        }))
       } catch (error) {
-        if (error instanceof AppwriteException) {
-          setAlert({
+        if (error instanceof Error) {
+          dispatch(addAlert({
+            id: nanoid(),
             title: 'Error al enviar el formulario',
             message: error.message,
             severity: 'error'
-          })
+          }))
           return
         }
         console.error('Error al enviar el formulario', error)
-        setAlert({
-          severity: 'error',
+        dispatch(addAlert({
+          id: nanoid(),
           title: 'Error al enviar el formulario',
-          message: 'Hubo un error al enviar el formulario, por favor, intenta nuevamente.'
-        })
+          message: 'Error desconocido',
+          severity: 'error'
+        }))
       }
-    }
+    },
+    validationSchema: teamApplicationDataSchema,
+    isInitialValid: false
   })
   useEffect(() => {
     if (searchParams.has('role')) {
@@ -73,36 +90,36 @@ const ApplyForm: FC = () => {
         <Button
           type='button'
           onClick={() => {
-            formik.setFieldValue('role', 'moderator')
+            formik.setFieldValue('role', 'Moderator')
               .catch((error) => {
                 console.error(error)
               })
           }}
-          disabled={formik.values.role === 'moderator'}
+          disabled={formik.values.role === 'Moderator'}
         >
           Moderador
         </Button>
         <Button
           type='button'
           onClick={() => {
-            formik.setFieldValue('role', 'administrator')
+            formik.setFieldValue('role', 'Admin')
               .catch((error) => {
                 console.error(error)
               })
           }}
-          disabled={formik.values.role === 'administrator'}
+          disabled={formik.values.role === 'Admin'}
         >
           Administrador
         </Button>
         <Button
           type='button'
           onClick={() => {
-            formik.setFieldValue('role', 'collaborator')
+            formik.setFieldValue('role', 'Collaborator')
               .catch((error) => {
                 console.error(error)
               })
           }}
-          disabled={formik.values.role === 'collaborator'}
+          disabled={formik.values.role === 'Collaborator'}
         >
           Colaborador
         </Button>
@@ -114,126 +131,140 @@ const ApplyForm: FC = () => {
           gap: 'medium'
         })}
       >
-        {alert !== undefined && (
-          <Alert
-            severity={alert.severity}
-          >
-            {alert.title !== undefined && (
-              <Typography variant='h5' component='div'>{alert.title}</Typography>
-            )}
-            {alert.message}
-          </Alert>
-        )}
-        {formik.submitCount > 0 && (
-          <div
-            className={css({
-              order: { base: 2, md: 1 }
-            })}
-          >
-            <FormGroup>
-              <label htmlFor='name'>Nombre</label>
-              <Input
-                id='name'
-                type='text'
-                value={formik.values.name}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.name !== undefined && formik.errors.name !== undefined
-                ? (
-                  <Typography variant='caption' color='danger'>
-                    {formik.errors.name}
-                  </Typography>
-                )
-                : (
-                  <Typography variant='caption' color='info'>
-                    Tu nombre.
-                  </Typography>
-                )}
-            </FormGroup>
-            <FormGroup>
-              <label htmlFor='email'>Email</label>
-              <Input
-                id='email'
-                type='email'
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.email !== undefined && formik.errors.email !== undefined
-                ? (
-                  <Typography variant='caption' color='danger'>
-                    {formik.errors.email}
-                  </Typography>
-                )
-                : (
-                  <Typography variant='caption' color='info'>
-                    Tu email, para poder contactarte.
-                  </Typography>
-                )
-              }
-            </FormGroup>
-            <FormGroup>
-              <label htmlFor='discordName'>Nombre de Discord</label>
-              <Input
-                id='discordName'
-                type='text'
-                value={formik.values.discordName}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.discordName !== undefined && formik.errors.discordName !== undefined
-                ? (
-                  <Typography variant='caption' color='danger'>
-                    {formik.errors.discordName}
-                  </Typography>
-                )
-                : (
-                  <Typography variant='caption' color='info'>
-                    Tu nombre de Discord, para poder contactarte.
-                  </Typography>
-                )
-              }
-            </FormGroup>
-            <FormGroup>
-              <label htmlFor='message'>Mensaje</label>
-              <TextArea
-                id='message'
-                value={formik.values.message}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.message !== undefined && formik.errors.message !== undefined
-                ? (
-                  <Typography variant='caption' color='danger'>
-                    {formik.errors.message}
-                  </Typography>
-                )
-                : (
-                  <Typography variant='caption' color='info'>
-                    ¿Por que te gustaría unirte al equipo?, ¿Que te gustaría hacer?, etc.
-                  </Typography>
-                )
-              }
-            </FormGroup>
+        {formik.submitCount <= 0
+          ? (
             <div
               className={css({
+                order: { base: 2, md: 1 }
+              })}
+            >
+              <FormGroup>
+                <label htmlFor='name'>Nombre</label>
+                <Input
+                  id='name'
+                  type='text'
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+                {formik.touched.name !== undefined && formik.errors.name !== undefined
+                  ? (
+                    <Typography variant='caption' color='danger'>
+                      {formik.errors.name}
+                    </Typography>
+                  )
+                  : (
+                    <Typography variant='caption' color='info'>
+                      Tu nombre.
+                    </Typography>
+                  )}
+              </FormGroup>
+              <FormGroup>
+                <label htmlFor='email'>Email</label>
+                <Input
+                  id='email'
+                  type='email'
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+                {formik.touched.email !== undefined && formik.errors.email !== undefined
+                  ? (
+                    <Typography variant='caption' color='danger'>
+                      {formik.errors.email}
+                    </Typography>
+                  )
+                  : (
+                    <Typography variant='caption' color='info'>
+                      Tu email, para poder contactarte.
+                    </Typography>
+                  )
+                }
+              </FormGroup>
+              <FormGroup>
+                <label htmlFor='discord'>Nombre de Discord</label>
+                <Input
+                  id='discord'
+                  type='text'
+                  value={formik.values.discord}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+                {formik.touched.discord !== undefined && formik.errors.discord !== undefined
+                  ? (
+                    <Typography variant='caption' color='danger'>
+                      {formik.errors.discord}
+                    </Typography>
+                  )
+                  : (
+                    <Typography variant='caption' color='info'>
+                      Tu nombre de Discord, para poder contactarte.
+                    </Typography>
+                  )
+                }
+              </FormGroup>
+              <FormGroup>
+                <label htmlFor='message'>Mensaje</label>
+                <TextArea
+                  id='message'
+                  value={formik.values.message}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+                {formik.touched.message !== undefined && formik.errors.message !== undefined
+                  ? (
+                    <Typography variant='caption' color='danger'>
+                      {formik.errors.message}
+                    </Typography>
+                  )
+                  : (
+                    <Typography variant='caption' color='info'>
+                      ¿Por que te gustaría unirte al equipo?, ¿Que te gustaría hacer?, etc.
+                    </Typography>
+                  )
+                }
+              </FormGroup>
+              <div
+                className={css({
+                  paddingBlock: 'medium'
+                })}
+              >
+                <Button
+                  type='submit'
+                  disabled={!formik.isValid || !formik.dirty}
+                  fullWidth
+
+                >
+                  Enviar
+                </Button>
+              </div>
+            </div>
+          )
+          : (
+            <div
+              className={css({
+                order: { base: 2, md: 1 },
                 paddingBlock: 'medium'
               })}
             >
-              <Button
-                type='submit'
-                disabled={!formik.isValid || !formik.dirty}
-                fullWidth
-
+              <div
+                className={css({
+                  backgroundColor: 'surface',
+                  borderRadius: 'medium',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                })}
               >
-                Enviar
-              </Button>
+                <Typography variant='h2' align="center">¡Gracias por interesarte en unirte al equipo!</Typography>
+                <Typography variant='body1'>
+                  El equipo de EntGamers se pondrá en contacto contigo a la brevedad posible.
+                </Typography>
+              </div>
             </div>
-          </div>
-        )
+          )
         }
-
         <div
           className={css({
             overflow: 'hidden',
@@ -242,7 +273,7 @@ const ApplyForm: FC = () => {
           })}
         >
           <AnimatePresence mode='wait' initial={false}>
-            {formik.values.role === 'moderator' && (
+            {formik.values.role === 'Moderator' && (
               <motion.div
                 key={'motion-moderator'}
                 transition={{ duration: 0.15, ease: 'easeInOut' }}
@@ -272,7 +303,7 @@ const ApplyForm: FC = () => {
                 </ul>
               </motion.div>
             )}
-            {formik.values.role === 'collaborator' && (
+            {formik.values.role === 'Collaborator' && (
               <motion.div
                 key={'motion-collaborator'}
                 transition={{ duration: 0.15, ease: 'easeInOut' }}
@@ -302,7 +333,7 @@ const ApplyForm: FC = () => {
                 </ul>
               </motion.div>
             )}
-            {formik.values.role === 'administrator' && (
+            {formik.values.role === 'Admin' && (
               <motion.div
                 key={'motion-administrator'}
                 transition={{ duration: 0.15, ease: 'easeInOut' }}
