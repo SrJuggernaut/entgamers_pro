@@ -8,7 +8,7 @@
     "prestart": "bun install && next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "panda codegen && husky install",
+    "prepare": "panda codegen && husky install && bun run prisma:generate",
     "prisma:generate": "prisma generate --schema=./node_modules/entgamers-database/prisma/schema.prisma",
     "prisma:db:push": "prisma db push --schema=./node_modules/entgamers-database/prisma/schema.prisma",
     "prisma:migrate:reset": "prisma migrate reset --schema=./node_modules/entgamers-database/prisma/schema.prisma",

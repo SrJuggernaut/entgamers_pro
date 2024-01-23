@@ -16,7 +16,7 @@ export const GET = async (Request: Request, { params }: TeamApplicationRouteData
   }
 }
 
-export const POST = async (Request: Request, { params }: TeamApplicationRouteData): Promise<Response> => {
+export const PUT = async (Request: Request, { params }: TeamApplicationRouteData): Promise<Response> => {
   try {
     const body: unknown = await Request.json()
     const { id } = await teamApplicationParamsSchema.validate(params)
