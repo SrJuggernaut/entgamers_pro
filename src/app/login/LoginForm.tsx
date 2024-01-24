@@ -12,6 +12,7 @@ import { nanoid } from '@reduxjs/toolkit'
 import { AppwriteException } from 'appwrite'
 import { login } from 'entgamers-database/frontend/session'
 import { useFormik } from 'formik'
+import NextLink from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, type FC } from 'react'
 import { object, string } from 'yup'
@@ -105,6 +106,9 @@ const LoginForm: FC = () => {
           <Typography variant="caption" color="danger">{formik.errors.password}</Typography>
         )}
       </FormGroup>
+      <Typography variant="caption" color="muted">
+        Perdiste tu contraseña? <NextLink href="/recover-password">Recuperala</NextLink>
+      </Typography>
       <FormGroup>
         <Button
           type="submit"
