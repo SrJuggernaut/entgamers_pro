@@ -31,7 +31,7 @@ const ApplyForm: FC = () => {
     },
     onSubmit: async (values) => {
       try {
-        await fetch('/api/teamAplications', {
+        await fetch('/api/team-applications', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
