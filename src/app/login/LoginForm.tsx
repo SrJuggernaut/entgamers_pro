@@ -7,10 +7,10 @@ import PasswordInput from '@/components/ui/form/PasswordInput'
 import { useAppDispatch } from '@/hooks/useAppDispatch'
 import { useAppSelector } from '@/hooks/useAppSelector'
 import { addAlert } from '@/state/feedbackSlice'
-import { setSession, setStatus } from '@/state/sessionSlice'
+import { setCurrentUser, setSession, setStatus } from '@/state/sessionSlice'
 import { nanoid } from '@reduxjs/toolkit'
 import { AppwriteException } from 'appwrite'
-import { login } from 'entgamers-database/frontend/session'
+import { getCurrentUser, login } from 'entgamers-database/frontend/session'
 import { useFormik } from 'formik'
 import NextLink from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -41,7 +41,9 @@ const LoginForm: FC = () => {
       dispatch(setStatus('loading'))
       try {
         const session = await login(email, password)
+        const user = await getCurrentUser()
         dispatch(setSession(session))
+        dispatch(setCurrentUser(user))
       } catch (error) {
         if (error instanceof AppwriteException) {
           dispatch(addAlert({

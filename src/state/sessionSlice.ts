@@ -1,14 +1,16 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import { type Models } from 'appwrite'
+import { type UserWithPreferences } from 'entgamers-database/frontend/session'
 
-export interface SessionState {
+export type SessionState =
+| {
   status: 'idle' | 'loading' | 'initializing'
   session?: Models.Session
+  user?: UserWithPreferences
 }
 
 const initialState: SessionState = {
-  status: 'initializing',
-  session: undefined
+  status: 'initializing'
 }
 
 const sessionSlice = createSlice({
@@ -16,14 +18,26 @@ const sessionSlice = createSlice({
   initialState,
   reducers: {
     setStatus: (state, action: PayloadAction<SessionState['status']>) => {
-      state.status = action.payload
+      return {
+        ...state,
+        status: action.payload
+      }
     },
     setSession: (state, action: PayloadAction<SessionState['session']>) => {
-      state.session = action.payload
+      return {
+        ...state,
+        session: action.payload
+      }
+    },
+    setCurrentUser: (state, action: PayloadAction<SessionState['user']>) => {
+      return {
+        ...state,
+        userPreferences: action.payload
+      }
     }
   }
 })
 
-export const { setStatus, setSession } = sessionSlice.actions
+export const { setStatus, setSession, setCurrentUser } = sessionSlice.actions
 
 export default sessionSlice
