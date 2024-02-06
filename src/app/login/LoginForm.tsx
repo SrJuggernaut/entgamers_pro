@@ -109,7 +109,7 @@ const LoginForm: FC = () => {
         )}
       </FormGroup>
       <Typography variant="caption" color="muted">
-        Perdiste tu contraseña? <NextLink href="/recover-password">Recuperala</NextLink>
+        ¿Perdiste tu contraseña? <NextLink href="/recover-password">Recupérala</NextLink>
       </Typography>
       <FormGroup>
         <Button
