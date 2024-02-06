@@ -11,6 +11,7 @@ import { teamApplicationDataSchema, type TeamApplicationData } from '@/utilities
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon, type FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
 import { nanoid } from '@reduxjs/toolkit'
+import { ADMIN_CLAN_ID, COLLABORATOR_CLAN_ID, MODERATOR_CLAN_ID } from 'entgamers-database/frontend/clanes/administrative'
 import { useFormik } from 'formik'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useSearchParams } from 'next/navigation'
@@ -90,31 +91,31 @@ const ApplyForm: FC = () => {
         <Button
           type='button'
           onClick={() => {
-            formik.setFieldValue('role', 'Moderator')
+            formik.setFieldValue('role', MODERATOR_CLAN_ID)
               .catch((error) => {
                 console.error(error)
               })
           }}
-          disabled={formik.values.role === 'Moderator'}
+          disabled={formik.values.role === MODERATOR_CLAN_ID}
         >
           Moderador
         </Button>
         <Button
           type='button'
           onClick={() => {
-            formik.setFieldValue('role', 'Admin')
+            formik.setFieldValue('role', ADMIN_CLAN_ID)
               .catch((error) => {
                 console.error(error)
               })
           }}
-          disabled={formik.values.role === 'Admin'}
+          disabled={formik.values.role === ADMIN_CLAN_ID}
         >
           Administrador
         </Button>
         <Button
           type='button'
           onClick={() => {
-            formik.setFieldValue('role', 'Collaborator')
+            formik.setFieldValue('role', COLLABORATOR_CLAN_ID)
               .catch((error) => {
                 console.error(error)
               })
@@ -273,7 +274,7 @@ const ApplyForm: FC = () => {
           })}
         >
           <AnimatePresence mode='wait' initial={false}>
-            {formik.values.role === 'Moderator' && (
+            {formik.values.role === MODERATOR_CLAN_ID && (
               <motion.div
                 key={'motion-moderator'}
                 transition={{ duration: 0.15, ease: 'easeInOut' }}
@@ -303,7 +304,7 @@ const ApplyForm: FC = () => {
                 </ul>
               </motion.div>
             )}
-            {formik.values.role === 'Collaborator' && (
+            {formik.values.role === COLLABORATOR_CLAN_ID && (
               <motion.div
                 key={'motion-collaborator'}
                 transition={{ duration: 0.15, ease: 'easeInOut' }}
@@ -333,7 +334,7 @@ const ApplyForm: FC = () => {
                 </ul>
               </motion.div>
             )}
-            {formik.values.role === 'Admin' && (
+            {formik.values.role === ADMIN_CLAN_ID && (
               <motion.div
                 key={'motion-administrator'}
                 transition={{ duration: 0.15, ease: 'easeInOut' }}
