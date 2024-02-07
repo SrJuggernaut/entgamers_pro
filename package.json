@@ -1,5 +1,5 @@
 {
-  "name": "next-template",
+  "name": "entgamers_pro",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -24,7 +24,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@reduxjs/toolkit": "^2.0.1",
     "appwrite": "^13.0.1",
-    "entgamers-database": "0.0.14",
+    "entgamers-database": "0.0.16",
     "entgamers-panda-preset": "0.1.2",
     "formik": "^2.4.5",
     "framer-motion": "^10.17.6",
