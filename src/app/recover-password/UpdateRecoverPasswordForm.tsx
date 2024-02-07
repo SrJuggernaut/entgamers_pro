@@ -3,9 +3,9 @@ import Typography from '@/components/ui/Typography'
 import FormGroup from '@/components/ui/form/FormGroup'
 import PasswordInput from '@/components/ui/form/PasswordInput'
 import { useAppDispatch } from '@/hooks/useAppDispatch'
+import useManageError from '@/hooks/useManageError'
 import { addAlert } from '@/state/feedbackSlice'
 import { nanoid } from '@reduxjs/toolkit'
-import { AppwriteException } from 'appwrite'
 import { updatePasswordRecovery } from 'entgamers-database/frontend/session'
 import { useFormik } from 'formik'
 import { useRouter } from 'next/navigation'
@@ -34,6 +34,7 @@ const updateRecoverPasswordSchema = object({
 
 const UpdateRecoverPasswordForm: FC<UpdateRecoverPasswordFormProps> = (props) => {
   const dispatch = useAppDispatch()
+  const { manageError } = useManageError()
   const router = useRouter()
 
   const formik = useFormik<UpdateRecoverPasswordData>({
@@ -54,25 +55,11 @@ const UpdateRecoverPasswordForm: FC<UpdateRecoverPasswordFormProps> = (props) =>
         }))
         router.push('/login')
       } catch (error) {
-        if (error instanceof AppwriteException) {
-          dispatch(addAlert({
-            id: nanoid(),
-            message: error.message,
-            title: 'Error mientras se registraba',
-            severity: 'error'
-          }))
-        } else {
-          dispatch(addAlert({
-            id: nanoid(),
-            message: 'Error desconocido',
-            title: 'Error mientras se solicitaba la recuperación de contraseña',
-            severity: 'error'
-          }))
-        }
+        manageError(error, 'Error al recuperar contraseña', 'Error desconocido mientras se solicitaba la recuperación de contraseña', 'error')
       }
     },
     validationSchema: updateRecoverPasswordSchema,
-    isInitialValid: false
+    validateOnMount: true
   })
   return (
     <form

@@ -6,10 +6,8 @@ import Input from '@/components/ui/form/Input'
 import PasswordInput from '@/components/ui/form/PasswordInput'
 import { useAppDispatch } from '@/hooks/useAppDispatch'
 import { useAppSelector } from '@/hooks/useAppSelector'
-import { addAlert } from '@/state/feedbackSlice'
+import useManageError from '@/hooks/useManageError'
 import { setCurrentUser, setSession, setStatus } from '@/state/sessionSlice'
-import { nanoid } from '@reduxjs/toolkit'
-import { AppwriteException } from 'appwrite'
 import { getCurrentUser, login } from 'entgamers-database/frontend/session'
 import { useFormik } from 'formik'
 import NextLink from 'next/link'
@@ -29,6 +27,7 @@ const loginSchema = object({
 
 const LoginForm: FC = () => {
   const dispatch = useAppDispatch()
+  const { manageError } = useManageError()
   const session = useAppSelector((state) => state.session)
   const router = useRouter()
 
@@ -45,26 +44,13 @@ const LoginForm: FC = () => {
         dispatch(setSession(session))
         dispatch(setCurrentUser(user))
       } catch (error) {
-        if (error instanceof AppwriteException) {
-          dispatch(addAlert({
-            id: nanoid(),
-            message: error.message,
-            title: 'Error mientras se iniciaba sesión',
-            severity: 'error'
-          }))
-        } else {
-          dispatch(addAlert({
-            id: nanoid(),
-            message: 'Error desconocido',
-            title: 'Error mientras se iniciaba sesión',
-            severity: 'error'
-          }))
-        }
+        manageError(error, 'Error mientras se iniciaba sesión', 'Error desconocido mientras se iniciaba sesión', 'error')
       } finally {
         dispatch(setStatus('idle'))
       }
     },
-    validationSchema: loginSchema
+    validationSchema: loginSchema,
+    validateOnMount: true
   })
 
   useEffect(() => {

@@ -5,6 +5,7 @@ import FormGroup from '@/components/ui/form/FormGroup'
 import Input from '@/components/ui/form/Input'
 import TextArea from '@/components/ui/form/TextArea'
 import { useAppDispatch } from '@/hooks/useAppDispatch'
+import useManageError from '@/hooks/useManageError'
 import { addAlert } from '@/state/feedbackSlice'
 import { css } from '@/styled-system/css'
 import { teamApplicationDataSchema, type TeamApplicationData } from '@/utilities/teamApplication'
@@ -19,6 +20,7 @@ import { useEffect, type FC } from 'react'
 
 const ApplyForm: FC = () => {
   const searchParams = useSearchParams()
+  const { manageError } = useManageError()
   const dispatch = useAppDispatch()
 
   const formik = useFormik<TeamApplicationData>({
@@ -46,26 +48,11 @@ const ApplyForm: FC = () => {
           severity: 'success'
         }))
       } catch (error) {
-        if (error instanceof Error) {
-          dispatch(addAlert({
-            id: nanoid(),
-            title: 'Error al enviar el formulario',
-            message: error.message,
-            severity: 'error'
-          }))
-          return
-        }
-        console.error('Error al enviar el formulario', error)
-        dispatch(addAlert({
-          id: nanoid(),
-          title: 'Error al enviar el formulario',
-          message: 'Error desconocido',
-          severity: 'error'
-        }))
+        manageError(error, 'Error al enviar el formulario', 'Error desconocido al enviar el formulario', 'error')
       }
     },
     validationSchema: teamApplicationDataSchema,
-    isInitialValid: false
+    validateOnMount: true
   })
   useEffect(() => {
     if (searchParams.has('role')) {
