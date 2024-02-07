@@ -68,7 +68,7 @@ const UpdatePassword: FC = () => {
       }
     },
     validationSchema: updatePasswordSchema,
-    isInitialValid: false
+    validateOnMount: true
   })
 
   if (status !== 'idle' || session === undefined) {

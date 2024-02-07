@@ -10,7 +10,7 @@ import { nanoid } from '@reduxjs/toolkit'
 import { AppwriteException } from 'appwrite'
 import { updateName } from 'entgamers-database/frontend/session'
 import { useFormik } from 'formik'
-import { type FC } from 'react'
+import { useEffect, type FC } from 'react'
 import { object, string } from 'yup'
 
 interface UpdateUserNameData {
@@ -22,7 +22,7 @@ const UpdateUserNameSchema = object({
 })
 
 const UpdateUserName: FC = () => {
-  const { status, session } = useSession('/login')
+  const { status, session, user } = useSession('/login')
   const dispatch = useAppDispatch()
 
   const formik = useFormik<UpdateUserNameData>({
@@ -57,8 +57,18 @@ const UpdateUserName: FC = () => {
       }
     },
     validationSchema: UpdateUserNameSchema,
-    isInitialValid: false
+    validateOnMount: true,
+    initialTouched: { name: true }
   })
+
+  useEffect(() => {
+    if (status !== 'idle' && session !== undefined) {
+      formik.setValues({
+        name: user?.name ?? ''
+      })
+        .catch(console.error)
+    }
+  }, [status, session])
 
   if (status !== 'idle' || session === undefined) {
     // TODO: Replace with Skeleton

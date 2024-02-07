@@ -1,17 +1,18 @@
-import UpdateEmail from '@/app/cuenta/UpdateEmail'
-import UpdatePassword from '@/app/cuenta/UpdatePassword'
-import UpdateUserName from '@/app/cuenta/UpdateUserName'
 import Typography from '@/components/ui/Typography'
 import { Container } from '@/styled-system/jsx'
 import { type FC } from 'react'
+import CuentaTabs from './CuentaTabs'
 
 const CuentaPage: FC = () => {
   return (
     <Container>
       <Typography variant="h1" align="center">Cuenta</Typography>
-      <UpdateUserName />
-      <UpdatePassword />
-      <UpdateEmail />
+      <Typography variant="body1">
+        Aquí puedes actualizar el nombre de usuario de tu cuenta.
+      </Typography>
+      <CuentaTabs
+
+      />
     </Container>
   )
 }

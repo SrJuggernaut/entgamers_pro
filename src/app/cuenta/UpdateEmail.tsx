@@ -61,7 +61,7 @@ const UpdateEmail: FC = () => {
       }
     },
     validationSchema: updateEmailSchema,
-    isInitialValid: false
+    validateOnMount: true
   })
 
   if (status !== 'idle' || session === undefined) {
