@@ -8,11 +8,9 @@ const CuentaPage: FC = () => {
     <Container>
       <Typography variant="h1" align="center">Cuenta</Typography>
       <Typography variant="body1">
-        Aquí puedes actualizar el nombre de usuario de tu cuenta.
+        Desde aquí puedes administrar las preferencias y ajustes de tu cuenta.
       </Typography>
-      <CuentaTabs
-
-      />
+      <CuentaTabs/>
     </Container>
   )
 }

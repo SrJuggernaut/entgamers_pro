@@ -87,6 +87,11 @@ const UpdateUserPreferences: FC = () => {
             disabled={formik.isSubmitting}
             status={formik.touched.bio !== undefined && formik.errors.bio !== undefined ? 'danger' : undefined}
           />
+          {formik.touched.bio !== undefined && formik.errors.bio !== undefined && (
+            <Typography variant="caption" color="danger">
+              {formik.errors.bio}
+            </Typography>
+          )}
         </FormGroup>
         {/* TODO: Add Profile Picture and Social Links fields */}
         <FormGroup>
