@@ -73,7 +73,7 @@ const EquipoPage: FC = async () => {
                   className={cx(card({ variant: 'retro' }).media, center())}
                 >
                   <NextImage
-                    src={user.prefs.profilePicture ?? '/images/EntGamers.png'}
+                    src={user.prefs.profilePicture !== undefined && user.prefs.profilePicture.trim() !== '' ? user.prefs.profilePicture.trim() : '/images/EntGamers.png'}
                     alt={user.name !== '' ? user.name : `Usuario ${index + 1} avatar`}
                     width={120}
                     height={120}
@@ -135,7 +135,7 @@ const EquipoPage: FC = async () => {
                   className={cx(card({ variant: 'retro' }).media, center())}
                 >
                   <NextImage
-                    src={user.prefs.profilePicture ?? '/images/EntGamers.png'}
+                    src={user.prefs.profilePicture !== undefined && user.prefs.profilePicture.trim() !== '' ? user.prefs.profilePicture.trim() : '/images/EntGamers.png'}
                     alt={user.name !== '' ? user.name : `Usuario ${index + 1} avatar`}
                     width={120}
                     height={120}
@@ -197,7 +197,7 @@ const EquipoPage: FC = async () => {
                   className={cx(card({ variant: 'retro' }).media, center())}
                 >
                   <NextImage
-                    src={user.prefs.profilePicture ?? '/images/EntGamers.png'}
+                    src={user.prefs.profilePicture !== undefined && user.prefs.profilePicture.trim() !== '' ? user.prefs.profilePicture.trim() : '/images/EntGamers.png'}
                     alt={user.name !== '' ? user.name : `Usuario ${index + 1} avatar`}
                     width={120}
                     height={120}

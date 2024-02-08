@@ -6,7 +6,7 @@ import { useAppSelector } from './useAppSelector'
 type UseSession = (redirect?: string) => SessionState
 
 const useSession: UseSession = (redirect?: string) => {
-  const { status, session } = useAppSelector((state) => state.session)
+  const { status, session, user } = useAppSelector((state) => state.session)
   const router = useRouter()
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const useSession: UseSession = (redirect?: string) => {
     }
   }, [status, session])
 
-  return { status, session }
+  return { status, session, user }
 }
 
 export default useSession

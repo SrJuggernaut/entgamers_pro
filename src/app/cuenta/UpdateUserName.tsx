@@ -35,7 +35,7 @@ const UpdateUserName: FC = () => {
         dispatch(addAlert({
           id: nanoid(),
           title: 'Nombre actualizado',
-          message: 'Ahora puedes iniciar sesión',
+          message: 'Se actualizo correctamente el nombre',
           severity: 'success'
         }))
       } catch (error) {
@@ -62,13 +62,13 @@ const UpdateUserName: FC = () => {
   })
 
   useEffect(() => {
-    if (status !== 'idle' && session !== undefined) {
+    if (status === 'idle' && session !== undefined && user !== undefined) {
       formik.setValues({
         name: user?.name ?? ''
       })
         .catch(console.error)
     }
-  }, [status, session])
+  }, [status, session, user])
 
   if (status !== 'idle' || session === undefined) {
     // TODO: Replace with Skeleton

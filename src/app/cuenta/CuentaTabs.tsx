@@ -43,6 +43,7 @@ const CuentaTabs: FC = () => {
         })}
       >
         <AnimatePresence
+          initial={false}
           mode='wait'
         >
           {currentTab === 'login' && (

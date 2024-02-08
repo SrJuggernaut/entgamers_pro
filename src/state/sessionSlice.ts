@@ -32,7 +32,7 @@ const sessionSlice = createSlice({
     setCurrentUser: (state, action: PayloadAction<SessionState['user']>) => {
       return {
         ...state,
-        userPreferences: action.payload
+        user: action.payload
       }
     }
   }
