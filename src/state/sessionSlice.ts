@@ -1,5 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import { type Models } from 'appwrite'
+import { type ClanList } from 'entgamers-database/frontend/clanes'
 import { type UserWithPreferences } from 'entgamers-database/frontend/session'
 
 export type SessionState =
@@ -7,6 +8,7 @@ export type SessionState =
   status: 'idle' | 'loading' | 'initializing'
   session?: Models.Session
   user?: UserWithPreferences
+  clanes?: ClanList
 }
 
 const initialState: SessionState = {
@@ -34,10 +36,16 @@ const sessionSlice = createSlice({
         ...state,
         user: action.payload
       }
+    },
+    setClanes: (state, action: PayloadAction<SessionState['clanes']>) => {
+      return {
+        ...state,
+        clanes: action.payload
+      }
     }
   }
 })
 
-export const { setStatus, setSession, setCurrentUser } = sessionSlice.actions
+export const { setStatus, setSession, setCurrentUser, setClanes } = sessionSlice.actions
 
 export default sessionSlice

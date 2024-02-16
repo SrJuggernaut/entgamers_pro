@@ -1,32 +1,20 @@
 'use client'
 import EntGamers from '@/assets/logos/EntGamers'
 import Menu from '@/components/layout/Menu'
-import IconButton from '@/components/ui/IconButton'
-import Tooltip from '@/components/ui/Tooltip'
-import { useAppDispatch } from '@/hooks/useAppDispatch'
-import { useAppSelector } from '@/hooks/useAppSelector'
-import { addAlert } from '@/state/feedbackSlice'
-import { setSession } from '@/state/sessionSlice'
 import { css } from '@/styled-system/css'
 import { Container } from '@/styled-system/jsx'
-import { iconButton } from '@/styled-system/recipes'
-import { faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { nanoid } from '@reduxjs/toolkit'
-import { AppwriteException } from 'appwrite'
-import { logout } from 'entgamers-database/frontend/session'
 import NextLink from 'next/link'
 import { useCallback, useEffect, useState, type FC } from 'react'
+import SessionButtons from './Header/SessionButtons'
 
 const Header: FC = () => {
-  const session = useAppSelector(state => state.session)
-  const dispatch = useAppDispatch()
-
   const [isScrolled, setIsScrolled] = useState(typeof window !== 'undefined' ? window.scrollY > 0 : false)
+
   const handleScroll = useCallback(() => {
     if (typeof window === 'undefined') return
     setIsScrolled(window.scrollY > 0)
   }, [])
+
   useEffect(() => {
     if (typeof window === 'undefined') return
     window.addEventListener('scroll', handleScroll)
@@ -79,65 +67,7 @@ const Header: FC = () => {
             </NextLink>
           </div>
           <div>
-            {session.status === 'idle' && typeof session.session !== 'undefined'
-              ? (
-                <>
-                  <Tooltip
-                    title="Cuenta"
-                    position="bottom"
-                  >
-                    <NextLink
-                      href="/cuenta"
-                      className={
-                        iconButton()
-                      }
-                    >
-                      <FontAwesomeIcon icon={faUser} fixedWidth />
-                    </NextLink>
-                  </Tooltip>
-                  <Tooltip
-                    title="Cerrar sesión"
-                    position="bottom"
-                  >
-                    <IconButton
-                      onClick={() => {
-                        logout('current')
-                          .then(() => {
-                            dispatch(setSession(undefined))
-                          })
-                          .catch((error) => {
-                            if (error instanceof AppwriteException) {
-                              dispatch(addAlert({
-                                id: nanoid(),
-                                message: error.message,
-                                title: 'Error mientras se cerraba sesión',
-                                severity: 'error'
-                              }))
-                            }
-                          })
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faRightFromBracket} fixedWidth />
-                    </IconButton>
-                  </Tooltip>
-                </>
-              )
-              : (
-                <Tooltip
-                  title="Iniciar sesión"
-                  position="bottom"
-                >
-                  <NextLink
-                    href="/login"
-                    className={
-                      iconButton()
-                    }
-                  >
-                    <FontAwesomeIcon icon={faUser} fixedWidth />
-                  </NextLink>
-                </Tooltip>
-              )
-            }
+            <SessionButtons />
             <Menu />
           </div>
         </Container>

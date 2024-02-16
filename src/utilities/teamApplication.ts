@@ -1,5 +1,5 @@
 import { type PaginationOptions } from '@/types/api'
-import { type TeamApplication } from 'entgamers-database/backend/teamApplication'
+import { type TeamApplication, type TeamApplicationList } from 'entgamers-database/backend/teamApplication'
 import { number, object, string, type ObjectSchema } from 'yup'
 
 export interface TeamApplicationDynamicParams {
@@ -18,6 +18,8 @@ export interface TeamApplicationSearchParams extends PaginationOptions {
 }
 
 export type TeamApplicationData = Omit<TeamApplication, 'id' | 'createdAt' | 'updatedAt' >
+
+export { type TeamApplication, type TeamApplicationList }
 
 export const teamApplicationDataSchema: ObjectSchema<TeamApplicationData> = object({
   name: string().required('El nombre es obligatorio'),
