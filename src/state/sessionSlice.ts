@@ -1,13 +1,13 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import { type Models } from 'appwrite'
 import { type ClanList } from 'entgamers-database/frontend/clanes'
-import { type UserWithPreferences } from 'entgamers-database/frontend/session'
+import { type User } from 'entgamers-database/frontend/session'
 
 export type SessionState =
 | {
   status: 'idle' | 'loading' | 'initializing'
   session?: Models.Session
-  user?: UserWithPreferences
+  user?: User
   clanes?: ClanList
 }
 

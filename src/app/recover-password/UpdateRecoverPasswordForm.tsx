@@ -46,7 +46,8 @@ const UpdateRecoverPasswordForm: FC<UpdateRecoverPasswordFormProps> = (props) =>
     },
     onSubmit: async ({ confirmPassword, password, secret, userId }) => {
       try {
-        await updatePasswordRecovery(userId, secret, password, confirmPassword)
+        if (password !== confirmPassword) throw new Error('Las contraseñas no coinciden')
+        await updatePasswordRecovery(userId, secret, password)
         dispatch(addAlert({
           id: nanoid(),
           title: 'Contraseña actualizada',
