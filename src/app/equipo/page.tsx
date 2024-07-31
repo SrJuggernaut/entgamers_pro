@@ -4,8 +4,9 @@ import { Container } from '@/styled-system/jsx'
 import { center } from '@/styled-system/patterns'
 import { button, card } from '@/styled-system/recipes'
 import { getClanMembers } from 'entgamers-database/backend/clanes'
-import { ADMIN_CLAN_ID, COLLABORATOR_CLAN_ID, MODERATOR_CLAN_ID, ensureAdministrativeClans } from 'entgamers-database/backend/clanes/administrative'
-import { getUser, type UserList } from 'entgamers-database/backend/users'
+import { getUser } from 'entgamers-database/backend/users'
+import { ADMIN_CLAN_ID, COLLABORATOR_CLAN_ID, MODERATOR_CLAN_ID } from 'entgamers-database/lib/env'
+import { type UserList } from 'entgamers-database/types/user'
 import NextImage from 'next/image'
 import NextLink from 'next/link'
 import { type Models } from 'node-appwrite'
@@ -18,7 +19,7 @@ interface GetTeamsResponse {
 }
 
 const getTeams = async (): Promise<GetTeamsResponse> => {
-  await ensureAdministrativeClans()
+  // await ensureAdministrativeClans()
 
   const adminMembers: Models.MembershipList = await getClanMembers(ADMIN_CLAN_ID)
   const moderatorMembers: Models.MembershipList = await getClanMembers(MODERATOR_CLAN_ID)

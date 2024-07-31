@@ -8,11 +8,12 @@ import { useAppDispatch } from '@/hooks/useAppDispatch'
 import useManageError from '@/hooks/useManageError'
 import { addAlert } from '@/state/feedbackSlice'
 import { css } from '@/styled-system/css'
-import { teamApplicationDataSchema, type TeamApplicationData } from '@/utilities/teamApplication'
+import { teamApplicationDataSchema } from '@/utilities/teamApplication'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon, type FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
 import { nanoid } from '@reduxjs/toolkit'
 import { ADMIN_CLAN_ID, COLLABORATOR_CLAN_ID, MODERATOR_CLAN_ID } from 'entgamers-database/frontend/clanes/administrative'
+import { createTeamApplication, type TeamApplicationData } from 'entgamers-database/frontend/database/teamApplications'
 import { useFormik } from 'formik'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useSearchParams } from 'next/navigation'
@@ -23,24 +24,17 @@ const ApplyForm: FC = () => {
   const { manageError } = useManageError()
   const dispatch = useAppDispatch()
 
-  const formik = useFormik<TeamApplicationData>({
+  const formik = useFormik <Omit<TeamApplicationData, 'status'>>({
     initialValues: {
       name: '',
       email: '',
       discord: '',
       message: '',
-      role: 'Moderator',
-      status: 'Pending'
+      role: 'Moderator'
     },
     onSubmit: async (values) => {
       try {
-        await fetch('/api/team-applications', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(values)
-        })
+        await createTeamApplication(values)
         dispatch(addAlert({
           id: nanoid(),
           title: 'Formulario enviado',

@@ -1,4 +1,4 @@
-import ApplicationsList from '@/app/dashboard/_components/ApplicationsList'
+import ApplicationsList from '@/app/dashboard/_components/teamApplications/ApplicationsList'
 import Typography from '@/components/ui/Typography'
 import { type FC } from 'react'
 

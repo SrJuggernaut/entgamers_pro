@@ -1,9 +1,11 @@
 import Typography from '@/components/ui/Typography'
 import { Container } from '@/styled-system/jsx'
+import { ensureTeamApplicationsCollection } from 'entgamers-database/backend/database/teamApplications'
 import { type FC } from 'react'
 import ApplyForm from './ApplyForm'
 
-const EquipoUnirsePage: FC = () => {
+const EquipoUnirsePage: FC = async () => {
+  await ensureTeamApplicationsCollection()
   return (
     <Container>
       <Typography variant="h1" align="center">Únete al Bosque</Typography>

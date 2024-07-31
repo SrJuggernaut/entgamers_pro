@@ -1,120 +1,40 @@
 import IconButton from '@/components/ui/IconButton'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableHeadCell, TableRow } from '@/components/ui/Table'
-import DebouncedInput from '@/components/ui/form/DebouncedInput'
 import useManageError from '@/hooks/useManageError'
 import { css } from '@/styled-system/css'
 import { formatDate } from '@/utilities/date'
 import { type TeamApplication, type TeamApplicationList } from '@/utilities/teamApplication'
 import { faChevronLeft, faChevronRight, faSort, faSortAsc, faSortDesc } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { rankItem } from '@tanstack/match-sorter-utils'
-import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable, type Column, type FilterFn, type Table as TableType } from '@tanstack/react-table'
-import { useCallback, useEffect, useMemo, useState, type FC, type ReactNode } from 'react'
+import { createColumnHelper, flexRender, getCoreRowModel, useReactTable, type ColumnFiltersState, type PaginationState, type RowData, type SortingState } from '@tanstack/react-table'
+import { getAllTeamApplications, updateTeamApplication } from 'entgamers-database/frontend/database/teamApplications'
+import { Query } from 'entgamers-database/lib/appwrite'
+import { useEffect, useState, type FC } from 'react'
+import ApplicationsFilter from './ApplicationsFilter'
+import StatusUpdater from './StatusUpdater'
 
-const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
-  // Rank the item
-  const itemRank = rankItem(row.getValue(columnId), value as string)
-
-  // Store the itemRank info
-  addMeta({
-    itemRank
-  })
-
-  // Return if the item should be filtered in/out
-  return itemRank.passed
-}
-
-function Filter ({
-  column,
-  table
-}: {
-  column: Column<any, unknown>
-  table: TableType<any>
-}): ReactNode {
-  const firstValue = table
-    .getPreFilteredRowModel()
-    .flatRows[0]?.getValue(column.id)
-
-  const columnFilterValue = column.getFilterValue()
-
-  const sortedUniqueValues = useMemo(() => typeof firstValue === 'number'
-    ? []
-    // eslint-disable-next-line @typescript-eslint/require-array-sort-compare
-    : Array.from(column.getFacetedUniqueValues().keys()).sort()
-  , [column.getFacetedUniqueValues()])
-
-  return typeof firstValue === 'number'
-    ? (
-      <div>
-        <div className="flex space-x-2">
-          <DebouncedInput
-            fullWidth
-            type="number"
-            min={Number(column.getFacetedMinMaxValues()?.[0] ?? '')}
-            max={Number(column.getFacetedMinMaxValues()?.[1] ?? '')}
-            value={(columnFilterValue as [number, number])?.[0] ?? ''}
-            onChange={value => { column.setFilterValue((old: [number, number]) => [value, old?.[1]]) }
-            }
-            placeholder={`Min ${
-              ((column.getFacetedMinMaxValues()?.[0]) != null)
-                ? `(${column.getFacetedMinMaxValues()?.[0]})`
-                : ''
-            }`}
-            className="w-24 border shadow rounded"
-          />
-          <DebouncedInput
-            fullWidth
-            type="number"
-            min={Number(column.getFacetedMinMaxValues()?.[0] ?? '')}
-            max={Number(column.getFacetedMinMaxValues()?.[1] ?? '')}
-            value={(columnFilterValue as [number, number])?.[1] ?? ''}
-            onChange={value => { column.setFilterValue((old: [number, number]) => [old?.[0], value]) }
-            }
-            placeholder={`Max ${
-              ((column.getFacetedMinMaxValues()?.[1]) != null)
-                ? `(${column.getFacetedMinMaxValues()?.[1]})`
-                : ''
-            }`}
-            className="w-24 border shadow rounded"
-          />
-        </div>
-        <div className="h-1" />
-      </div>
-    )
-    : (
-      <>
-        <datalist id={column.id + 'list'}>
-          {sortedUniqueValues.slice(0, 5000).map((value: any) => (
-            <option value={value} key={value} />
-          ))}
-        </datalist>
-        <DebouncedInput
-          fullWidth
-          type="text"
-          value={(columnFilterValue ?? '') as string}
-          onChange={value => { column.setFilterValue(value) }}
-          placeholder={`Search... (${column.getFacetedUniqueValues().size})`}
-          className="w-36 border shadow rounded"
-          list={column.id + 'list'}
-        />
-        <div className="h-1" />
-      </>
-    )
+declare module '@tanstack/table-core' {
+  interface TableMeta<TData extends RowData> {
+    updateRow: (id: string, value: Partial<TData>) => Promise<void>
+  }
 }
 
 const columnHelper = createColumnHelper<TeamApplication>()
 
 const columns = [
-  columnHelper.accessor('id', {
-    header: 'ID'
+  columnHelper.accessor('$id', {
+    header: 'ID',
+    enableColumnFilter: false
   }),
   columnHelper.accessor('status', {
     header: 'Estado',
-    enableSorting: false
+    cell: StatusUpdater,
+    getUniqueValues () {
+      return ['Pending', 'Accepted', 'Rejected']
+    }
   }),
   columnHelper.accessor('role', {
-    header: 'Rol',
-    enableSorting: false
+    header: 'Rol'
   }),
   columnHelper.accessor('name', {
     header: 'Nombre'
@@ -129,14 +49,16 @@ const columns = [
   columnHelper.accessor('discord', {
     header: 'Discord'
   }),
-  columnHelper.accessor('createdAt', {
+  columnHelper.accessor('$createdAt', {
     header: 'Creado',
+    enableColumnFilter: false,
     cell: (info) => {
       return formatDate(new Date(info.getValue()))
     }
   }),
-  columnHelper.accessor('updatedAt', {
+  columnHelper.accessor('$updatedAt', {
     header: 'Actualizado',
+    enableColumnFilter: false,
     cell: (info) => {
       return formatDate(new Date(info.getValue()))
     }
@@ -145,46 +67,65 @@ const columns = [
 
 const ApplicationsList: FC = () => {
   const { manageError } = useManageError()
-  const [applications, setApplications] = useState<TeamApplication[]>([])
+  const [pagination, setPagination] = useState<PaginationState>({ pageIndex: 0, pageSize: 10 })
+  const [sorting, setSorting] = useState<SortingState>([{ id: '$createdAt', desc: true }])
+  const [applications, setApplications] = useState<TeamApplicationList>({ total: 0, documents: [] })
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([{ id: 'status', value: 'Pending' }])
 
   const table = useReactTable({
-    data: applications,
+    data: applications.documents,
     columns,
-    filterFns: {
-      fuzzy: fuzzyFilter
-    },
     initialState: {
       columnVisibility: {
-        id: false
-      },
-      sorting: [{ id: 'createdAt', desc: true }]
+        $id: false,
+        email: false
+      }
     },
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel()
+    state: {
+      pagination,
+      sorting,
+      columnFilters
+    },
+    meta: {
+      updateRow: async (id: string, value: Partial<TeamApplication>) => {
+        const updatedTeamApplication = await updateTeamApplication(id, value)
+        const newApplications = applications.documents.map((application) => application.$id === updatedTeamApplication.$id ? updatedTeamApplication : application)
+        setApplications({ total: applications.total, documents: newApplications })
+      }
+    },
+    manualPagination: true,
+    rowCount: applications.total,
+    onPaginationChange: setPagination,
+    enableSorting: true,
+    manualSorting: true,
+    onSortingChange: setSorting,
+    manualFiltering: true,
+    onColumnFiltersChange: setColumnFilters,
+    getCoreRowModel: getCoreRowModel()
   })
 
-  const getTeamApplications = useCallback(async (controller?: AbortController) => {
-    const callController = controller ?? new AbortController()
-    const response = await fetch('/api/team-applications', { signal: callController.signal })
-    if (response.ok) {
-      const teamApplicationList: TeamApplicationList = await response.json()
-      setApplications(teamApplicationList.teamApplications)
-    }
-  }, [])
-
   useEffect(() => {
-    const controller = new AbortController()
-    getTeamApplications(controller)
+    const query: string[] = [
+      Query.limit(pagination.pageSize),
+      Query.offset(pagination.pageIndex * pagination.pageSize)
+    ]
+    if (sorting.length > 0) {
+      const sort: string = sorting[0].desc ? Query.orderDesc(sorting[0].id) : Query.orderAsc(sorting[0].id)
+      query.push(sort)
+    }
+    if (columnFilters.length > 0) {
+      const filter: string[] = columnFilters.map((columnFilter) => {
+        return Query.contains(columnFilter.id, columnFilter.value as string)
+      })
+      query.push(...filter)
+    }
+    getAllTeamApplications(query)
+      .then((applicationList) => { setApplications(applicationList) })
       .catch((error) => {
         if (error instanceof Error && error.name === 'AbortError') return
         manageError(error, 'Error al obtener las aplicaciones', 'Error desconocido al obtener las aplicaciones', 'error')
       })
-    return () => {
-      controller.abort()
-    }
-  }, [])
+  }, [pagination, sorting, columnFilters])
 
   // TODO: Better UI Controls for: column visibility. Quantity selector.
   return (
@@ -218,6 +159,7 @@ const ApplicationsList: FC = () => {
                   <TableHeadCell
                     key={header.id}
                     className={css({
+                      verticalAlign: 'top',
                       position: 'relative',
                       '&:hover > [data-is-resizing]': {
                         backgroundColor: 'border'
@@ -228,26 +170,30 @@ const ApplicationsList: FC = () => {
                     <div
                       className={css({
                         display: 'flex',
-                        alignItems: 'center',
-                        gap: 'small'
+                        flexDirection: 'column'
                       })}
                     >
-                      {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext()) }
-                      {header.column.getCanSort() && (
-                        <IconButton
-                          size="small"
-                          onClick={header.column.getToggleSortingHandler()}
-                        >
-                          <FontAwesomeIcon icon={header.column.getIsSorted() === 'asc' ? faSortAsc : header.column.getIsSorted() === 'desc' ? faSortDesc : faSort} size="sm" fixedWidth />
-                        </IconButton>
-                      )}
-                    </div>
-                    <div>
+                      <div
+                        className={css({
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          gap: 'small'
+                        })}
+                      >
+                        {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext()) }
+                        {header.column.getCanSort() && (
+                          <IconButton
+                            size="small"
+                            onClick={header.column.getToggleSortingHandler()}
+                          >
+                            <FontAwesomeIcon icon={header.column.getIsSorted() === 'asc' ? faSortAsc : header.column.getIsSorted() === 'desc' ? faSortDesc : faSort} size="sm" fixedWidth />
+                          </IconButton>
+                        )}
+                      </div>
                       {header.column.getCanFilter()
                         ? (
-                          <div>
-                            <Filter column={header.column} table={table} />
-                          </div>
+                          <ApplicationsFilter column={header.column}/>
                         )
                         : null
                       }
