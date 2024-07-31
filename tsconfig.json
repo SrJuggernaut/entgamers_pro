@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": [
       "dom",
       "dom.iterable",
@@ -12,58 +12,30 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "Node16",
+    "moduleResolution": "Node16",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "jsxImportSource": "@emotion/react",
     "incremental": true,
     "baseUrl": "src",
     "paths": {
-      "@adapters/*": [
-        "adapters/*"
-      ],
-      "@assets/*": [
-        "assets/*"
-      ],
-      "@components/*": [
-        "components/*"
-      ],
-      "@contexts/*": [
-        "contexts/*"
-      ],
-      "@hooks/*": [
-        "hooks/*"
-      ],
-      "@interfaces": [
-        "interfaces/"
-      ],
-      "@pages/*": [
-        "pages/*"
-      ],
-      "@public/*": [
-        "../public/*"
-      ],
-      "@services/*": [
-        "services/*"
-      ],
-      "@styles/*": [
-        "styles/*"
-      ],
-      "@utilities/*": [
-        "utilities/*"
+      "@/*": [
+        "*"
       ]
     },
-    "typeRoots": [
-      "node_modules/@types",
-      "./types"
+    "plugins": [
+      {
+        "name": "next"
+      }
     ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "next.config.js"
   ],
   "exclude": [
     "node_modules"

@@ -1,28 +1,33 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "node": true
   },
   "extends": [
-    "plugin:react/recommended",
-    "standard",
-    "plugin:@next/next/recommended"
+    "next/core-web-vitals",
+    "standard-with-typescript",
+    "plugin:react/recommended"
   ],
-  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
   "plugins": [
-    "react",
-    "@emotion",
-    "@typescript-eslint"
+    "react"
   ],
   "rules": {
-    "indent": [
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-uses-react": "off",
+    "indent": "off",
+    "@typescript-eslint/indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "react/jsx-indent": [
       "error",
       2
     ],
@@ -30,23 +35,21 @@
     "@typescript-eslint/no-use-before-define": [
       "error"
     ],
-    "react/react-in-jsx-scope": "off",
-    "react/jsx-filename-extension": [
-      "warn",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
       {
-        "extensions": [
-          ".tsx"
-        ]
+        "argsIgnorePattern": "^_"
       }
     ],
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "error",
-    "@emotion/pkg-renaming": "error",
-    "react/no-unknown-property": ["error", { "ignore": ["css"] }]
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
+    "react-hooks/exhaustive-deps": "off",
+    "react/no-unknown-property": [
+      "error",
+      {
+        "ignore": [
+          "css"
+        ]
+      }
+    ]
   }
 }
