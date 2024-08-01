@@ -20,12 +20,17 @@ jobs:
         run: pm2 deploy ecosystem.config.js preview setup
         env:
           # Deploy environment variables
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
-          # App environment variables
           APP_NAME: ${{ secrets.APP_NAME }}
-          SITE_NAME: ${{ secrets.SITE_NAME }}
           PORT: ${{ secrets.PORT }}
-          DISCORD_JOIN_WEBHOOK_URL: ${{ secrets.DISCORD_JOIN_WEBHOOK_URL }}
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          # Appwrite variables
+          NEXT_PUBLIC_APPWRITE_ENDPOINT: ${{ secrets.NEXT_PUBLIC_APPWRITE_ENDPOINT }}
+          NEXT_PUBLIC_APPWRITE_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_APPWRITE_PROJECT_ID }}
+          APPWRITE_API_KEY: ${{ secrets.APPWRITE_API_KEY }}
+          # Website variables
+          SITE_NAME: ${{ secrets.SITE_NAME }}
+          NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
+          IMAGE_DOMAINS: ${{ secrets.IMAGE_DOMAINS }}
         shell: bash

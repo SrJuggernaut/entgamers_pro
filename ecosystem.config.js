@@ -7,7 +7,12 @@ module.exports = {
       env: {
         NODE_ENV: 'production',
         PORT: process.env.PORT || 3000,
-        DISCORD_JOIN_WEBHOOK_URL: process.env.DISCORD_JOIN_WEBHOOK_URL
+        NEXT_PUBLIC_APPWRITE_ENDPOINT: process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT,
+        NEXT_PUBLIC_APPWRITE_PROJECT_ID: process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID,
+        APPWRITE_API_KEY: process.env.APPWRITE_API_KEY,
+        SITE_NAME: process.env.SITE_NAME,
+        NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+        IMAGE_DOMAINS: process.env.IMAGE_DOMAINS
       }
     }
   ],
@@ -21,9 +26,13 @@ module.exports = {
       path: process.env.DEPLOY_PATH,
       'post-deploy': 'pm2 --silent startOrRestart ecosystem.config.js',
       env: {
-        APP_NAME: process.env.APP_NAME,
         PORT: process.env.PORT,
-        DISCORD_JOIN_WEBHOOK_URL: process.env.DISCORD_JOIN_WEBHOOK_URL
+        NEXT_PUBLIC_APPWRITE_ENDPOINT: process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT,
+        NEXT_PUBLIC_APPWRITE_PROJECT_ID: process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID,
+        APPWRITE_API_KEY: process.env.APPWRITE_API_KEY,
+        SITE_NAME: process.env.SITE_NAME,
+        NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+        IMAGE_DOMAINS: process.env.IMAGE_DOMAINS
       }
 
     },
@@ -35,9 +44,13 @@ module.exports = {
       path: process.env.DEPLOY_PATH,
       'post-deploy': 'pm2 --silent startOrRestart ecosystem.config.js',
       env: {
-        APP_NAME: process.env.APP_NAME,
         PORT: process.env.PORT,
-        DISCORD_JOIN_WEBHOOK_URL: process.env.DISCORD_JOIN_WEBHOOK_URL
+        NEXT_PUBLIC_APPWRITE_ENDPOINT: process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT,
+        NEXT_PUBLIC_APPWRITE_PROJECT_ID: process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID,
+        APPWRITE_API_KEY: process.env.APPWRITE_API_KEY,
+        SITE_NAME: process.env.SITE_NAME,
+        NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+        IMAGE_DOMAINS: process.env.IMAGE_DOMAINS
       }
     }
   }
