@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: process.env.APP_NAME || 'entgamers-website',
-      script: 'yarn',
+      script: 'bun',
       args: 'run start',
       env: {
         NODE_ENV: 'production',
