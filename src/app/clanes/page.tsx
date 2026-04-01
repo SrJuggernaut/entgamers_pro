@@ -3,7 +3,7 @@ import { css } from '@/styled-system/css'
 import { Container } from '@/styled-system/jsx'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { type FC } from 'react'
+import type { FC } from 'react'
 
 const ClanesPage: FC = () => {
   return (
@@ -22,17 +22,19 @@ const ClanesPage: FC = () => {
           <Typography variant="body1">La intención de EntGamers es brindar beneficios a los clanes que les permitan operar en un ambiente de comunicación y colaboración.</Typography>
           <ul className="fa-ul">
             <li>
-              <FontAwesomeIcon icon={faChevronRight} listItem />
+              <span className="fa-li"><FontAwesomeIcon icon={faChevronRight} /></span>
               {' '}
               Espacio en el servidor de Discord.
             </li>
             <li>
-              <FontAwesomeIcon icon={faChevronRight} listItem />
+              <span className="fa-li"><FontAwesomeIcon icon={faChevronRight} /></span>
               {' '}
               Apoyo de la administración con proyectos y eventos.
             </li>
             <li>
-              <FontAwesomeIcon icon={faChevronRight} listItem />
+              <span className="fa-li">
+                <FontAwesomeIcon icon={faChevronRight} />
+              </span>
               {' '}
               Apoyo del equipo de moderación.
             </li>
@@ -43,22 +45,30 @@ const ClanesPage: FC = () => {
           <Typography variant="body1">Todos los clanes deben cumplir con los siguientes requisitos:</Typography>
           <ul className="fa-ul">
             <li>
-              <FontAwesomeIcon icon={faChevronRight} listItem />
+              <span className="fa-li">
+                <FontAwesomeIcon icon={faChevronRight} />
+              </span>
               {' '}
               Tener un encargado.
             </li>
             <li>
-              <FontAwesomeIcon icon={faChevronRight} listItem />
+              <span className="fa-li">
+                <FontAwesomeIcon icon={faChevronRight} />
+              </span>
               {' '}
               Fomentar el compañerismo y la comunidad.
             </li>
             <li>
-              <FontAwesomeIcon icon={faChevronRight} listItem />
+              <span className="fa-li">
+                <FontAwesomeIcon icon={faChevronRight} />
+              </span>
               {' '}
               Aportar contenido de forma periódica para la comunidad.
             </li>
             <li>
-              <FontAwesomeIcon icon={faChevronRight} listItem />
+              <span className="fa-li">
+                <FontAwesomeIcon icon={faChevronRight} />
+              </span>
               {' '}
               Realizar al menos una actividad mensual con los integrantes.
             </li>

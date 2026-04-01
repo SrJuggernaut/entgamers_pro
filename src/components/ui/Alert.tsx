@@ -1,9 +1,9 @@
 import { cx } from '@/styled-system/css'
 import { alert, type AlertVariantProps } from '@/styled-system/recipes/alert'
-import { type MergeOmitting } from '@/types/utilities'
+import type { MergeOmitting } from '@/types/utilities'
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes'
 import { FontAwesomeIcon, type FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
-import { type DetailedHTMLProps, type FC, type HTMLAttributes, type ReactNode } from 'react'
+import type { DetailedHTMLProps, FC, HTMLAttributes, ReactNode } from 'react'
 import IconButton, { type IconButtonProps } from './IconButton'
 
 type ComposedAlertProps = MergeOmitting<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, AlertVariantProps>
@@ -32,7 +32,7 @@ export const AlertCloseButton: FC<ComposedAlertCloseButtonProps> = ({ children, 
       {...allOtherAlertProps}
     >
       {children === undefined
-        ? <FontAwesomeIcon icon={faTimes as FontAwesomeIconProps['icon']} fixedWidth size="sm" />
+        ? <FontAwesomeIcon icon={faTimes as FontAwesomeIconProps['icon']} size="sm" />
         : children}
     </IconButton>
   )

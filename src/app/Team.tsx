@@ -84,7 +84,7 @@ const Team: FC = () => {
                       className={iconButton()}
                       href={socialNetwork.url}
                     >
-                      <FontAwesomeIcon icon={socialNetwork.icon} fixedWidth />
+                      <FontAwesomeIcon icon={socialNetwork.icon} />
                     </a>
                   ))}
                 </div>

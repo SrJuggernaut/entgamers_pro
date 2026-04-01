@@ -124,7 +124,7 @@ const Hero: FC = () => {
           }
         }))}
       >
-        <FontAwesomeIcon icon={faArrowDown} size="lg" fixedWidth />
+        <FontAwesomeIcon icon={faArrowDown} size="lg" />
       </a>
     </section>
   )

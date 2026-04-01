@@ -189,7 +189,7 @@ const ApplicationsList: FC = () => {
                             size="small"
                             onClick={header.column.getToggleSortingHandler()}
                           >
-                            <FontAwesomeIcon icon={header.column.getIsSorted() === 'asc' ? faSortAsc : header.column.getIsSorted() === 'desc' ? faSortDesc : faSort} size="sm" fixedWidth />
+                            <FontAwesomeIcon icon={header.column.getIsSorted() === 'asc' ? faSortAsc : header.column.getIsSorted() === 'desc' ? faSortDesc : faSort} size="sm" />
                           </IconButton>
                         )}
                       </div>
@@ -257,7 +257,7 @@ const ApplicationsList: FC = () => {
           onClick={() => { table.previousPage() }}
           disabled={!table.getCanPreviousPage()}
         >
-          <FontAwesomeIcon icon={faChevronLeft} fixedWidth />
+          <FontAwesomeIcon icon={faChevronLeft} />
         </IconButton>
         Pagina
         {' '}
@@ -270,7 +270,7 @@ const ApplicationsList: FC = () => {
           onClick={() => { table.nextPage() }}
           disabled={!table.getCanNextPage()}
         >
-          <FontAwesomeIcon icon={faChevronRight} fixedWidth />
+          <FontAwesomeIcon icon={faChevronRight} />
         </IconButton>
       </div>
     </>

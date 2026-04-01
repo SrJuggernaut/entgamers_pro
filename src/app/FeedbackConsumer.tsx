@@ -9,7 +9,7 @@ import { alert } from '@/styled-system/recipes/alert'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { AnimatePresence, motion } from 'framer-motion'
-import { type FC } from 'react'
+import type { FC } from 'react'
 import { createPortal } from 'react-dom'
 
 const FeedbackConsumer: FC = () => {
@@ -55,7 +55,7 @@ const FeedbackConsumer: FC = () => {
                       className={alert().closeButton}
                       onClick={() => dispatch(removeAlert(currentAlert.id))}
                     >
-                      <FontAwesomeIcon icon={faTimes} fixedWidth size="sm" />
+                      <FontAwesomeIcon icon={faTimes} size="sm" />
                     </IconButton>
                     <Typography variant="h3" component="div">
                       {currentAlert.title}

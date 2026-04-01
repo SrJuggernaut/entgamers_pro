@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ADMIN_CLAN_ID, MODERATOR_CLAN_ID } from 'entgamers-database/frontend/clanes/administrative'
 import { logout } from 'entgamers-database/frontend/session'
 import NextLink from 'next/link'
-import { type FC } from 'react'
+import type { FC } from 'react'
 
 const SessionButtons: FC = () => {
   const { session, status, clanes } = useAppSelector((state) => state.session)
@@ -22,21 +22,19 @@ const SessionButtons: FC = () => {
 
   if (status === 'idle' && session === undefined) {
     return (
-      <>
-        <Tooltip
-          title="Iniciar sesión"
-          position="bottom"
+      <Tooltip
+        title="Iniciar sesión"
+        position="bottom"
+      >
+        <NextLink
+          href="/login"
+          className={
+            iconButton()
+          }
         >
-          <NextLink
-            href="/login"
-            className={
-              iconButton()
-            }
-          >
-            <FontAwesomeIcon icon={faUser} fixedWidth />
-          </NextLink>
-        </Tooltip>
-      </>
+          <FontAwesomeIcon icon={faUser} />
+        </NextLink>
+      </Tooltip>
     )
   }
 
@@ -53,10 +51,10 @@ const SessionButtons: FC = () => {
               iconButton()
             }
           >
-            <FontAwesomeIcon icon={faUser} fixedWidth />
+            <FontAwesomeIcon icon={faUser} />
           </NextLink>
         </Tooltip>
-        {clanes !== undefined && clanes?.teams.some((team) => team.$id === ADMIN_CLAN_ID || team.$id === MODERATOR_CLAN_ID) && (
+        {clanes?.teams.some((team) => team.$id === ADMIN_CLAN_ID || team.$id === MODERATOR_CLAN_ID) && (
           <Tooltip
             title="Panel de administración"
             position="bottom"
@@ -67,7 +65,7 @@ const SessionButtons: FC = () => {
                 iconButton()
               }
             >
-              <FontAwesomeIcon icon={faCogs} fixedWidth />
+              <FontAwesomeIcon icon={faCogs} />
             </NextLink>
           </Tooltip>
         )}
@@ -91,7 +89,7 @@ const SessionButtons: FC = () => {
                 })
             }}
           >
-            <FontAwesomeIcon icon={faRightFromBracket} fixedWidth />
+            <FontAwesomeIcon icon={faRightFromBracket} />
           </IconButton>
         </Tooltip>
       </>

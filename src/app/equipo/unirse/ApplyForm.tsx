@@ -272,7 +272,9 @@ const ApplyForm: FC = () => {
                 <Typography variant="h3">Requisitos</Typography>
                 <ul className="fa-ul">
                   <li>
-                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem />
+                    <span className="fa-li">
+                      <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} />
+                    </span>
                     {' '}
                     <strong>Imparcialidad</strong>
                     <br />
@@ -282,7 +284,9 @@ const ApplyForm: FC = () => {
                 <Typography variant="h3">Beneficios</Typography>
                 <ul className="fa-ul">
                   <li>
-                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem />
+                    <span className="fa-li">
+                      <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} />
+                    </span>
                     {' '}
                     <strong>Experiencia</strong>
                     <br />
@@ -306,7 +310,9 @@ const ApplyForm: FC = () => {
                 <Typography variant="h3">Requisitos</Typography>
                 <ul className="fa-ul">
                   <li>
-                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem />
+                    <span className="fa-li">
+                      <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} />
+                    </span>
                     {' '}
                     <strong>Profesionalismo</strong>
                     <br />
@@ -316,7 +322,9 @@ const ApplyForm: FC = () => {
                 <Typography variant="h3">Beneficios</Typography>
                 <ul className="fa-ul">
                   <li>
-                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem />
+                    <span className="fa-li">
+                      <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} />
+                    </span>
                     {' '}
                     <strong>Apoyo</strong>
                     <br />
@@ -340,21 +348,27 @@ const ApplyForm: FC = () => {
                 <Typography variant="h3">Requisitos</Typography>
                 <ul className="fa-ul">
                   <li>
-                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem />
+                    <span className="fa-li">
+                      <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} />
+                    </span>
                     {' '}
                     <strong>Profesionalismo</strong>
                     <br />
                     La comunidad siempre intenta conseguir el mayor nivel de calidad en todos sus proyectos, por lo que buscamos gente dispuesta a otorgar este nivel de profesionalismo para el disfrute de la comunidad.
                   </li>
                   <li>
-                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem />
+                    <span className="fa-li">
+                      <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} />
+                    </span>
                     {' '}
                     <strong>Constancia</strong>
                     <br />
                     La comunidad busca gente que en sus posibilidades sea activa, que pueda estar al tanto de lo que pasa en ella.
                   </li>
                   <li>
-                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem />
+                    <span className="fa-li">
+                      <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} />
+                    </span>
                     {' '}
                     <strong>Proactividad</strong>
                     <br />
@@ -364,14 +378,18 @@ const ApplyForm: FC = () => {
                 <Typography variant="h3">Beneficios</Typography>
                 <ul className="fa-ul">
                   <li>
-                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem />
+                    <span className="fa-li">
+                      <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} />
+                    </span>
                     {' '}
                     <strong>Experiencia</strong>
                     <br />
                     Uno de los objetivos de la comunidad es brindar experiencia en gestión y desarrollo de proyectos equiparable a un entorno laboral, que sea comprobable y útil.
                   </li>
                   <li>
-                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem />
+                    <span className="fa-li">
+                      <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} />
+                    </span>
                     {' '}
                     <strong>Capacitación</strong>
                     <br />

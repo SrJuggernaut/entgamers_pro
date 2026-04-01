@@ -109,7 +109,7 @@ const Menu: FC = () => {
                     data-active={pathName === menuLink.href}
                     onClick={() => { setIsMenuOpen(false) }}
                   >
-                    <FontAwesomeIcon icon={menuLink.icon} fixedWidth />
+                    <FontAwesomeIcon icon={menuLink.icon} />
 &nbsp;
                     {menuLink.label}
                   </NextLink>

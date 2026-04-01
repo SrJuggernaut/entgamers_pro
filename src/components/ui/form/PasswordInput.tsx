@@ -2,7 +2,7 @@ import IconButton from '@/components/ui/IconButton'
 import Tooltip from '@/components/ui/Tooltip'
 import { css, cx } from '@/styled-system/css'
 import { input, type InputVariantProps } from '@/styled-system/recipes/input'
-import { type MergeOmitting } from '@/types/utilities'
+import type { MergeOmitting } from '@/types/utilities'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState, type FC, type InputHTMLAttributes } from 'react'
@@ -47,7 +47,7 @@ const PasswordInput: FC<InputProps> = ({ className, ...props }) => {
             size="small"
             onClick={() => { setShowPassword(!showPassword) }}
           >
-            <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} fixedWidth />
+            <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
           </IconButton>
         </Tooltip>
       </div>

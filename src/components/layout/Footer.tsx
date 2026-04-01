@@ -4,7 +4,7 @@ import { Container } from '@/styled-system/jsx'
 import { faChevronRight, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import NextLink from 'next/link'
-import { type FC } from 'react'
+import type { FC } from 'react'
 
 const Footer: FC = () => {
   return (
@@ -25,11 +25,15 @@ const Footer: FC = () => {
           <Typography variant="h3" component="div"> Acerca de </Typography>
           <ul className="fa-ul">
             <li>
-              <FontAwesomeIcon icon={faChevronRight} listItem fixedWidth />
+              <span className="fa-li">
+                <FontAwesomeIcon icon={faChevronRight} />
+              </span>
               <NextLink href="/acerca-de"> EntGamers</NextLink>
             </li>
             <li>
-              <FontAwesomeIcon icon={faChevronRight} listItem fixedWidth />
+              <span className="fa-li">
+                <FontAwesomeIcon icon={faChevronRight} />
+              </span>
               <NextLink href="/clanes"> Clanes</NextLink>
             </li>
           </ul>
