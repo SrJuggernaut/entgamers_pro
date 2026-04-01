@@ -40,7 +40,7 @@
     "@commitlint/cli": "^20.5.0",
     "@commitlint/config-conventional": "^20.5.0",
     "@eslint/js": "^10.0.1",
-    "@pandacss/dev": "^0.23.0",
+    "@pandacss/dev": "^1.9.1",
     "@types/isomorphic-fetch": "^0.0.39",
     "@types/node": "^20.10.6",
     "@types/react": "19.2.14",
