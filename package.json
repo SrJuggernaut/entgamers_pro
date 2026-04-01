@@ -8,7 +8,7 @@
     "prestart": "bun install && next build",
     "start": "next start",
     "lint": "eslint .",
-    "prepare": "panda codegen && husky install"
+    "prepare": "panda codegen && bun ./.husky/install.mts"
   },
   "dependencies": {
     "@fontsource/open-sans": "^5.0.20",
@@ -37,8 +37,8 @@
     "yup": "^1.3.3"
   },
   "devDependencies": {
-    "@commitlint/cli": "^18.4.4",
-    "@commitlint/config-conventional": "^18.4.4",
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
     "@eslint/js": "^10.0.1",
     "@pandacss/dev": "^0.23.0",
     "@types/isomorphic-fetch": "^0.0.39",
@@ -48,7 +48,7 @@
     "eslint": "^10.1.0",
     "eslint-config-next": "16.2.2",
     "eslint-plugin-react": "^7.37.5",
-    "husky": "^8.0.3",
+    "husky": "^9.1.7",
     "typescript": "*",
     "typescript-eslint": "^8.58.0"
   }
