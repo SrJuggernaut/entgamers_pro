@@ -3,7 +3,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableHeadCell, 
 import useManageError from '@/hooks/useManageError'
 import { css } from '@/styled-system/css'
 import { formatDate } from '@/utilities/date'
-import { type TeamApplication, type TeamApplicationList } from '@/utilities/teamApplication'
+import type { TeamApplication, TeamApplicationList } from '@/utilities/teamApplication'
 import { faChevronLeft, faChevronRight, faSort, faSortAsc, faSortDesc } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable, type ColumnFiltersState, type PaginationState, type RowData, type SortingState } from '@tanstack/react-table'
@@ -29,7 +29,7 @@ const columns = [
   columnHelper.accessor('status', {
     header: 'Estado',
     cell: StatusUpdater,
-    getUniqueValues () {
+    getUniqueValues() {
       return ['Pending', 'Accepted', 'Rejected']
     }
   }),
@@ -125,7 +125,7 @@ const ApplicationsList: FC = () => {
         if (error instanceof Error && error.name === 'AbortError') return
         manageError(error, 'Error al obtener las aplicaciones', 'Error desconocido al obtener las aplicaciones', 'error')
       })
-  }, [pagination, sorting, columnFilters])
+  }, [pagination, sorting, columnFilters, manageError])
 
   // TODO: Better UI Controls for: column visibility. Quantity selector.
   return (
@@ -145,7 +145,9 @@ const ApplicationsList: FC = () => {
                 id={`${column.id}-view`}
                 checked={column.getIsVisible()}
                 onChange={column.getToggleVisibilityHandler()}
-              /> {column.columnDef.header?.toString() ?? column.id}
+              />
+              {' '}
+              {column.columnDef.header?.toString() ?? column.id}
             </label>
           </div>
         ))}
@@ -159,8 +161,8 @@ const ApplicationsList: FC = () => {
                   <TableHeadCell
                     key={header.id}
                     className={css({
-                      verticalAlign: 'top',
-                      position: 'relative',
+                      'verticalAlign': 'top',
+                      'position': 'relative',
                       '&:hover > [data-is-resizing]': {
                         backgroundColor: 'border'
                       }
@@ -193,21 +195,21 @@ const ApplicationsList: FC = () => {
                       </div>
                       {header.column.getCanFilter()
                         ? (
-                          <ApplicationsFilter column={header.column}/>
+                          <ApplicationsFilter column={header.column} />
                         )
-                        : null
-                      }
+                        : null}
                     </div>
-                    <div
+                    <button
+                      type="button"
                       className={css({
-                        position: 'absolute',
-                        top: 0,
-                        right: 0,
-                        height: '100%',
-                        width: '5px',
-                        cursor: 'col-resize',
-                        userSelect: 'none',
-                        touchAction: 'none',
+                        'position': 'absolute',
+                        'top': 0,
+                        'right': 0,
+                        'height': '100%',
+                        'width': '5px',
+                        'cursor': 'col-resize',
+                        'userSelect': 'none',
+                        'touchAction': 'none',
                         '&:hover': {
                           backgroundColor: 'border'
                         },
@@ -257,7 +259,13 @@ const ApplicationsList: FC = () => {
         >
           <FontAwesomeIcon icon={faChevronLeft} fixedWidth />
         </IconButton>
-        Pagina {table.getState().pagination.pageIndex + 1} de {table.getPageCount()}
+        Pagina
+        {' '}
+        {table.getState().pagination.pageIndex + 1}
+        {' '}
+        de
+        {' '}
+        {table.getPageCount()}
         <IconButton
           onClick={() => { table.nextPage() }}
           disabled={!table.getCanNextPage()}

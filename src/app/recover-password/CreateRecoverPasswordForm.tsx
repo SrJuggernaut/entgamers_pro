@@ -68,10 +68,11 @@ const CreateRecoverPasswordForm: FC = () => {
               {formik.errors.email}
             </Typography>
           )
-          : (<Typography variant="caption" color="info">
-            Por favor, introduce el correo electrónico con el que te has registrado. Te enviaremos un correo con instrucciones para la recuperación de contraseña
-          </Typography>)
-        }
+          : (
+            <Typography variant="caption" color="info">
+              Por favor, introduce el correo electrónico con el que te has registrado. Te enviaremos un correo con instrucciones para la recuperación de contraseña
+            </Typography>
+          )}
       </FormGroup>
       <FormGroup>
         <Button

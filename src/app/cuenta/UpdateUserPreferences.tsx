@@ -55,7 +55,7 @@ const UpdateUserPreferences: FC = () => {
       })
         .catch(console.error)
     }
-  }, [status, session])
+  }, [status, user, formik, session])
 
   if (status !== 'idle' || session === undefined) {
     // TODO: Replace with Skeleton
@@ -65,7 +65,7 @@ const UpdateUserPreferences: FC = () => {
   return (
     <>
       <Typography
-        variant='h3'
+        variant="h3"
       >
         Preferencias
       </Typography>
@@ -74,13 +74,13 @@ const UpdateUserPreferences: FC = () => {
       >
         <FormGroup>
           <label
-            htmlFor='bio'
+            htmlFor="bio"
           >
             Biografia
           </label>
           <TextArea
-            id='bio'
-            name='bio'
+            id="bio"
+            name="bio"
             value={formik.values.bio}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -96,7 +96,7 @@ const UpdateUserPreferences: FC = () => {
         {/* TODO: Add Profile Picture and Social Links fields */}
         <FormGroup>
           <Button
-            type='submit'
+            type="submit"
             disabled={formik.isSubmitting || !formik.isValid}
             fullWidth
           >

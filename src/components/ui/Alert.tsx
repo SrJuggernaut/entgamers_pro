@@ -32,9 +32,8 @@ export const AlertCloseButton: FC<ComposedAlertCloseButtonProps> = ({ children, 
       {...allOtherAlertProps}
     >
       {children === undefined
-        ? <FontAwesomeIcon icon={faTimes as FontAwesomeIconProps['icon']} fixedWidth size='sm' />
-        : children
-      }
+        ? <FontAwesomeIcon icon={faTimes as FontAwesomeIconProps['icon']} fixedWidth size="sm" />
+        : children}
     </IconButton>
   )
 }

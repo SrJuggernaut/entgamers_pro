@@ -1,15 +1,15 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
-import { type Models } from 'appwrite'
-import { type ClanList } from 'entgamers-database/frontend/clanes'
-import { type User } from 'entgamers-database/frontend/session'
+import type { Models } from 'appwrite'
+import type { ClanList } from 'entgamers-database/frontend/clanes'
+import type { User } from 'entgamers-database/frontend/session'
 
-export type SessionState =
-| {
-  status: 'idle' | 'loading' | 'initializing'
-  session?: Models.Session
-  user?: User
-  clanes?: ClanList
-}
+export type SessionState
+  = | {
+    status: 'idle' | 'loading' | 'initializing'
+    session?: Models.Session
+    user?: User
+    clanes?: ClanList
+  }
 
 const initialState: SessionState = {
   status: 'initializing'

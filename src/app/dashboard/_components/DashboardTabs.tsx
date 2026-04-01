@@ -40,7 +40,7 @@ const DashboardTabs: FC = () => {
       >
         <AnimatePresence
           initial={false}
-          mode='wait'
+          mode="wait"
         >
           {currentTab === undefined && (
             <motion.div

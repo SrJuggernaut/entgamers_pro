@@ -1,7 +1,7 @@
 import { cx } from '@/styled-system/css'
 import { typography, type TypographyVariantProps } from '@/styled-system/recipes/typography'
-import { type MergeOmitting } from '@/types/utilities'
-import { type ElementType, type FC, type HTMLAttributes } from 'react'
+import type { MergeOmitting } from '@/types/utilities'
+import { type ElementType, type FC, type HTMLAttributes, createElement } from 'react'
 
 type ComposedTypographyProps = MergeOmitting<HTMLAttributes<HTMLElement>, TypographyVariantProps>
 
@@ -35,19 +35,18 @@ const variantToComponent = (variant: TypographyVariantProps['variant']): Element
 
 const Typography: FC<TypographyProps> = ({ children, className, component, ...rest }) => {
   const [typographyRecipeArgs, allOtherTypographyProps] = typography.splitVariantProps(rest)
-  const Component = component ?? variantToComponent(typographyRecipeArgs.variant)
   typographyRecipeArgs.color = typographyRecipeArgs.color ?? (
     typeof typographyRecipeArgs.variant === 'string' && typographyRecipeArgs.variant.startsWith('h')
       ? 'primary'
       : 'inherit'
   )
-  return (
-    <Component
-      className={cx(typography(typographyRecipeArgs), className)}
-      {...allOtherTypographyProps}
-    >
-      {children}
-    </Component>
+  return createElement(
+    component ?? variantToComponent(typographyRecipeArgs.variant),
+    {
+      className: cx(typography(typographyRecipeArgs), className),
+      ...allOtherTypographyProps
+    },
+    children
   )
 }
 

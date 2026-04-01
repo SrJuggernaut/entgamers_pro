@@ -22,7 +22,7 @@ const Clanes: FC = () => {
         <div
           className={card({ variant: 'glass' }).content}
         >
-          <Typography variant="h2" align='center'>Clanes</Typography>
+          <Typography variant="h2" align="center">Clanes</Typography>
           <div
             className={css({
               display: 'grid',

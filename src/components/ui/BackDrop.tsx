@@ -38,8 +38,7 @@ const BackDrop: FC<BackDropProps> = ({ isOpen, onClickAway, children }) => {
             {children}
           </motion.div>
         )
-        : undefined
-      }
+        : undefined}
     </AnimatePresence>
   ), document.body)
 }

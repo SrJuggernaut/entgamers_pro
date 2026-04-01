@@ -16,11 +16,14 @@ import { ADMIN_CLAN_ID, COLLABORATOR_CLAN_ID, MODERATOR_CLAN_ID } from 'entgamer
 import { createTeamApplication, type TeamApplicationData } from 'entgamers-database/frontend/database/teamApplications'
 import { useFormik } from 'formik'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useSearchParams } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/router'
 import { useEffect, type FC } from 'react'
 
 const ApplyForm: FC = () => {
   const searchParams = useSearchParams()
+  const pathname = usePathname()
+  const router = useRouter()
   const { manageError } = useManageError()
   const dispatch = useAppDispatch()
 
@@ -54,8 +57,11 @@ const ApplyForm: FC = () => {
         .catch((error) => {
           console.error(error)
         })
+        .finally(() => {
+          router.replace(pathname)
+        })
     }
-  }, [])
+  }, [searchParams, formik, pathname, router])
 
   return (
     <form
@@ -70,7 +76,7 @@ const ApplyForm: FC = () => {
         })}
       >
         <Button
-          type='button'
+          type="button"
           onClick={() => {
             formik.setFieldValue('role', MODERATOR_CLAN_ID)
               .catch((error) => {
@@ -82,7 +88,7 @@ const ApplyForm: FC = () => {
           Moderador
         </Button>
         <Button
-          type='button'
+          type="button"
           onClick={() => {
             formik.setFieldValue('role', ADMIN_CLAN_ID)
               .catch((error) => {
@@ -94,7 +100,7 @@ const ApplyForm: FC = () => {
           Administrador
         </Button>
         <Button
-          type='button'
+          type="button"
           onClick={() => {
             formik.setFieldValue('role', COLLABORATOR_CLAN_ID)
               .catch((error) => {
@@ -121,90 +127,87 @@ const ApplyForm: FC = () => {
               })}
             >
               <FormGroup>
-                <label htmlFor='name'>Nombre</label>
+                <label htmlFor="name">Nombre</label>
                 <Input
-                  id='name'
-                  type='text'
+                  id="name"
+                  type="text"
                   value={formik.values.name}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
                 {formik.touched.name !== undefined && formik.errors.name !== undefined
                   ? (
-                    <Typography variant='caption' color='danger'>
+                    <Typography variant="caption" color="danger">
                       {formik.errors.name}
                     </Typography>
                   )
                   : (
-                    <Typography variant='caption' color='info'>
+                    <Typography variant="caption" color="info">
                       Tu nombre.
                     </Typography>
                   )}
               </FormGroup>
               <FormGroup>
-                <label htmlFor='email'>Email</label>
+                <label htmlFor="email">Email</label>
                 <Input
-                  id='email'
-                  type='email'
+                  id="email"
+                  type="email"
                   value={formik.values.email}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
                 {formik.touched.email !== undefined && formik.errors.email !== undefined
                   ? (
-                    <Typography variant='caption' color='danger'>
+                    <Typography variant="caption" color="danger">
                       {formik.errors.email}
                     </Typography>
                   )
                   : (
-                    <Typography variant='caption' color='info'>
+                    <Typography variant="caption" color="info">
                       Tu email, para poder contactarte.
                     </Typography>
-                  )
-                }
+                  )}
               </FormGroup>
               <FormGroup>
-                <label htmlFor='discord'>Nombre de Discord</label>
+                <label htmlFor="discord">Nombre de Discord</label>
                 <Input
-                  id='discord'
-                  type='text'
+                  id="discord"
+                  type="text"
                   value={formik.values.discord}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
                 {formik.touched.discord !== undefined && formik.errors.discord !== undefined
                   ? (
-                    <Typography variant='caption' color='danger'>
+                    <Typography variant="caption" color="danger">
                       {formik.errors.discord}
                     </Typography>
                   )
                   : (
-                    <Typography variant='caption' color='info'>
+                    <Typography variant="caption" color="info">
                       Tu nombre de Discord, para poder contactarte.
                     </Typography>
-                  )
-                }
+                  )}
               </FormGroup>
               <FormGroup>
-                <label htmlFor='message'>Mensaje</label>
+                <label htmlFor="message">Mensaje</label>
                 <TextArea
-                  id='message'
+                  id="message"
                   value={formik.values.message}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
                 {formik.touched.message !== undefined && formik.errors.message !== undefined
                   ? (
-                    <Typography variant='caption' color='danger'>
+                    <Typography variant="caption" color="danger">
                       {formik.errors.message}
                     </Typography>
                   )
                   : (
-                    <Typography variant='caption' color='info'>
+                    <Typography variant="caption" color="info">
                       ¿Por que te gustaría unirte al equipo?, ¿Que te gustaría hacer?, etc.
                     </Typography>
-                  )
-                }
+                  )}
               </FormGroup>
               <div
                 className={css({
@@ -212,7 +215,7 @@ const ApplyForm: FC = () => {
                 })}
               >
                 <Button
-                  type='submit'
+                  type="submit"
                   disabled={!formik.isValid || !formik.dirty}
                   fullWidth
 
@@ -239,14 +242,13 @@ const ApplyForm: FC = () => {
                   justifyContent: 'center'
                 })}
               >
-                <Typography variant='h2' align="center">¡Gracias por interesarte en unirte al equipo!</Typography>
-                <Typography variant='body1'>
+                <Typography variant="h2" align="center">¡Gracias por interesarte en unirte al equipo!</Typography>
+                <Typography variant="body1">
                   El equipo de EntGamers se pondrá en contacto contigo a la brevedad posible.
                 </Typography>
               </div>
             </div>
-          )
-        }
+          )}
         <div
           className={css({
             overflow: 'hidden',
@@ -254,31 +256,35 @@ const ApplyForm: FC = () => {
             paddingBlock: 'medium'
           })}
         >
-          <AnimatePresence mode='wait' initial={false}>
+          <AnimatePresence mode="wait" initial={false}>
             {formik.values.role === MODERATOR_CLAN_ID && (
               <motion.div
-                key={'motion-moderator'}
+                key="motion-moderator"
                 transition={{ duration: 0.15, ease: 'easeInOut' }}
                 initial={{ opacity: 0, x: '-250px' }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: '250px' }}
               >
-                <Typography variant='h2' align="center">Moderadores</Typography>
-                <Typography variant='body1'>
+                <Typography variant="h2" align="center">Moderadores</Typography>
+                <Typography variant="body1">
                   El equipo de moderación de EntGamers se encarga de moderar los distintos espacios en los que se desenvuelve la comunidad, como los grupos de Facebook, Discord, Etc.
                 </Typography>
-                <Typography variant='h3'>Requisitos</Typography>
+                <Typography variant="h3">Requisitos</Typography>
                 <ul className="fa-ul">
                   <li>
-                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem /> <strong>Imparcialidad</strong>
+                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem />
+                    {' '}
+                    <strong>Imparcialidad</strong>
                     <br />
                     La comunidad esta conformada por amigos y conocidos, por lo tanto es importante poder actuar de forma imparcial y responsable.
                   </li>
                 </ul>
-                <Typography variant='h3'>Beneficios</Typography>
+                <Typography variant="h3">Beneficios</Typography>
                 <ul className="fa-ul">
                   <li>
-                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem /> <strong>Experiencia</strong>
+                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem />
+                    {' '}
+                    <strong>Experiencia</strong>
                     <br />
                     Uno de los objetivos de la comunidad es brindar experiencia en gestión y desarrollo de proyectos equiparable a un entorno laboral, que sea comprobable y útil.
                   </li>
@@ -287,28 +293,32 @@ const ApplyForm: FC = () => {
             )}
             {formik.values.role === COLLABORATOR_CLAN_ID && (
               <motion.div
-                key={'motion-collaborator'}
+                key="motion-collaborator"
                 transition={{ duration: 0.15, ease: 'easeInOut' }}
                 initial={{ opacity: 0, x: '-250px' }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: '250px' }}
               >
-                <Typography variant='h2' align='center'>Colaborador</Typography>
-                <Typography variant='body1'>
+                <Typography variant="h2" align="center">Colaborador</Typography>
+                <Typography variant="body1">
                   Los colaboradores son personas ajenas al staff central de EntGamers que nos ayudan a traer contenido, eventos y actividades a la comunidad.
                 </Typography>
-                <Typography variant='h3'>Requisitos</Typography>
+                <Typography variant="h3">Requisitos</Typography>
                 <ul className="fa-ul">
                   <li>
-                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem /> <strong>Profesionalismo</strong>
+                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem />
+                    {' '}
+                    <strong>Profesionalismo</strong>
                     <br />
                     La comunidad siempre intenta conseguir el mayor nivel de calidad en todos sus proyectos, por lo que buscamos gente dispuesta a otorgar este nivel de profesionalismo para el disfrute de la comunidad.
                   </li>
                 </ul>
-                <Typography variant='h3'>Beneficios</Typography>
+                <Typography variant="h3">Beneficios</Typography>
                 <ul className="fa-ul">
                   <li>
-                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem /> <strong>Apoyo</strong>
+                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem />
+                    {' '}
+                    <strong>Apoyo</strong>
                     <br />
                     Puedes contar con el apoyo de la comunidad para tus proyectos, ya sea en forma de difusión, asesoramiento o recursos.
                   </li>
@@ -317,43 +327,53 @@ const ApplyForm: FC = () => {
             )}
             {formik.values.role === ADMIN_CLAN_ID && (
               <motion.div
-                key={'motion-administrator'}
+                key="motion-administrator"
                 transition={{ duration: 0.15, ease: 'easeInOut' }}
                 initial={{ opacity: 0, x: '-250px' }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: '250px' }}
               >
-                <Typography variant='h2' align='center'>Administradores</Typography>
-                <Typography variant='body1'>
+                <Typography variant="h2" align="center">Administradores</Typography>
+                <Typography variant="body1">
                   Los administradores son quienes se encargan de que todo funcione como es debido en la comunidad, desde la moderación de los grupos hasta la organización de eventos y actividades. Son los responsables de que la comunidad siga creciendo y mejorando.
                 </Typography>
-                <Typography variant='h3'>Requisitos</Typography>
+                <Typography variant="h3">Requisitos</Typography>
                 <ul className="fa-ul">
                   <li>
-                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem /> <strong>Profesionalismo</strong>
+                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem />
+                    {' '}
+                    <strong>Profesionalismo</strong>
                     <br />
                     La comunidad siempre intenta conseguir el mayor nivel de calidad en todos sus proyectos, por lo que buscamos gente dispuesta a otorgar este nivel de profesionalismo para el disfrute de la comunidad.
                   </li>
                   <li>
-                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem /> <strong>Constancia</strong>
+                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem />
+                    {' '}
+                    <strong>Constancia</strong>
                     <br />
                     La comunidad busca gente que en sus posibilidades sea activa, que pueda estar al tanto de lo que pasa en ella.
                   </li>
                   <li>
-                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem /> <strong>Proactividad</strong>
+                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem />
+                    {' '}
+                    <strong>Proactividad</strong>
                     <br />
                     La comunidad esta en constante crecimiento, por eso, buscamos gente que ayude a buscar nuevas oportunidades para diferentes proyectos y actividades de interés a la comunidad.
                   </li>
                 </ul>
-                <Typography variant='h3'>Beneficios</Typography>
+                <Typography variant="h3">Beneficios</Typography>
                 <ul className="fa-ul">
                   <li>
-                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem /> <strong>Experiencia</strong>
+                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem />
+                    {' '}
+                    <strong>Experiencia</strong>
                     <br />
                     Uno de los objetivos de la comunidad es brindar experiencia en gestión y desarrollo de proyectos equiparable a un entorno laboral, que sea comprobable y útil.
                   </li>
                   <li>
-                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem /> <strong>Capacitación</strong>
+                    <FontAwesomeIcon icon={faChevronRight as FontAwesomeIconProps['icon']} fixedWidth listItem />
+                    {' '}
+                    <strong>Capacitación</strong>
                     <br />
                     La comunidad buscara dar capacitación a sus miembros en lo referido a herramientas y procedimientos utilizados.
                   </li>

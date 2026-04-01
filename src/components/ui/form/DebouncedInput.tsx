@@ -19,14 +19,16 @@ const DebouncedInput: FC<DebouncedInputProps> = ({ value: initialValue, onChange
       onChange(value)
     }, debounce)
 
-    return () => { clearTimeout(timeout) }
-  }, [value])
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [value, onChange, debounce])
 
   return (
     <Input
       {...props}
       value={value}
-      onChange={e => { setValue(e.target.value) }}
+      onChange={(e) => { setValue(e.target.value) }}
     />
   )
 }

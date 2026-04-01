@@ -111,20 +111,20 @@ const Hero: FC = () => {
           color: 'primary',
           size: 'large'
         }), css({
-          position: 'absolute',
-          bottom: '45px',
-          right: '50%',
-          animationName: 'bounce',
-          animationDuration: '1s',
-          animationIterationCount: 'infinite',
-          transform: 'translateX(50%)',
-          zIndex: 1,
+          'position': 'absolute',
+          'bottom': '45px',
+          'right': '50%',
+          'animationName': 'bounce',
+          'animationDuration': '1s',
+          'animationIterationCount': 'infinite',
+          'transform': 'translateX(50%)',
+          'zIndex': 1,
           '&:hover': {
             animationPlayState: 'paused'
           }
         }))}
       >
-        <FontAwesomeIcon icon={faArrowDown} size='lg' fixedWidth />
+        <FontAwesomeIcon icon={faArrowDown} size="lg" fixedWidth />
       </a>
     </section>
   )

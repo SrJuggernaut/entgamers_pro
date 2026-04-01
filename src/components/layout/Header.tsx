@@ -21,28 +21,28 @@ const Header: FC = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [])
+  }, [handleScroll])
 
   return (
     <>
       <header
         className={css({
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: 'transparent',
-          color: 'text',
-          minHeight: '60px',
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          zIndex: 'sticky',
-          boxShadow: 'none',
-          transitionProperty: 'background-color, box-shadow',
-          transitionDuration: '0.25s',
-          transitionTimingFunction: 'easeInOut',
-          willChange: 'background-color, box-shadow',
+          'display': 'flex',
+          'alignItems': 'center',
+          'justifyContent': 'center',
+          'backgroundColor': 'transparent',
+          'color': 'text',
+          'minHeight': '60px',
+          'position': 'fixed',
+          'top': 0,
+          'left': 0,
+          'width': '100%',
+          'zIndex': 'sticky',
+          'boxShadow': 'none',
+          'transitionProperty': 'background-color, box-shadow',
+          'transitionDuration': '0.25s',
+          'transitionTimingFunction': 'easeInOut',
+          'willChange': 'background-color, box-shadow',
           '&[data-scrolled=true]': {
             backgroundColor: 'surface',
             boxShadow: '2px 2px 4px 0px rgba(0, 0, 0, 0.25)'

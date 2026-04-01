@@ -13,16 +13,16 @@ const feedbackSlice = createSlice({
   name: 'feedback',
   initialState,
   reducers: {
-    addAlert (state, action: PayloadAction<Alert>) {
+    addAlert(state, action: PayloadAction<Alert>) {
       return {
         ...state,
         alerts: [...state.alerts, action.payload]
       }
     },
-    removeAlert (state, action: PayloadAction<string>) {
+    removeAlert(state, action: PayloadAction<string>) {
       return {
         ...state,
-        alerts: state.alerts.filter(alert => alert.id !== action.payload)
+        alerts: state.alerts.filter((alert) => alert.id !== action.payload)
       }
     }
   }

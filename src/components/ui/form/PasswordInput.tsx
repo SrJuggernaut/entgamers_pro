@@ -47,7 +47,7 @@ const PasswordInput: FC<InputProps> = ({ className, ...props }) => {
             size="small"
             onClick={() => { setShowPassword(!showPassword) }}
           >
-            <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} fixedWidth/>
+            <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} fixedWidth />
           </IconButton>
         </Tooltip>
       </div>

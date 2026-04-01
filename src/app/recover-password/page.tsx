@@ -13,8 +13,7 @@ const page: FC = () => {
         container(),
         css({
           minHeight: 'calc(100vh - 60px - 72px)'
-        }))
-      }
+        }))}
     >
       <div
         className={cx(

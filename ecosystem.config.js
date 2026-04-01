@@ -19,13 +19,13 @@ module.exports = {
 
   deploy: {
     production: {
-      user: process.env.SSH_USERNAME,
-      host: process.env.DEPLOY_HOST,
-      ref: 'origin/production',
-      repo: 'https://github.com/SrJuggernaut/entgamers_pro',
-      path: process.env.DEPLOY_PATH,
+      'user': process.env.SSH_USERNAME,
+      'host': process.env.DEPLOY_HOST,
+      'ref': 'origin/production',
+      'repo': 'https://github.com/SrJuggernaut/entgamers_pro',
+      'path': process.env.DEPLOY_PATH,
       'post-deploy': 'pm2 --silent startOrRestart ecosystem.config.js',
-      env: {
+      'env': {
         PORT: process.env.PORT,
         NEXT_PUBLIC_APPWRITE_ENDPOINT: process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT,
         NEXT_PUBLIC_APPWRITE_PROJECT_ID: process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID,
@@ -37,13 +37,13 @@ module.exports = {
 
     },
     preview: {
-      user: process.env.SSH_USERNAME,
-      host: process.env.DEPLOY_HOST,
-      ref: 'origin/preview',
-      repo: 'https://github.com/SrJuggernaut/entgamers_pro',
-      path: process.env.DEPLOY_PATH,
+      'user': process.env.SSH_USERNAME,
+      'host': process.env.DEPLOY_HOST,
+      'ref': 'origin/preview',
+      'repo': 'https://github.com/SrJuggernaut/entgamers_pro',
+      'path': process.env.DEPLOY_PATH,
       'post-deploy': 'pm2 --silent startOrRestart ecosystem.config.js',
-      env: {
+      'env': {
         PORT: process.env.PORT,
         NEXT_PUBLIC_APPWRITE_ENDPOINT: process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT,
         NEXT_PUBLIC_APPWRITE_PROJECT_ID: process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID,

@@ -13,7 +13,7 @@ import { type FC } from 'react'
 import { createPortal } from 'react-dom'
 
 const FeedbackConsumer: FC = () => {
-  const { alerts } = useAppSelector(state => state.feedback)
+  const { alerts } = useAppSelector((state) => state.feedback)
   const dispatch = useAppDispatch()
   return (
     <>
@@ -55,7 +55,7 @@ const FeedbackConsumer: FC = () => {
                       className={alert().closeButton}
                       onClick={() => dispatch(removeAlert(currentAlert.id))}
                     >
-                      <FontAwesomeIcon icon={faTimes} fixedWidth size='sm'/>
+                      <FontAwesomeIcon icon={faTimes} fixedWidth size="sm" />
                     </IconButton>
                     <Typography variant="h3" component="div">
                       {currentAlert.title}

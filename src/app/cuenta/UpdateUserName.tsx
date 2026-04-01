@@ -68,7 +68,7 @@ const UpdateUserName: FC = () => {
       })
         .catch(console.error)
     }
-  }, [status, session, user])
+  }, [status, session, user, formik])
 
   if (status !== 'idle' || session === undefined) {
     // TODO: Replace with Skeleton
@@ -99,8 +99,7 @@ const UpdateUserName: FC = () => {
             <Typography variant="caption" color="danger">{formik.errors.name}</Typography>
           )}
         </FormGroup>
-        <FormGroup
-        >
+        <FormGroup>
           <Button
             type="submit"
             disabled={formik.isSubmitting || !formik.isValid}

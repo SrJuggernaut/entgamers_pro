@@ -57,7 +57,7 @@ const LoginForm: FC = () => {
     if (session.status === 'idle' && session.session !== undefined) {
       router.push('/')
     }
-  }, [session])
+  }, [session, router])
 
   return (
     <form
@@ -95,7 +95,9 @@ const LoginForm: FC = () => {
         )}
       </FormGroup>
       <Typography variant="caption" color="muted">
-        ¿Perdiste tu contraseña? <NextLink href="/recover-password">Recupérala</NextLink>
+        ¿Perdiste tu contraseña?
+        {' '}
+        <NextLink href="/recover-password">Recupérala</NextLink>
       </Typography>
       <FormGroup>
         <Button

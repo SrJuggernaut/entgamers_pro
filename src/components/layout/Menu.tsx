@@ -3,7 +3,7 @@ import BackDrop from '@/components/ui/BackDrop'
 import IconButton from '@/components/ui/IconButton'
 import { css } from '@/styled-system/css'
 import { iconButton } from '@/styled-system/recipes'
-import { type IconDefinition } from '@fortawesome/fontawesome-common-types'
+import type { IconDefinition } from '@fortawesome/fontawesome-common-types'
 import { faBars, faHome, faTimes, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import NextLink from 'next/link'
@@ -62,6 +62,7 @@ const Menu: FC = () => {
             })}
           >
             <button
+              type="button"
               className={iconButton({
                 color: 'danger'
               })}
@@ -80,22 +81,21 @@ const Menu: FC = () => {
             >
               {menuLinks.map((menuLink, index) => (
                 <li
-                  key={`menu-link-${index}`}
-                  onClick={() => { setIsMenuOpen(false) }}
+                  key={`menu-link-${menuLink.label}-${index.toString()}`}
                 >
                   <NextLink
                     className={css({
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'left',
-                      padding: '1rem',
-                      textDecoration: 'none',
-                      backgroundColor: 'transparent',
-                      color: 'text',
-                      transitionProperty: 'background-color',
-                      transitionDuration: 'normal',
-                      transitionTimingFunction: 'easeInOut',
-                      willChange: 'background-color color',
+                      'display': 'flex',
+                      'alignItems': 'center',
+                      'justifyContent': 'left',
+                      'padding': '1rem',
+                      'textDecoration': 'none',
+                      'backgroundColor': 'transparent',
+                      'color': 'text',
+                      'transitionProperty': 'background-color',
+                      'transitionDuration': 'normal',
+                      'transitionTimingFunction': 'easeInOut',
+                      'willChange': 'background-color color',
                       '&:hover': {
                         backgroundColor: 'primary',
                         color: 'primary.contrast'
@@ -107,8 +107,11 @@ const Menu: FC = () => {
                     })}
                     href={menuLink.href}
                     data-active={pathName === menuLink.href}
+                    onClick={() => { setIsMenuOpen(false) }}
                   >
-                    <FontAwesomeIcon icon={menuLink.icon} fixedWidth />&nbsp;{menuLink.label}
+                    <FontAwesomeIcon icon={menuLink.icon} fixedWidth />
+&nbsp;
+                    {menuLink.label}
                   </NextLink>
                 </li>
               ))}

@@ -17,7 +17,7 @@ const ApplicationsFilter: FC<ApplicationsFilterProps> = ({ column }) => {
         <StatusSelector
           id={`${column.id}-status-filter`}
           value={columnFilterValue as TeamApplicationStatus}
-          onChange={value => { column.setFilterValue(value) }}
+          onChange={(value) => { column.setFilterValue(value) }}
           allowEmpty
         />
       )
@@ -26,7 +26,7 @@ const ApplicationsFilter: FC<ApplicationsFilterProps> = ({ column }) => {
         <RoleSelector
           id={`${column.id}-role-filter`}
           value={columnFilterValue as TeamApplicationRole}
-          onChange={value => { column.setFilterValue(value) }}
+          onChange={(value) => { column.setFilterValue(value) }}
           allowEmpty
         />
       )
@@ -36,7 +36,7 @@ const ApplicationsFilter: FC<ApplicationsFilterProps> = ({ column }) => {
           fullWidth
           type="text"
           value={(columnFilterValue ?? '') as string}
-          onChange={value => { column.setFilterValue(value) }}
+          onChange={(value) => { column.setFilterValue(value) }}
           placeholder="Buscar..."
           className="w-36 border shadow rounded"
           list={column.id + 'list'}

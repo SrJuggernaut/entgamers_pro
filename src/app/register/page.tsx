@@ -15,8 +15,7 @@ const RegisterPage: FC = () => {
           container(),
           css({
             minHeight: 'calc(100vh - 60px - 72px)'
-          }))
-        }
+          }))}
       >
 
         <div
@@ -42,8 +41,10 @@ const RegisterPage: FC = () => {
             className={card().content}
           >
             <RegisterForm />
-            <Typography variant="caption" align="center" >
-              ¿Ya tienes una cuenta? <NextLink href="/login">Inicia sesión</NextLink>
+            <Typography variant="caption" align="center">
+              ¿Ya tienes una cuenta?
+              {' '}
+              <NextLink href="/login">Inicia sesión</NextLink>
             </Typography>
           </div>
         </div>

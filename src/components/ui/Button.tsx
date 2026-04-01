@@ -1,11 +1,9 @@
 import { cx } from '@/styled-system/css'
 import { button, type ButtonVariantProps } from '@/styled-system/recipes/button'
-import { type MergeOmitting } from '@/types/utilities'
-import { type ButtonHTMLAttributes, type DetailedHTMLProps, type FC } from 'react'
+import type { MergeOmitting } from '@/types/utilities'
+import type { ButtonHTMLAttributes, DetailedHTMLProps, FC } from 'react'
 
-type ComposedButtonProps = MergeOmitting<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, ButtonVariantProps>
-
-export interface ButtonProps extends ComposedButtonProps {}
+export type ButtonProps = MergeOmitting<DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, ButtonVariantProps>
 
 const Button: FC<ButtonProps> = ({ children, className, ...rest }) => {
   const [buttonRecipeArgs, allOtherButtonProps] = button.splitVariantProps(rest)

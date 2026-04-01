@@ -15,17 +15,17 @@ const StatusSelector: FC<StatusSelectorProps> = ({ id, value, onChange, allowEmp
     <select
       id={`${id}-status`}
       className={css({
-        width: '100%',
-        border: 'none',
-        background: 'transparent',
-        color: 'inherit',
-        outline: 'none',
-        cursor: 'pointer',
-        fontSize: 'inherit',
-        fontWeight: 'inherit',
-        lineHeight: 'inherit',
-        padding: '0',
-        borderRadius: '0',
+        'width': '100%',
+        'border': 'none',
+        'background': 'transparent',
+        'color': 'inherit',
+        'outline': 'none',
+        'cursor': 'pointer',
+        'fontSize': 'inherit',
+        'fontWeight': 'inherit',
+        'lineHeight': 'inherit',
+        'padding': '0',
+        'borderRadius': '0',
         '&:focus': {
           outline: 'none'
         }

@@ -22,14 +22,20 @@ const Footer: FC = () => {
         })}
       >
         <div>
-          <Typography variant="h3" component='div'> Acerca de </Typography>
+          <Typography variant="h3" component="div"> Acerca de </Typography>
           <ul className="fa-ul">
-            <li><FontAwesomeIcon icon={faChevronRight} listItem fixedWidth /><NextLink href="/acerca-de"> EntGamers</NextLink></li>
-            <li><FontAwesomeIcon icon={faChevronRight} listItem fixedWidth /><NextLink href="/clanes"> Clanes</NextLink></li>
+            <li>
+              <FontAwesomeIcon icon={faChevronRight} listItem fixedWidth />
+              <NextLink href="/acerca-de"> EntGamers</NextLink>
+            </li>
+            <li>
+              <FontAwesomeIcon icon={faChevronRight} listItem fixedWidth />
+              <NextLink href="/clanes"> Clanes</NextLink>
+            </li>
           </ul>
         </div>
         <div>
-          <Typography variant="h3" component='div'> Contacto </Typography>
+          <Typography variant="h3" component="div"> Contacto </Typography>
         </div>
         <div></div>
       </Container>
@@ -40,8 +46,14 @@ const Footer: FC = () => {
           justifyContent: 'center'
         })}
       >
-        <Typography variant="body2" component='div'>
-          Hecho con <FontAwesomeIcon className={css({ color: 'red' })} icon={faHeart} /> por <a href="https://srjuggernaut.dev">SrJuggernaut</a>
+        <Typography variant="body2" component="div">
+          Hecho con
+          {' '}
+          <FontAwesomeIcon className={css({ color: 'red' })} icon={faHeart} />
+          {' '}
+          por
+          {' '}
+          <a href="https://srjuggernaut.dev">SrJuggernaut</a>
         </Typography>
       </Container>
     </footer>

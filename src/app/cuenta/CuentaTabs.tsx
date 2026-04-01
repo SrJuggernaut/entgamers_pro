@@ -44,7 +44,7 @@ const CuentaTabs: FC = () => {
       >
         <AnimatePresence
           initial={false}
-          mode='wait'
+          mode="wait"
         >
           {currentTab === 'login' && (
             <motion.div
@@ -52,7 +52,8 @@ const CuentaTabs: FC = () => {
               initial={{ opacity: 0, x: '-100%' }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: '100%' }}
-              key="login">
+              key="login"
+            >
               <UpdateEmail />
               <UpdatePassword />
             </motion.div>
@@ -63,7 +64,8 @@ const CuentaTabs: FC = () => {
               initial={{ opacity: 0, x: '-100%' }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: '100%' }}
-              key="perfil">
+              key="perfil"
+            >
               <UpdateUserName />
               <UpdateUserPreferences />
             </motion.div>

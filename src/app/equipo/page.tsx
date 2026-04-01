@@ -25,9 +25,9 @@ const getTeams = async (): Promise<GetTeamsResponse> => {
   const moderatorMembers: Models.MembershipList = await getClanMembers(MODERATOR_CLAN_ID)
   const collaboratorMembers: Models.MembershipList = await getClanMembers(COLLABORATOR_CLAN_ID)
 
-  const adminsPromises = adminMembers.memberships.map(async membership => await getUser(membership.userId))
-  const moderatorsPromises = moderatorMembers.memberships.map(async membership => await getUser(membership.userId))
-  const collaboratorsPromises = collaboratorMembers.memberships.map(async membership => await getUser(membership.userId))
+  const adminsPromises = adminMembers.memberships.map(async (membership) => await getUser(membership.userId))
+  const moderatorsPromises = moderatorMembers.memberships.map(async (membership) => await getUser(membership.userId))
+  const collaboratorsPromises = collaboratorMembers.memberships.map(async (membership) => await getUser(membership.userId))
 
   const [admins, moderators, collaborators] = await Promise.all([
     Promise.all(adminsPromises), Promise.all(moderatorsPromises), Promise.all(collaboratorsPromises)
@@ -96,8 +96,7 @@ const EquipoPage: FC = async () => {
           <Typography variant="body2" color="info">
             Ups, parece que ahora mismo no hay administradores, pero en EntGamers siempre estamos estamos buscando gente que quiera organizar cosas para la comunidad, puedes contactarnos para formar parte de nuestro equipo haciendo click en el siguiente enlace.
           </Typography>
-        )
-      }
+        )}
       <div className={center()}>
         <NextLink
           className={button({ color: 'info' })}
@@ -158,8 +157,7 @@ const EquipoPage: FC = async () => {
           <Typography variant="body2" color="info">
             Ups, parece que ahora mismo no hay moderadores, pero en EntGamers siempre estamos buscando gente que quiera ayudar a la comunidad. si quieres ser moderador, puedes hacer click en el botón de abajo.
           </Typography>
-        )
-      }
+        )}
       <div className={center()}>
         <NextLink
           className={button({ color: 'info' })}
@@ -220,8 +218,7 @@ const EquipoPage: FC = async () => {
           <Typography variant="body2" color="info">
             Ups, parece que ahora mismo no hay colaboradores, pero en EntGamers siempre estamos buscando gente que quiera ayudar a la comunidad. si quieres ser colaborador, puedes hacer click en el botón de abajo.
           </Typography>
-        )
-      }
+        )}
       <div className={center()}>
         <NextLink
           className={button({ color: 'info' })}

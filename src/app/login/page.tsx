@@ -15,8 +15,7 @@ const LoginPage: FC = () => {
           container(),
           css({
             minHeight: 'calc(100vh - 60px - 72px)'
-          }))
-        }
+          }))}
       >
         <div
           className={cx(
@@ -41,8 +40,10 @@ const LoginPage: FC = () => {
             className={card().content}
           >
             <LoginForm />
-            <Typography variant="caption" align="center" >
-              ¿No tienes una cuenta? <NextLink href="/register">Regístrate</NextLink>
+            <Typography variant="caption" align="center">
+              ¿No tienes una cuenta?
+              {' '}
+              <NextLink href="/register">Regístrate</NextLink>
             </Typography>
           </div>
         </div>

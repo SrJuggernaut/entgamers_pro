@@ -89,8 +89,7 @@ const UpdateRecoverPasswordForm: FC<UpdateRecoverPasswordFormProps> = (props) =>
             <Typography variant="caption" color="info">
               Escribe tu nueva contraseña
             </Typography>
-          )
-        }
+          )}
       </FormGroup>
       <FormGroup>
         <label htmlFor="confirmPassword">

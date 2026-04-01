@@ -14,7 +14,7 @@ import NextLink from 'next/link'
 import { type FC } from 'react'
 
 const SessionButtons: FC = () => {
-  const { session, status, clanes } = useAppSelector(state => state.session)
+  const { session, status, clanes } = useAppSelector((state) => state.session)
   const { manageError } = useManageError()
   const dispatch = useAppDispatch()
 
@@ -24,8 +24,8 @@ const SessionButtons: FC = () => {
     return (
       <>
         <Tooltip
-          title={'Iniciar sesión'}
-          position='bottom'
+          title="Iniciar sesión"
+          position="bottom"
         >
           <NextLink
             href="/login"
@@ -44,8 +44,8 @@ const SessionButtons: FC = () => {
     return (
       <>
         <Tooltip
-          title={'Mi cuenta'}
-          position='bottom'
+          title="Mi cuenta"
+          position="bottom"
         >
           <NextLink
             href="/cuenta"
@@ -56,10 +56,10 @@ const SessionButtons: FC = () => {
             <FontAwesomeIcon icon={faUser} fixedWidth />
           </NextLink>
         </Tooltip>
-        {clanes !== undefined && clanes?.teams.some(team => team.$id === ADMIN_CLAN_ID || team.$id === MODERATOR_CLAN_ID) && (
+        {clanes !== undefined && clanes?.teams.some((team) => team.$id === ADMIN_CLAN_ID || team.$id === MODERATOR_CLAN_ID) && (
           <Tooltip
-            title={'Panel de administración'}
-            position='bottom'
+            title="Panel de administración"
+            position="bottom"
           >
             <NextLink
               href="/dashboard"
@@ -72,8 +72,8 @@ const SessionButtons: FC = () => {
           </Tooltip>
         )}
         <Tooltip
-          title={'Cerrar sesión'}
-          position='bottom'
+          title="Cerrar sesión"
+          position="bottom"
         >
           <IconButton
             onClick={() => {

@@ -52,7 +52,7 @@ const Social: FC = () => {
               <div
                 className={card({ variant: 'glass' }).content}
               >
-                <Typography variant="h2" align='center'>Redes Sociales</Typography>
+                <Typography variant="h2" align="center">Redes Sociales</Typography>
                 <Typography variant="body1">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate deleniti dolore quas sed nemo sit, officia in rem nesciunt quisquam possimus ab! Labore sed reprehenderit quae, hic earum tempora placeat cumque id eos itaque perferendis nulla officia fuga porro, quis, unde facere accusamus repudiandae non?
                 </Typography>
