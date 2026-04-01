@@ -5,9 +5,9 @@ import { setClanes, setCurrentUser, setSession, setStatus } from '@/state/sessio
 import { AppwriteException } from 'appwrite'
 import { getClanes } from 'entgamers-database/frontend/clanes'
 import { getCurrentUser, getSession } from 'entgamers-database/frontend/session'
-import { useCallback, useEffect } from 'react'
+import { type FC, useCallback, useEffect } from 'react'
 
-const SessionConsumer = () => {
+const SessionConsumer: FC = () => {
   const { status, session, user, clanes } = useAppSelector((state) => state.session)
   const dispatch = useAppDispatch()
 
@@ -52,5 +52,6 @@ const SessionConsumer = () => {
       dispatch(setClanes())
     }
   }, [user, clanes, dispatch])
+  return null
 }
 export default SessionConsumer
