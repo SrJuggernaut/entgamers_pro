@@ -4,7 +4,7 @@ import { css, cx } from '@/styled-system/css'
 import { Center } from '@/styled-system/jsx'
 import { container } from '@/styled-system/patterns'
 import { card } from '@/styled-system/recipes'
-import { type FC } from 'react'
+import { Suspense, type FC } from 'react'
 
 const page: FC = () => {
   return (
@@ -35,7 +35,9 @@ const page: FC = () => {
         <div
           className={card().content}
         >
-          <ManageRecoverPassword />
+          <Suspense fallback={<Typography variant="body1">Cargando...</Typography>}>
+            <ManageRecoverPassword />
+          </Suspense>
         </div>
       </div>
     </Center>
