@@ -5,7 +5,6 @@
   "scripts": {
     "develop": "next dev",
     "build": "next build",
-    "prestart": "bun install && next build",
     "start": "next start",
     "lint": "eslint .",
     "prepare": "panda codegen && bun ./.husky/install.mts"
